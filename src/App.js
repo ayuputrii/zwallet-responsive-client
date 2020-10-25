@@ -53,7 +53,7 @@ const App = (props) => {
           <PrivateRoute exact path="/profile/password" component={Password} />
           <PrivateRoute exact path="/profile/pin" component={Pin} />
           <PrivateRoute exact path="/profile/pin/new" component={NewPin} />
-          <PrivateRouteAdmin exact path="/admin/user" />
+          <PrivateRouteAdmin exact path="/admin/user" component={HomeAdm} />
           <PrivateRouteAdmin exact path="/admin/user/:id" />
           <PrivateRouteAdmin exact path="/admin/transfer" />
           <PrivateRouteAdmin exact path="/admin/topup" />

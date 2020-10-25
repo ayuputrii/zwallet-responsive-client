@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Menu from '../../components/Menu'
@@ -12,7 +12,6 @@ import { imageURI } from '../../utils'
 import './Search.css'
 
 const Search = props => {
-    const [count, setCount] = useState(0)
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.search)
     const { token } = useSelector(state => state.auth)

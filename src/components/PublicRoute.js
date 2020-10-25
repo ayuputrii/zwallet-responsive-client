@@ -23,7 +23,7 @@ const PublicRoute = ({ component, restricted, ...rest}) => {
         <Route {...rest} 
         render={(props) =>
             isLogin && isAdmin && restricted ? (
-              <Redirect to="/admin/home" />
+              <Redirect to="/admin/user" />
             ) : (
               <Component {...props} />
             )

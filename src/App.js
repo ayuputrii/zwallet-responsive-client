@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import { persistor } from './redux/store'
 import PrivateRoute from './components/PrivateRoute'
+import PrivateRouteAdmin from './components/PrivateRouteAdmin'
 import PublicRoute from './components/PublicRoute'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
@@ -52,6 +53,10 @@ const App = (props) => {
           <PrivateRoute exact path="/profile/password" component={Password} />
           <PrivateRoute exact path="/profile/pin" component={Pin} />
           <PrivateRoute exact path="/profile/pin/new" component={NewPin} />
+          <PrivateRouteAdmin exact path="/admin/user" />
+          <PrivateRouteAdmin exact path="/admin/user/:id" />
+          <PrivateRouteAdmin exact path="/admin/transfer" />
+          <PrivateRouteAdmin exact path="/admin/topup" />
           <PublicRoute component={NotFound} />
         </Switch>
       </Router>

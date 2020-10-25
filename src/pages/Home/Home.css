@@ -2,7 +2,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: transparent !important;
+    background-color: transparent;
 }
 
 .top-panel {
@@ -246,9 +246,27 @@
     }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 578px) {
     .middle span {
         top: 50px;
         font-size: 13px;
+    }
+
+    .bg-top-panel {
+        background-color: transparent;
+    }
+
+    .top-panel {
+        padding: 0;
+    }
+
+    .top-panel .left {
+        background-color: #6379F4;
+        padding: 30px 30px;
+        border-radius: 20px;
+    }
+
+    .bottom-panel {
+
     }
 }

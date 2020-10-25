@@ -240,13 +240,11 @@
     }
 
     .pin {
-        margin-left: 21px;
-        margin-right: 21px;
+        width: 100%;
     }
 
     .pin input {
-        width: 80%;
-        margin-right: 10px;
+        margin-right: auto;
     }
 
     

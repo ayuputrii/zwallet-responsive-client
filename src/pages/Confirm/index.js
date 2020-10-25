@@ -7,8 +7,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { transfer } from '../../redux/action/transfer'
 import { useForm } from 'react-hook-form'
 import { Modal, Button } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { imageURI } from '../../utils'
+import Back from '../../icons/arrow-left.svg'
 import './Confirm.css'
 
 const Confirm = props => {
@@ -110,6 +111,12 @@ const Confirm = props => {
             <Container className="d-flex mt-5">
                 <Menu active={2} />
                 <div className="content-main">
+                    <div className="d-flex align-items-start d-sm-none mb-4">
+                        <Link to="/transfer/input">
+                            <img className="mr-3" src={Back} alt="back" />
+                        </Link>
+                        <p style={{fontSize: '20px'}} className="bold">Transfer</p>
+                    </div>
                     <div className="into">
                         <p className="text bold">Transfer To</p>
                         <div className="profile label">

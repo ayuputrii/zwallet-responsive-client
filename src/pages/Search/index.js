@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Menu from '../../components/Menu'
@@ -7,10 +7,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { search, searchByName, getUserTransfer } from '../../redux/action/search'
 import { Link } from 'react-router-dom'
 import SearchIcon from '../../icons/search.svg'
+import Back from '../../icons/arrow-left.svg'
 import { imageURI } from '../../utils'
 import './Search.css'
 
 const Search = props => {
+    const [count, setCount] = useState(0)
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.search)
     const { token } = useSelector(state => state.auth)
@@ -38,15 +40,25 @@ const Search = props => {
     return (
         <Fragment>
             <Navbar />
-            <Container className="d-flex mt-5">
+            <Container className="d-flex mt-5 px-0 px-md-5">
                 <Menu active={2} />
                 <div style={{height:'80vh'}} className="content-main">
-                    <div className="title text bold">
+                    <div className="d-flex align-items-start d-sm-none px-3 mb-4">
+                        <Link to="/dashboard">
+                            <img className="mr-3" src={Back} alt="back" />
+                        </Link>
+                        <p style={{fontSize: '20px'}} className="bold">Find Receiver</p>
+                    </div>
+                    <div className="title text bold d-none d-sm-block">
                         Search Receiver
                     </div>
-                    <div className="input">
+                    <div className="input px-3">
                         <img className="search" src={SearchIcon} alt="" />
                         <input name="q" type="search" onChange={(e) => dispatch(searchByName(token, e.target.value))} autoComplete="off" placeholder="Search receiver here"/>
+                    </div>
+                    <div className="d-flex flex-column ml-3">
+                        <p style={{fontSize: '20px'}} className="bold">All Contacts</p>
+                        <p style={{color: '#8F8F8F'}} className="small">{data.filter(item => item.phone).length} Contact Found</p>
                     </div>
                     <div style={{overflowY: 'scroll'}} className="list">
                         {data.map((item, index) => {

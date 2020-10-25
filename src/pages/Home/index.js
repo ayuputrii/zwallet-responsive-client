@@ -10,6 +10,7 @@ import Transfer from '../../icons/balance/arrow-up.svg'
 import Topup from '../../icons/balance/plus.svg'
 import Income from '../../icons/arrow-down.svg'
 import Expense from '../../icons/arrow-up.svg'
+import bell from '../../icons/bell.svg'
 import './Home.css'
 import { imageURI } from '../../utils'
 
@@ -60,9 +61,21 @@ const Home = props => {
     return (
         <Fragment>
             <Navbar/>
-            <Container className="d-flex mt-5">
+            <Container className="d-flex mt-5 px-0 px-md-5">
                 <Menu active={1} />
                 <div style={{ flex: 1 }}>
+                    <Link to="/profile" className="d-flex justify-content-between align-items-center d-sm-none mb-3 px-3">
+                        <div className="d-flex">
+                            <img style={{ borderRadius: '10px', marginRight: '20px'}} width="52px" height="52px" src={imageURI+data.photo} alt="" />
+                            <div className="d-flex flex-column">
+                                <p className="text mb-2">Hello,</p>
+                                <p className="text bold mb-0">{data.name}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <img src={bell} alt="bell" />
+                        </div>
+                    </Link>
                     <div id="top-panel" className="top-panel bg-top-panel">
                         <div className="left">
                             <p className="balance text">Balance</p>
@@ -71,13 +84,13 @@ const Home = props => {
                         </div>
                         <div className="right">
                             <Link to={{ pathname: `/transfer`}}>
-                                <button className="btn-light-primary">
+                                <button className="btn-light-primary home-button">
                                     <img className="mr-2" src={Transfer} alt=""/>
                                     Transfer
                                 </button>   
                             </Link>
                             <Link to={{pathname: `/topup`}}>
-                                <button className="btn-light-primary">
+                                <button className="btn-light-primary home-button">
                                     <img className="mr-2" src={Topup} alt=""/>
                                     Top Up
                                 </button>
@@ -85,7 +98,7 @@ const Home = props => {
                         </div>
                     </div>
                     <div className="bottom-panel">
-                        <div className="chart">
+                        <div className="chart d-none d-sm-block">
                             <div className="top">
                                 <div className="left">
                                     <img src={Income} alt=""/>
@@ -107,13 +120,14 @@ const Home = props => {
                                 <span className="text bold desc-title">Transaction History</span>
                                 <Link to="/dashboard/history" className="small primary">See all</Link>
                             </div>
+                            <div className="d-flex flex-column">
                             {dataAll.map((item, index) => {
                                 if(index <= 3) {
                                     return (
-                                        <div key={index} className="d-flex justify-content-between">
-                                            <div className="d-flex">
+                                        <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
+                                            <div className="d-flex align-items-center">
                                                 <div className="avatar">
-                                                    <img src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
+                                                    <img style={{borderRadius: '10px'}} src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
                                                 </div>
                                                 <div className="info">
                                                     <p className="bold history-text">{item.receiver === data.name ? item.sender : item.receiver}</p>
@@ -125,8 +139,11 @@ const Home = props => {
                                             </div>
                                         </div>
                                     )
+                                } else {
+                                    return ''
                                 }
                             })}
+                            </div>
                         </div>
                     </div>
                 </div>

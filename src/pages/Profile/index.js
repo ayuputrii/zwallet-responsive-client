@@ -9,6 +9,7 @@ import ArrowRight from '../../icons/arrow-right.svg'
 import { Link } from 'react-router-dom'
 import { logout } from '../../redux/action/login'
 import { userLogout, editUser } from '../../redux/action/user'
+import Back from '../../icons/arrow-left.svg'
 import { imageURI } from '../../utils'
 
 const Profile = props => {
@@ -25,7 +26,6 @@ const Profile = props => {
             backgroundColor: "#E5E8ED",
             padding: "20px",
             marginBottom: "20px",
-            width: "433px",
             cursor: 'pointer'
         }
     }
@@ -69,6 +69,11 @@ const Profile = props => {
             <Container className="d-flex mt-5">
                 <Menu active={4} />
                 <div className="content-main d-flex flex-column align-items-center py-5">
+                    <div className="d-flex align-self-start align-items-start d-sm-none mb-4">
+                        <Link to="/dashboard">
+                            <img className="mr-3" src={Back} alt="back" />
+                        </Link>
+                    </div>
                     <img className="mb-3" style={{borderRadius: '10px'}} width="80px" height="80px" src={imageURI+data.photo} alt="" />
                     <div className="d-flex justify-content-between align-items-center mb-3">
                         <img onClick={() => setModalShow(true)} style={{cursor: 'pointer'}} className="mr-2" src={Edit} alt="edit" height="11px" />
@@ -76,22 +81,22 @@ const Profile = props => {
                     </div>
                     <p className="mb-2 big bold text-dark">{data.name}</p>
                     <p className="med text-muted">+62 {splitPhone(data.phone)}</p>
-                    <Link to={{ pathname: `/profile/info`}} style={style.label} className="mt-4 d-flex justify-content-between align-items-center">
+                    <Link to={{ pathname: `/profile/info`}} style={style.label} className="label-profile mt-4 d-flex justify-content-between align-items-center">
                         <p className="bold med text-dark mb-0">Personal Information</p>
                         <img src={ArrowRight} alt="arrow" />
                     </Link>
-                    <Link to={{ pathname: `/profile/password`}} style={style.label} className="d-flex justify-content-between align-items-center">
+                    <Link to={{ pathname: `/profile/password`}} style={style.label} className="label-profile d-flex justify-content-between align-items-center">
                         <p className="bold med text-dark mb-0">Change Password</p>
                         <img src={ArrowRight} alt="arrow" />
                     </Link>
-                    <Link to={{ pathname: `/profile/pin`}} style={style.label} className="d-flex justify-content-between align-items-center">
+                    <Link to={{ pathname: `/profile/pin`}} style={style.label} className="label-profile d-flex justify-content-between align-items-center">
                         <p className="bold med text-dark mb-0">Change PIN</p>
                         <img src={ArrowRight} alt="arrow" />
                     </Link>
                     <Link onClick={() => {
                             dispatch(logout())
                             dispatch(userLogout())
-                        }} to="/" style={style.label} className="d-flex justify-content-between align-items-center">
+                        }} to="/" style={style.label} className="label-profile d-flex justify-content-between align-items-center">
                         <p className="bold med text-dark mb-0">Logout</p>
                     </Link>
                     <Modal size="md" aria-labelledby="contained-modal-title-vcenter" centered show={modalShow} onHide={() => setModalShow(false)} >

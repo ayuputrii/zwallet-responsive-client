@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import Menu from '../../components/Menu'
 import Navbar from '../../components/Navbar'
+import Back from '../../icons/arrow-left.svg'
 
 const Info = props => {
     const { data } = useSelector(state => state.user)
@@ -31,7 +32,12 @@ const Info = props => {
             <Container className="d-flex mt-5">
                 <Menu active={4} />
                 <div className="content-main">
-                    <p className="text bold text-dark mb-4">Personal Information</p>
+                    <div className="d-flex align-self-start align-items-start d-sm-none mb-4">
+                        <Link to="/profile">
+                            <img className="mr-3" src={Back} alt="back" />
+                        </Link>
+                        <p className="text bold text-dark">Personal Information</p>
+                    </div>
                     <p style={{width:'334px'}} className="text-muted mb-5">We got your personal information from the sign up proccess. If you want to make changes on your information, contact our support.</p>
                     <div style={{padding: '15px'}} className="label d-flex flex-column justify-content-between">
                         <p className="med text-muted mb-2">First Name</p>

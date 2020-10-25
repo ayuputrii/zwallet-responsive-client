@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Menu from '../../components/Menu'
@@ -9,6 +9,7 @@ import { formFilled } from '../../redux/action/transfer'
 import { useForm } from 'react-hook-form'
 import Edit from '../../icons/edit.svg'
 import EditActive from '../../icons/edit-active.svg'
+import Back from '../../icons/arrow-left.svg'
 import { imageURI } from '../../utils'
 import './Input.css'
 
@@ -56,8 +57,14 @@ const Input = props => {
             <Container className="d-flex mt-5">
                 <Menu active={2} />
                 <div className="content-main">
+                <div className="d-flex align-items-start d-sm-none mb-4">
+                    <Link to="/transfer">
+                        <img className="mr-3" src={Back} alt="back" />
+                    </Link>
+                    <p style={{fontSize: '20px'}} className="bold">Transfer</p>
+                </div>
                 <div className="where">
-                    <p className="text bold">Transfer Money</p>
+                    <p className="text bold d-none d-sm-block">Transfer Money</p>
                     <div className="profile label">
                         <div className="avatar">
                             <img style={{borderRadius: '10px'}} width="70px" height="70px" src={imageURI+userTransfer.photo} alt="" />
@@ -68,7 +75,7 @@ const Input = props => {
                         </div>
                     </div>
                 </div>
-                <div className="med type">
+                <div className="med type d-none d-sm-block">
                     Type the amount you want to transfer and then press continue to the next steps.
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>

@@ -185,8 +185,11 @@ a:hover {
 
 .content-main {
   flex: 1;
-  position: relative;
-  background-color: #FFFFFF !important;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 25px;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
 .content-notification {
@@ -219,6 +222,10 @@ a:hover {
 
 .report .date {
   margin-bottom: 25px;
+}
+
+.label-profile {
+  width: 433px;
 }
 
 @media screen and (max-width:1200px) {
@@ -286,9 +293,22 @@ a:hover {
   }
 }
 
-@media screen and(max-width: 578px) {
+@media screen and (max-width: 578px) {
   html, body {
-    background-color: #FFFFFF;
+    background-color: #FFFFFF !important;
+  }
+
+  .content-main {
+    flex: 1;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 25px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+
+  .label-profile {
+    width: 100%;
   }
 }
 

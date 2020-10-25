@@ -97,6 +97,7 @@ const Status = props => {
                     </div>
                     <span className="bold logo text-center">Transfer Success</span>
                     <div className="details">
+                        <p className="text bold">Details</p>
                         <div className="label">
                             <div className="title bold med">Amount</div>
                             <div className="desc big bold">Rp{dataTransfer.amount}</div>
@@ -127,11 +128,11 @@ const Status = props => {
                             </div>
                         </div>
                     </div>
-                    <div className="d-flex justify-content-end">
-                        <button className="small-btn-light-primary mr-3">
+                    <div className="d-flex justify-content-sm-end justify-content-center">
+                        <button className="small-btn-light-primary mr-3 d-none d-sm-block">
                             <img src={Share} alt="share" />
                         </button>
-                        <button className="big-btn-light-primary text primary bold mr-3">
+                        <button className="big-btn-light-primary text primary bold mr-3 d-none d-sm-block">
                             <img src={Download} alt="download" /> Download PDF
                         </button>
                         <Link to="/dashboard">

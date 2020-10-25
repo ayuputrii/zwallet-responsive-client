@@ -31,6 +31,7 @@ const App = (props) => {
     <PersistGate loading={null} persistor={persistor}>
       <Router>
         <Switch>
+          {/* coba pull push */}
           <PublicRoute exact path="/" restricted={false} component={Landing} />
           <PublicRoute path="/login" restricted component={Login} />
           <PublicRoute exact path="/register" restricted component={Register} />

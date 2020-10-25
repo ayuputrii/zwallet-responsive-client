@@ -12,23 +12,23 @@ const Landing = props => {
             <Header>
                 <Container className="d-flex flex-lg-row flex-column">
                     <Left>
-                        <Logo size="29px" bottom="140px">
+                        <Logo size="29px" bottom="140px" className="d-flex justify-content-center justify-content-sm-start">
                             Zwallet
                         </Logo>
-                        <Typo color="#FFFFFF">
+                        <Typo color="#FFFFFF" className="d-none d-sm-block">
                             Awesome App For Saving Time.
                         </Typo>
-                        <Desc color="#FFFFFF">
+                        <Desc color="#FFFFFF" className="d-none d-sm-block">
                             We bring you a mobile app for banking problems that oftenly wasting much of your times.
                         </Desc>
-                        <Link to="/register">
+                        <Link to="/register" className="d-none d-sm-block">
                             <ButtonLanding className="mb-3" width="173px">
                                 Try It Free
                             </ButtonLanding>
                         </Link>
                     </Left>
                     <Right>
-                        <div className="d-none d-md-block" style={{ alignSelf: 'flex-end', marginBottom: '40px', position: 'absolute', top: '40px'}}>
+                        <div className="d-flex justify-content-center justify-content-sm-end d-sm-none d-lg-flex">
                             <Link to="/login">
                                 <ButtonLanding primary className="mr-3">Login</ButtonLanding>
                             </Link>
@@ -40,13 +40,13 @@ const Landing = props => {
                     </Right>
                 </Container>
             </Header>
-            <Partner>
+            <Partner className="d-none d-sm-block">
                 <Container style={{paddingTop: '90px', paddingBottom: '90px'}}>
                     <img width="100%" src="https://i.ibb.co/4KTJW00/Logo.png" alt="partner" />
                 </Container>
             </Partner>
             <Container>
-                <About>
+                <About className="d-none d-sm-block">
                     <Typo color="#6379F4">
                         About <span className="text-dark">the Application.</span>
                     </Typo>
@@ -84,7 +84,7 @@ const Landing = props => {
                     </div>
                 </About>
             </Container>
-            <Partner>
+            <Partner className="d-none d-sm-block">
                 <Container className="d-flex flex-lg-row flex-column">
                     <img src="https://i.ibb.co/6FQ8VpZ/Phone-Feature.png" alt="feature" />
                     <div style={{margin: '174px auto'}}>
@@ -121,7 +121,7 @@ const Landing = props => {
                 </Container>
             </Partner>
             <Container>
-                <About>
+                <About className="d-none d-sm-block">
                     <Typo color="#3A3D42">
                         What Users are <span className="text-primary">Saying.</span>
                     </Typo>
@@ -144,7 +144,7 @@ const Landing = props => {
                     </div>
                 </About>
             </Container>
-            <footer className="bg-primary">
+            <footer className="bg-primary d-none d-sm-block">
                 <Container style={{paddingTop: '80px', paddingBottom: '80px'}}>
                     <Logo size="36px">Zwallet</Logo>
                     <Desc color="rgba(239, 239, 239, 0.75)">

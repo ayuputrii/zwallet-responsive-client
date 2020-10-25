@@ -34,12 +34,18 @@ const Login = props => {
         <div className="d-flex flex-column flex-lg-row">
             <AuthLogo />
             <div id="right" style={style.right} className="right">
-                <div className="bold big start ">Start Accessing Banking Needs
+                <div className="item bold big start d-none d-sm-block">Start Accessing Banking Needs
                     With All Devices and All Platforms
                     With 30.000+ Users
                 </div>
-                <div className="text desc-right">
+                <div className="item text-center bold big start d-block d-sm-none">
+                    Login
+                </div>
+                <div className="item text desc-right d-none d-sm-block">
                     Transfering money is eassier than ever, you can access Zwallet wherever you are. Desktop, laptop, mobile phone? we cover all of that for you!
+                </div>
+                <div className="item text-center text desc-right d-block d-sm-none">
+                    Login to your existing account to access all the features in Zwallet.
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="email input mb-5">

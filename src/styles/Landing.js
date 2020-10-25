@@ -1,8 +1,17 @@
 import styled from 'styled-components'
 
 export const Header = styled.header`
-    background: url('https://i.ibb.co/t2f417f/Mask-Group.png');
+    background-image: url('https://i.ibb.co/t2f417f/Mask-Group.png');
     padding: 55px 150px 0 150px;
+
+    @media (max-width: 576px) {
+        background-image: none;
+        background-color: #6379F4;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 `
 
 export const Logo = styled.p`
@@ -10,6 +19,10 @@ export const Logo = styled.p`
     font-size: ${props => props.size};
     margin-bottom: ${props => props.bottom};
     color: #FFFFFF;
+
+    @media (max-width: 576px) {
+        margin-bottom: 30px;
+    }
 `
 
 export const Typo = styled.h1`
@@ -35,6 +48,10 @@ export const ButtonLanding = styled.button`
     padding: 16px;
     font-size: 18px;
     font-weight: bold;
+
+    @media (max-width: 576px) {
+        align-self: flex-end;
+    }
 `
 
 export const Left = styled.div`

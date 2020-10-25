@@ -1,2 +1,2 @@
-export const imageURI = 'https://stark-bastion-82023.herokuapp.com/images/'
-export const URI = 'https://stark-bastion-82023.herokuapp.com/api/v1'
+export const imageURI = 'http://localhost:8000/images/'
+export const URI = 'http://localhost:8000/api/v1'

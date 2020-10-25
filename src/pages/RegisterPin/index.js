@@ -13,8 +13,7 @@ const RegisterPin = props => {
     const style = {
         right: {
             backgroundColor: "#FFFFFF",
-            flex: 1,
-            padding: "120px 150px 150px 40px"
+            flex: 1
         }
     }
 
@@ -33,12 +32,18 @@ const RegisterPin = props => {
             <div className="d-flex flex-column flex-lg-row">
                 <AuthLogo />
                 <div style={style.right} className="right">
-                    <div className="bold big start">Start Accessing Banking Needs
+                    <div className="item bold big start d-none d-sm-block">Start Accessing Banking Needs
                         With All Devices and All Platforms
                         With 30.000+ Users
                     </div>
-                    <div className="text desc-right">
+                    <div className="item text-center bold big start d-block d-sm-none">
+                        Create Security PIN
+                    </div>
+                    <div className="item text desc-right d-none d-sm-block">
                         Transfering money is eassier than ever, you can access Zwallet wherever you are. Desktop, laptop, mobile phone? we cover all of that for you!
+                    </div>
+                    <div className="item text-center text desc-right d-block d-sm-none">
+                        Create a PIN that’s contain 6 digits number for security purpose in Zwallet.
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="pin" onSubmit={handleSubmit(onSubmit)}>

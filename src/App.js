@@ -23,6 +23,8 @@ import Pin from './pages/Pin';
 import NewPin from './pages/NewPin';
 import NotFound from './pages/NotFound'
 import History from './pages/History';
+import Forgot from './pages/Forgot';
+import ResetPassword from './pages/ResetPassword';
 
 const App = (props) => {
   return (
@@ -34,6 +36,8 @@ const App = (props) => {
           <PublicRoute exact path="/register" restricted component={Register} />
           <PublicRoute exact path="/register/pin" restricted component={RegisterPin} />
           <PublicRoute exact path="/register/success" restricted component={RegisterSuccess} />
+          <PublicRoute exact path="/forgot" restricted component={Forgot} />
+          <PublicRoute exact path="/forgot/reset" restricted component={ResetPassword} />
           <PrivateRoute exact path="/dashboard" component={Home} />
           <PrivateRoute exact path="/dashboard/history" component={History} />
           <PrivateRoute exact path="/transfer" component={Search} />

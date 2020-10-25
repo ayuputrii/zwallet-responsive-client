@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap'
 
 const Footer = props => {
     return (
-        <footer className="bg-primary footer">
+        <footer className="bg-primary footer d-none d-sm-block">
             <Container className="d-flex flex-column flex-sm-row justify-content-between align-items-center">
                 <div className="panel-left">
                     2020 Zwallet. All right reserved.

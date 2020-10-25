@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT } from '../type/login'
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILED, LOGOUT, IS_ADMIN } from '../type/login'
 
 const initialState = {
     token: '',
@@ -7,7 +7,8 @@ const initialState = {
     error: '',
     isEmailActive: false,
     isPasswordActive: false,
-    isEyeClick: false
+    isEyeClick: false,
+    isAdmin: false
 };
 
 export default (state = initialState, action) => {
@@ -32,6 +33,11 @@ export default (state = initialState, action) => {
                 loading: false,
                 isLogin: false
             }
+        case IS_ADMIN:
+            return {
+                ...state,
+                isAdmin: true
+            }
         case LOGOUT:
             return {
                 ...state,
@@ -40,7 +46,8 @@ export default (state = initialState, action) => {
                 _persist: {
                     rehydrated: true,
                     version: -1
-                }
+                },
+                isAdmin: false
             }
         default:
             return state

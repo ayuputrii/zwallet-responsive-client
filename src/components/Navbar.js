@@ -29,7 +29,7 @@ const Bar = props => {
     }
 
     return (
-        <Navbar className="nav" bg="white" expand="lg">
+        <Navbar className="nav d-none d-sm-block" bg="white" expand="lg">
             <Container fluid="md" className="py-5">
                 <Nav.Item className="logo primary">Zwallet</Nav.Item>
                 <Nav.Item className="d-none d-md-flex justify-content-between align-items-center">

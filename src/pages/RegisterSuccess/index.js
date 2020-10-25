@@ -18,7 +18,7 @@ const RegisterSuccess = props => {
                 <div className="start status bg-success mx-auto mx-sm-1">
                     <img src={Check} alt="" />
                 </div>
-                <div className="information">
+                <div className="information big bold start d-none d-sm-block">
                     <span className="info">Your PIN Was Successfully Created</span>
                 </div>
                 <div className="information big bold start d-block d-sm-none text-center item">

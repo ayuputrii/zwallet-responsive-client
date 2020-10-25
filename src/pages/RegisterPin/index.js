@@ -47,12 +47,12 @@ const RegisterPin = props => {
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="pin" onSubmit={handleSubmit(onSubmit)}>
-                            <input ref={register} name="1" type="text" maxLength="1" />
-                            <input ref={register} name="2" type="text" maxLength="1" />
-                            <input ref={register} name="3" type="text" maxLength="1" />
-                            <input ref={register} name="4" type="text" maxLength="1" />
-                            <input ref={register} name="5" type="text" maxLength="1" />
-                            <input ref={register} name="6" type="text" maxLength="1" />
+                            <input ref={register} name="1" type="number" maxLength="1" />
+                            <input ref={register} name="2" type="number" maxLength="1" />
+                            <input ref={register} name="3" type="number" maxLength="1" />
+                            <input ref={register} name="4" type="number" maxLength="1" />
+                            <input ref={register} name="5" type="number" maxLength="1" />
+                            <input ref={register} name="6" type="number" maxLength="1" />
                         </div>
                         <div className="button">
                             <button type="submit" className='auth-primary-btn'>Confirm</button>

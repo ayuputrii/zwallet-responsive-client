@@ -59,7 +59,7 @@ const Home = props => {
 
     return (
         <Fragment>
-            <Navbar />
+            <Navbar/>
             <Container className="d-flex mt-5">
                 <Menu active={1} />
                 <div style={{ flex: 1 }}>
@@ -110,8 +110,8 @@ const Home = props => {
                             {dataAll.map((item, index) => {
                                 if(index <= 3) {
                                     return (
-                                        <div key={index} className="items">
-                                            <div className="left">
+                                        <div key={index} className="d-flex justify-content-between">
+                                            <div className="d-flex">
                                                 <div className="avatar">
                                                     <img src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
                                                 </div>
@@ -121,7 +121,7 @@ const Home = props => {
                                                 </div>
                                             </div>
                                             <div className="money">
-                                            <p className={`bold ${item.receiver === data.name ? 'text-success' : 'text-danger'}`}>{item.receiver === data.name ? '+' : '-'}{item.amount}</p>
+                                                <p className={`bold ${item.receiver === data.name ? 'text-success' : 'text-danger'}`}>{item.receiver === data.name ? '+' : '-'}{item.amount}</p>
                                             </div>
                                         </div>
                                     )

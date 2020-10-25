@@ -8,9 +8,6 @@ export const Header = styled.header`
         background-image: none;
         background-color: #6379F4;
         height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 `
 
@@ -22,6 +19,7 @@ export const Logo = styled.p`
 
     @media (max-width: 576px) {
         margin-bottom: 30px;
+        margin-top: 20vh;
     }
 `
 

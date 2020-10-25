@@ -3,9 +3,11 @@ import { Route, Redirect } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const PublicRoute = ({ component, restricted, ...rest}) => {
-    const { isLogin } = useSelector(state => state.auth)
+    const { isLogin, isAdmin } = useSelector(state => state.auth)
     const Component = component
-    return (
+    
+    if(!isAdmin) {
+      return (
         <Route {...rest} 
         render={(props) =>
             isLogin && restricted ? (
@@ -16,6 +18,19 @@ const PublicRoute = ({ component, restricted, ...rest}) => {
           }
         />
     )
+    } else {
+      return (
+        <Route {...rest} 
+        render={(props) =>
+            isLogin && isAdmin && restricted ? (
+              <Redirect to="/admin/home" />
+            ) : (
+              <Component {...props} />
+            )
+          }
+        />
+    )
+    }
 }
 
 export default PublicRoute

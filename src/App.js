@@ -26,13 +26,13 @@ import NotFound from './pages/NotFound'
 import History from './pages/History';
 import Forgot from './pages/Forgot';
 import ResetPassword from './pages/ResetPassword';
+import HomeAdm from './pages/HomeAdm';
 
 const App = (props) => {
   return (
     <PersistGate loading={null} persistor={persistor}>
       <Router>
         <Switch>
-          <PublicRoute exact path="/admin" restricted={false} component={Landing} />
           <PublicRoute exact path="/" restricted={false} component={Landing} />
           <PublicRoute path="/login" restricted component={Login} />
           <PublicRoute exact path="/register" restricted component={Register} />

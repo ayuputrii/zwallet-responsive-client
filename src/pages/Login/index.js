@@ -21,8 +21,7 @@ const Login = props => {
     const style = {
         right: {
             backgroundColor: "#FFFFFF",
-            flex: 1,
-            padding: "120px 150px 150px 40px"
+            flex: 1
         }
     }
 

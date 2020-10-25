@@ -3,6 +3,10 @@
     border-bottom: 1.5px solid #6379F4;
 }
 
+.right {
+    padding: 120px 150px 150px 40px;
+}
+
 .logo {
     margin-bottom: 40px;
 }

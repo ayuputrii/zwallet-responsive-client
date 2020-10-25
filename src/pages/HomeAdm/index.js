@@ -1,8 +1,11 @@
 import React from "react";
 import {Container, Row, Col, Form} from 'react-bootstrap';
+import { useDispatch } from 'react-redux'
+import { logout } from '../../redux/action/login'
 import './Homeadm.css';
 
 const HomeAdm = (props) =>{
+    const dispatch = useDispatch()
     return(
       <Container>
         <Row>
@@ -25,6 +28,7 @@ const HomeAdm = (props) =>{
                     </Form.Control>
                   </Form.Group>
                 </Form>
+                <p onClick={() => dispatch(logout())} className="text bold">Logout</p>
             </div>
           </Col>
         </Row>

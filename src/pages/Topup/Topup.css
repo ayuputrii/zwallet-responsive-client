@@ -1,0 +1,20 @@
+.content-main {
+    flex: 1;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.label span {
+    margin-right: 25px;
+}
+
+.title {
+    margin-bottom: 25px;
+}
+
+.desc {
+    color: #7A7886;
+}

@@ -1,0 +1,148 @@
+.content-main {
+    flex: 1;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.where .profile {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.avatar {
+    margin-right: 20px;
+}
+
+.type {
+    width: 338px;
+    color: #7A7886;
+    margin-bottom: 50px;
+}
+
+.input {
+    width: 100%;
+    text-align: center;
+    background-color: #FFFFFF !important;
+}
+
+.amount {
+    width: 100%;
+    padding: 15 auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: 42px;
+    border: none;
+    outline: none;
+    margin-bottom: 30px;
+}
+
+.amount::placeholder {
+    color: #B5BDCC;
+}
+
+.cash {
+    text-align: center;
+}
+
+.notes {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.notes input:focus {
+    border: none;
+    border-bottom: 1px solid#6379F4;
+    outline: none;
+}
+
+.note {
+    padding-left: 35px;
+    padding-bottom: 10px;
+    width: 55%;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1.5px solid rgba(169, 169, 169, 0.6);
+}
+
+.note::placeholder {
+    color:#B5BDCC;
+}
+
+.edit {
+    position: absolute;
+    top: 15px;
+    width: 24px;
+    height: 24px;
+}
+
+.eye {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 22%;
+    width: 24px;
+    height: 24px;
+}
+
+.confirm {
+    float: right;
+}
+
+.modal-content {
+    padding: 35px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+}
+
+.modal-body button {
+    float: right;
+}
+
+.pin {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+}
+
+.pin input {
+    width: 53px;
+    height: 65px;
+    margin-right: 23px;
+    border: 1px solid rgba(169, 169, 169, 0.6);
+    box-sizing: border-box;
+    box-shadow: 0px 10px 75px rgba(147, 147, 147, 0.1);
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    font-size: 30px;
+    color: #3A3D42;
+    font-weight: bold;
+    text-align: center;
+}
+
+.pin input:focus {
+    border: 1px solid #6379F4 !important;
+    box-shadow: 0px 10px 75px rgba(147, 147, 147, 0.1);
+    border-radius: 10px;
+    outline: none;
+}
+
+.pin input:last-child {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 576px) {
+    .pin input {
+        margin-right: auto;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .type {
+        width: 100%;
+    }
+}

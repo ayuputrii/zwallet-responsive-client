@@ -1,0 +1,5 @@
+.phone input:focus {
+    border: none;
+    border-bottom: 1px solid#6379F4;
+    outline: none;
+}

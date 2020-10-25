@@ -1,0 +1,5 @@
+export const GET_HISTORY = 'GET_HISTORY'
+export const GET_HISTORY_BY_WEEK = 'GET_HISTORY_BY_WEEK'
+export const GET_HISTORY_BY_MONTH = 'GET_HISTORY_BY_MONTH'
+export const MAX_WEEK = 'MAX_WEEK'
+export const MAX_MONTH = 'MAX_MONTH'

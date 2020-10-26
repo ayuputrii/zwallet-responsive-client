@@ -34,16 +34,16 @@ const Bar = (props) => {
           Zwallet
         </Nav.Item>
 
-        <Nav.Item className="d-none d-sm-block logo-navbarAdm btn-navbarAdm">
+        <Nav.Item className="d-none d-md-block d-sm-none d-xs-none logo-navbarAdm btn-navbarAdm">
           <Link to={{ pathname: `/admin/user` }}>User</Link>
         </Nav.Item>
-        <Nav.Item className="d-none d-sm-block logo-navbarAdm btn-navbarAdm">
+        <Nav.Item className="d-none d-md-block d-sm-none d-xs-none logo-navbarAdm btn-navbarAdm">
           <Link to={{ pathname: `/admin/transfer` }}>Transfer</Link>
         </Nav.Item>
-        <Nav.Item className="d-none d-sm-block logo-navbarAdm btn-navbarAdm">
+        <Nav.Item className="d-none d-md-block d-sm-none d-xs-none logo-navbarAdm btn-navbarAdm">
           <Link to={{ pathname: `/admin/topup` }}>Top Up</Link>
         </Nav.Item>
-        <Nav.Item className="d-none d-sm-block logo-navbarAdm btn-navbarAdm">
+        <Nav.Item className="d-none d-md-block d-sm-none d-xs-none logo-navbarAdm btn-navbarAdm">
           <Link
             onClick={() => {
               dispatch(logout());

@@ -126,6 +126,11 @@
     margin-right: 0;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    display: none;
+}
+
 @media screen and (max-width: 576px) {
     .pin input {
         margin-right: auto;

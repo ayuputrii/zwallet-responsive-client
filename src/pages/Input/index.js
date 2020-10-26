@@ -80,7 +80,7 @@ const Input = props => {
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="input bg-transparent">
-                        <input ref={register} name="amount" autoComplete="off" className="amount primary bg-transparent" type="text" placeholder="0.00" />
+                        <input ref={register} name="amount" autoComplete="off" className="amount primary bg-transparent" type="number" placeholder="0.00" />
                         <span className="cash bold med">Rp{data.balance} Available</span>
                     </div>
                     <div className="notes bg-transparent">

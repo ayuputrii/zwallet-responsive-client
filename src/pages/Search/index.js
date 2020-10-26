@@ -55,7 +55,7 @@ const Search = props => {
                         <img className="search" src={SearchIcon} alt="" />
                         <input name="q" type="search" onChange={(e) => dispatch(searchByName(token, e.target.value))} autoComplete="off" placeholder="Search receiver here"/>
                     </div>
-                    <div className="d-flex flex-column ml-3">
+                    <div className="d-flex flex-column ml-3 d-sm-none">
                         <p style={{fontSize: '20px'}} className="bold">All Contacts</p>
                         <p style={{color: '#8F8F8F'}} className="small">{data.filter(item => item.phone).length} Contact Found</p>
                     </div>

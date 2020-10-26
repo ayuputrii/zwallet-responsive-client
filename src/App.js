@@ -55,12 +55,10 @@ const App = (props) => {
           <PrivateRoute exact path="/profile/password" component={Password} />
           <PrivateRoute exact path="/profile/pin" component={Pin} />
           <PrivateRoute exact path="/profile/pin/new" component={NewPin} />
-          <PublicRoute exact path="/admin/user" component={HomeAdm} />
-          <PublicRoute exact path="/admin/transfer" component={TransferAdm} />
-          <PublicRoute exact path="/admin/topup" component={TopupAdm} />
+          <PrivateRouteAdmin exact path="/admin/user" component={HomeAdm} />
+          <PrivateRouteAdmin exact path="/admin/transfer" component={TransferAdm} />
+          <PrivateRouteAdmin exact path="/admin/topup" component={TopupAdm} />
           <PrivateRouteAdmin exact path="/admin/user/:id" />
-          <PrivateRouteAdmin exact path="/admin/transfer" />
-          <PrivateRouteAdmin exact path="/admin/topup" />
           <PublicRoute component={NotFound} />
         </Switch>
       </Router>

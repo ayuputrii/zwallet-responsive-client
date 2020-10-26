@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Form,
-  Button,
-  Table,
-  Modal,
-} from "react-bootstrap";
-import MenuAdm from "../../components/MenuAdm";
+import { Row, Col, Form, Button, Table, Modal } from "react-bootstrap";
+import NavbarAdm from "../../components/NavbarAdm";
 import "./TopupAdmstyle.css";
 
 const Content = (props) => {
@@ -15,29 +8,23 @@ const Content = (props) => {
   const [smShow, setsmShow] = React.useState(false);
   return (
     <>
-      <Col lg={9} md={12} sm={12} xs={12}>
+      <Col lg={12} md={12} sm={12} xs={12}>
         <Row>
-          <Col lg={2} md={2} sm={3} xs={12}>
-            <p className="logo-name">Zwallet</p>
-          </Col>
-          <Col lg={8} md={8} sm={6} xs={12}>
+          <Col lg={12} md={12} sm={12} xs={12}>
             <Form action="#" className="form-search">
               <input type="text" placeholder="Search..." />
             </Form>
           </Col>
-          <Col lg={2} md={2} sm={2} xs={12}>
-          <Button className="button-add" variant="info">
-              ADD
+          <Col lg={12} md={12} sm={12} xs={12}>
+            <Button
+              className="button-add-topup"
+              type="submit"
+              variant="info"
+              onClick={() => setsmShow(true)}
+            >
+              ADD TOPUP
             </Button>
           </Col>
-          <Button
-            className="button-add-topup"
-            type="submit"
-            variant="info"
-            onClick={() => setsmShow(true)}
-          >
-            ADD TOPUP
-          </Button>
           <Col lg={12} md={12} sm={12} xs={12}>
             <Table responsive className="table-head">
               <thead className="table-check">
@@ -157,7 +144,6 @@ const Content = (props) => {
         </Row>
       </Col>
 
-      {/* START MODAL EDIT TOPUP */}
       <Modal
         size="lg"
         show={lgShow}
@@ -183,9 +169,7 @@ const Content = (props) => {
           </Form>
         </Modal.Body>
       </Modal>
-      {/* END MODAL EDIT TOPUP */}
 
-      {/* START MODAL ADD TOPUP */}
       <Modal
         size="lg"
         show={smShow}
@@ -211,7 +195,6 @@ const Content = (props) => {
           </Form>
         </Modal.Body>
       </Modal>
-      {/* END MODAL ADD TOPUP */}
     </>
   );
 };
@@ -219,9 +202,9 @@ const Content = (props) => {
 const TopupAdm = (props) => {
   return (
     <div className="bg-white">
+      <NavbarAdm />
       <section class="my-1 container">
         <div class="row">
-          <MenuAdm {...props} />
           <Content />
         </div>
       </section>

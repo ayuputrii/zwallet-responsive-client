@@ -31,7 +31,7 @@ const RegisterPin = props => {
         return (
             <div className="d-flex flex-column flex-lg-row">
                 <AuthLogo />
-                <div style={style.right} className="right">
+                <div style={style.right} className="auth right">
                     <div className="item bold big start d-none d-sm-block">Start Accessing Banking Needs
                         With All Devices and All Platforms
                         With 30.000+ Users
@@ -58,9 +58,6 @@ const RegisterPin = props => {
                             <button type="submit" className='auth-primary-btn'>Confirm</button>
                         </div>
                     </form>
-                    <div className="sign-up">
-                        <p className="text">Already have an account? Let’s <Link to="/auth/login" className="bold primary">Login</Link></p>
-                    </div>
                 </div>
             </div>
         )

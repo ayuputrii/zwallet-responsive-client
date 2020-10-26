@@ -14,7 +14,7 @@ const RegisterSuccess = props => {
     return (
         <div className="d-flex flex-column flex-lg-row">
             <AuthLogo />
-            <div style={style.right} className="right">
+            <div style={style.right} className="auth right">
                 <div className="start status bg-success mx-auto mx-sm-1">
                     <img src={Check} alt="" />
                 </div>

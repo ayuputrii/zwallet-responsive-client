@@ -19,8 +19,7 @@ const ResetPassword = props => {
     const style = {
         right: {
             backgroundColor: "#FFFFFF",
-            flex: 1,
-            padding: "120px 150px 150px 40px"
+            flex: 1
         }
     }
 
@@ -38,7 +37,7 @@ const ResetPassword = props => {
     return (
         <div className="d-flex flex-column flex-lg-row">
             <AuthLogo />
-            <div id="right" style={style.right} className="right">
+            <div id="right" style={style.right} className="auth right">
                 <div className="item bold big start d-none d-sm-block">
                     Did You Forgot Your Password? Don’t Worry, You Can Reset Your Password In a Minutes.
                 </div>

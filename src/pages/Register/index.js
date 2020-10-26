@@ -44,7 +44,7 @@ const Register = props => {
         return (
             <div className="d-flex flex-column flex-lg-row">
                 <AuthLogo />
-                <div style={style.right} className="right">
+                <div style={style.right} className="auth right">
                     <div className="item bold big start d-none d-sm-block">Start Accessing Banking Needs
                         With All Devices and All Platforms
                         With 30.000+ Users

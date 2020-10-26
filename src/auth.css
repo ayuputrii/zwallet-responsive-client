@@ -3,7 +3,7 @@
     border-bottom: 1.5px solid #6379F4;
 }
 
-.right {
+.auth.right {
     padding: 120px 150px 150px 40px;
 }
 
@@ -172,7 +172,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-    .right {
+    .auth.right {
         display: flex;
         flex-direction: column;
         padding-right: 30px !important;
@@ -212,7 +212,7 @@
         margin-top: 40px;
     }
 
-    .right {
+    .auth.right {
         padding: 10px !important;
         border-radius: 25px 25px 0 0;
         display: flex;
@@ -225,7 +225,7 @@
     }
 
     .auth-left {
-        background-color: FAFCFF;
+        background-color: #FAFCFF;
         display: flex;
         justify-content: center;
         background-image: none !important;

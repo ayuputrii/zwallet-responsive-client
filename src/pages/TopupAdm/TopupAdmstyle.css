@@ -93,20 +93,31 @@
     display: none !important; 
 }
 
+table.table-head tbody::-webkit-scrollbar{			
+    display: none !important; 
+}
+
+/* table.table-head thead {display:table;width:100%;}
+table.table-head tbody {display:block;height:300px;overflow:auto;width:100%;}
+table.table-head tbody tr {display:table;width:100%;}
+table.table-head th, td {width:33%;padding:8px;}
+table.table-head th {background-color:#6379F4;color:#ffffff;} */
+
+
 .table-responsive{
     margin-top: 30px;		
     overflow-y: scroll; 
     max-height:400px;
 }
 
-.modal-header{
+/* .modal-header{
     border-bottom: none !important;
 }
 
 .modal-title {
     font-weight: bolder !important;
     font-size: 40px !important;
-}
+} */
 
 .description-tittle{
     font-weight: bolder !important;

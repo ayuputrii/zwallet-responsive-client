@@ -82,7 +82,7 @@
     font-weight: bolder !important;
 }
 
-.table-responsive::-webkit-scrollbar{			
+/* .table-responsive::-webkit-scrollbar{			
     display: none !important; 
 }
 
@@ -90,16 +90,16 @@
     margin-top: 30px;		
     overflow-y: scroll; 
     max-height:400px;
-}
+} */
 
-.modal-header{
+/* .modal-header{
     border-bottom: none !important;
 }
 
 .modal-title {
     font-weight: bolder !important;
     font-size: 40px !important;
-}
+} */
 
 @media screen and (min-width: 280px) and (max-width: 575px){
 

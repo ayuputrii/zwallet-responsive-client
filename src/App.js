@@ -26,7 +26,9 @@ import NotFound from './pages/NotFound'
 import History from './pages/History';
 import Forgot from './pages/Forgot';
 import ResetPassword from './pages/ResetPassword';
-import HomeAdm from './pages/HomeAdm';
+import HomeAdm from './pages/UserAdm';
+import TransferAdm from './pages/TransferAdm';
+import TopupAdm from './pages/TopupAdm';
 
 const App = (props) => {
   return (
@@ -53,7 +55,9 @@ const App = (props) => {
           <PrivateRoute exact path="/profile/password" component={Password} />
           <PrivateRoute exact path="/profile/pin" component={Pin} />
           <PrivateRoute exact path="/profile/pin/new" component={NewPin} />
-          <PrivateRouteAdmin exact path="/admin/user" component={HomeAdm} />
+          <PublicRoute exact path="/admin/user" component={HomeAdm} />
+          <PublicRoute exact path="/admin/transfer" component={TransferAdm} />
+          <PublicRoute exact path="/admin/topup" component={TopupAdm} />
           <PrivateRouteAdmin exact path="/admin/user/:id" />
           <PrivateRouteAdmin exact path="/admin/transfer" />
           <PrivateRouteAdmin exact path="/admin/topup" />

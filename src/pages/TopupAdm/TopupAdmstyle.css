@@ -1,0 +1,149 @@
+.header-top{
+    background-color: #daa520;
+}
+
+.logo-name{
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    color: #6379F4;
+}
+
+.form-search{
+    width:100%;
+    margin-top: 30px;
+}
+
+.button-add{
+    width:100px;
+    margin-top: 40px;
+    font-weight: bolder;
+    background-color: #6379F4 !important;
+}
+
+.button-add-topup{
+    width:150px;
+    margin-top: 40px;
+    font-weight: bolder;
+    background-color: #6379F4 !important;
+}
+
+.table thead th {
+    border-bottom: unset !important;
+}
+
+.table td, .table th {
+    border-top: unset !important;
+}
+
+.table-check{
+    background-color: #6379F4;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+}
+
+.table-tb{
+    text-align: center;
+    font-size: 20px;
+}
+
+.table-head{
+    margin-top: 30px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.td-btn{
+    width:300px;
+}
+
+.btn-edit{
+    width:85px;
+    font-weight: bolder;
+    margin-right: 5px;
+    background-color: #6379F4 !important;
+    border-color: unset !important;
+}
+
+.delete-href{
+    width:85px;
+    padding: 8px 13px 8px 13px;
+    font-size: 15px;
+    border-radius: 3px;
+    font-weight: bolder;
+    margin-right: 5px;
+    color:#fff;
+    border-color: unset !important;
+}
+
+.btn-detail{
+    width:85px;
+    font-weight: bolder;
+    background-color: #6379F4 !important;
+    border-color: unset !important;
+    margin-right: 5px;
+}
+
+.btn-info {
+    font-weight: bolder !important;
+}
+
+.table-responsive::-webkit-scrollbar{			
+    display: none !important; 
+}
+
+.table-responsive{
+    margin-top: 30px;		
+    overflow-y: scroll; 
+    max-height:400px;
+}
+
+.modal-header{
+    border-bottom: none !important;
+}
+
+.modal-title {
+    font-weight: bolder !important;
+    font-size: 40px !important;
+}
+
+.description-tittle{
+    font-weight: bolder !important;
+}
+
+@media screen and (min-width: 280px) and (max-width: 575px){
+
+    .logo-name{
+        text-align: center;
+        margin-top: 40px;
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 35px;
+        color: #6379F4;
+    }
+    
+    .form-search{
+        width:100%;
+        margin-top: 30px;
+    }
+    
+    .button-add{
+        margin: auto;
+        display: block !important;
+        width:100px;
+        margin-top: 40px;
+        font-weight: bolder;
+        background-color: #6379F4 !important;
+    }
+
+    .button-add-topup{
+        margin: auto;
+        display: block !important;
+        width:150px;
+        margin-top: 40px;
+        font-weight: bolder;
+        background-color: #6379F4 !important;
+    }
+
+}

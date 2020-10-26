@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Row,
   Col,
@@ -10,9 +10,29 @@ import {
 } from "react-bootstrap";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
+import { getUser, deleteUser } from "../../redux/action/admin";
+import { useDispatch, useSelector } from "react-redux";
 
 const Content = (props) => {
+  const dispatch = useDispatch();
+  // const data = useSelector((state) => state.user);
+  const data = useSelector((state) => state.admin);
+  const { token } = useSelector((state) => state.auth);
+  console.log(data);
   const [lgShow, setLgShow] = React.useState(false);
+
+  useEffect(() => {
+    dispatch(getUser(token));
+  }, []);
+
+  const onDelete = (id) => {
+    dispatch(
+      deleteUser({
+        id: id,
+        token: token,
+      })
+    );
+  };
   return (
     <>
       <Container>
@@ -29,188 +49,39 @@ const Content = (props) => {
                   <th>No</th>
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Role</th>
                   <th>Balance</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody className="table-tb">
-                <tr>
-                  <td>1</td>
-                  <td>Diki Herliansyah </td>
-                  <td>diki@gmail.com</td>
-                  <td>admin </td>
-                  <td>Rp. 100.000 </td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-detail"
-                      variant="info"
-                    >
-                      DETAIL
-                    </Button>
-                    <Button className="btn-edit" variant="info">
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Diki Herliansyah </td>
-                  <td>diki@gmail.com</td>
-                  <td>admin </td>
-                  <td>Rp. 100.000 </td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-detail"
-                      variant="info"
-                    >
-                      DETAIL
-                    </Button>
-                    <Button className="btn-edit" variant="info">
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Diki Herliansyah </td>
-                  <td>diki@gmail.com</td>
-                  <td>admin </td>
-                  <td>Rp. 100.000 </td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-detail"
-                      variant="info"
-                    >
-                      DETAIL
-                    </Button>
-                    <Button className="btn-edit" variant="info">
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Diki Herliansyah </td>
-                  <td>diki@gmail.com</td>
-                  <td>admin </td>
-                  <td>Rp. 100.000 </td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-detail"
-                      variant="info"
-                    >
-                      DETAIL
-                    </Button>
-                    <Button className="btn-edit" variant="info">
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Diki Herliansyah </td>
-                  <td>diki@gmail.com</td>
-                  <td>admin </td>
-                  <td>Rp. 100.000 </td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-detail"
-                      variant="info"
-                    >
-                      DETAIL
-                    </Button>
-                    <Button className="btn-edit" variant="info">
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Diki Herliansyah </td>
-                  <td>diki@gmail.com</td>
-                  <td>admin </td>
-                  <td>Rp. 100.000 </td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-detail"
-                      variant="info"
-                    >
-                      DETAIL
-                    </Button>
-                    <Button className="btn-edit" variant="info">
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Diki Herliansyah </td>
-                  <td>diki@gmail.com</td>
-                  <td>admin </td>
-                  <td>Rp. 100.000 </td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-detail"
-                      variant="info"
-                    >
-                      DETAIL
-                    </Button>
-                    <Button className="btn-edit" variant="info">
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Diki Herliansyah </td>
-                  <td>diki@gmail.com</td>
-                  <td>admin </td>
-                  <td>Rp. 100.000 </td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-detail"
-                      variant="info"
-                    >
-                      DETAIL
-                    </Button>
-                    <Button className="btn-edit" variant="info">
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
+                {" "}
+                {!data
+                  ? "...loading"
+                  : data.data.map((item, index) => {
+                      return (
+                        <tr>
+                          <td>{item.id}</td>
+                          <td>{item.name}</td>
+                          <td>{item.email}</td>
+                          <td>{item.balance}</td>
+                          <td className="td-btn">
+                            <Button
+                              onClick={() => setLgShow(true)}
+                              className="btn-detail"
+                              variant="info"
+                            >
+                              DETAIL
+                            </Button>
+                            <Button className="btn-edit" variant="info">
+                              EDIT
+                            </Button>
+                            <Button className="delete-href" variant="danger">
+                              DELETE
+                            </Button>
+                          </td>
+                        </tr>
+                      );
+                    })}
               </tbody>
             </Table>
           </Col>
@@ -243,7 +114,7 @@ const Content = (props) => {
             </thead>
             <tbody className="table-tb">
               <tr>
-                <td>dherliansyah </td>
+                <td></td>
                 <td>112233 </td>
                 <td>Tablecell.jpg </td>
                 <td>08211414831 </td>

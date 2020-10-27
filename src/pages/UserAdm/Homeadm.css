@@ -70,6 +70,22 @@
     border-color: unset !important;
 }
 
+.delete-href {
+    width: 85px;
+    padding: 8px 13px 8px 13px;
+    font-size: 15px;
+    border-radius: 3px;
+    font-weight: bolder;
+    margin-right: 5px;
+    color: #333;
+    background-color: #6379f4;
+    border-color: unset !important;
+  }
+  
+  .delete-href:hover {
+    color: #fff;
+  }
+
 .btn-detail{
     width:85px;
     font-weight: bolder;
@@ -100,6 +116,26 @@
     font-weight: bolder !important;
     font-size: 40px !important;
 } */
+
+.total-user {
+    background-color: rgba(13, 103, 206, 0.3);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    min-height: 120px;
+}
+
+.photo-user {
+    width: 30%;
+    float: left;
+  }
+
+  .total-data {
+    padding-left: 100px;
+    padding-top: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #5c4e4e;
+  }
 
 @media screen and (min-width: 280px) and (max-width: 575px){
 

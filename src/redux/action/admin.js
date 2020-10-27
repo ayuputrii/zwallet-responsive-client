@@ -1,18 +1,16 @@
 import Axios from "axios";
 import {
   GET_USER,
-  //   EDIT_USER_REQUEST,
-  //   EDIT_USER_SUCCESS,
-  //   EDIT_USER_FAILED,
+  EDIT_USER_REQUEST,
+  EDIT_USER_SUCCESS,
+  EDIT_USER_FAILED,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILED,
-  //   CHECK_PIN,
-  //   PIN_CHECKED,
-  //   USER_LOGOUT,
 } from "../type/admin";
 import { URL_ADM } from "../../utils";
 
+// Get User
 export const getUser = (token) => async (dispatch) => {
   const res = await Axios.get(`${URL_ADM}/users?page=1&limit=10`, {
     headers: {
@@ -23,97 +21,88 @@ export const getUser = (token) => async (dispatch) => {
   dispatch({ type: GET_USER, payload: res.data });
 };
 
-// export const editUserRequest = () => {
-//   return {
-//     type: EDIT_USER_REQUEST,
-//   };
-// };
+// Update
+export const editUserRequest = () => {
+  return {
+    type: EDIT_USER_REQUEST,
+  };
+};
 
-// export const editUserSuccess = (data) => {
-//   return {
-//     type: EDIT_USER_SUCCESS,
-//     payload: data,
-//   };
-// };
+export const editUserSuccess = (data) => {
+  return {
+    type: EDIT_USER_SUCCESS,
+    payload: data,
+  };
+};
 
-// export const editUserFailed = (error) => {
-//   return {
-//     type: EDIT_USER_FAILED,
-//     payload: error,
-//   };
-// };
+export const editUserFailed = (error) => {
+  return {
+    type: EDIT_USER_FAILED,
+    payload: error,
+  };
+};
 
 ///delete
 export const deletetUserRequest = () => {
   return {
-    type: "DELETE_USER_REQUEST",
+    type: DELETE_USER_REQUEST,
   };
 };
 
 export const deleteUserSuccess = (data) => {
   return {
-    type: "DELETE_USER_SUCCESS",
+    type: DELETE_USER_SUCCESS,
     payload: data,
   };
 };
 export const deleteUserFailed = (error) => {
   return {
-    type: "DELETE_USER_FAILED",
+    type: DELETE_USER_FAILED,
     payload: error,
   };
 };
 
-// export const editUser = (data, token) => async (dispatch) => {
-//   dispatch(editUserRequest());
-//   try {
-//     const res = await Axios.patch(`${URI}/users`, data, {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-//     dispatch(editUserSuccess(res.data));
-//   } catch (error) {
-//     dispatch(editUserFailed(error.message));
-//   }
-// };
-
-// Delete
-export const deleteUser = (data, token, fields) => async (dispatch) => {
-  dispatch(deletetUserRequest());
+// Update
+export const editUser = (data, token) => async (dispatch) => {
+  dispatch(editUserRequest());
   try {
-    const res = await Axios.patch(`${URL_ADM}/users/${fields.id}`, data, {
+    const res = await Axios.patch(`${URL_ADM}/users`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    dispatch({ type: DELETE_USER_SUCCESS, payload: res.data });
+    dispatch(editUserSuccess(res.data));
   } catch (error) {
-    dispatch(deleteUserFailed(error.message));
+    dispatch(editUserFailed(error.message));
   }
 };
 
-// export const pinChecked = () => {
-//   return {
-//     type: PIN_CHECKED,
-//   };
-// };
-
-// export const checkPin = (pin, token) => async (dispatch) => {
-//   const res = await Axios.post(`${URI}/users/pin`, pin, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-
-//   if (res.data === "OK") {
-//     dispatch(pinChecked());
+// Delete
+// export const deleteUser = (fields) => async (dispatch) => {
+//   dispatch(deletetUserRequest());
+//   try {
+//     const res = await Axios.delete(`${URL_ADM}/users/${fields.id}`, {
+//       headers: {
+//         Authorization: `Bearer ${fields.token}`,
+//       },
+//     });
+//     dispatch(deleteUserSuccess(res.data));
+//   } catch (error) {
+//     dispatch(deleteUserFailed(error.message));
 //   }
-
-//   dispatch({ type: CHECK_PIN, payload: res.data });
 // };
 
-// export const userLogout = () => {
-//   return {
-//     type: USER_LOGOUT,
-//   };
-// };
+export const deleteUser = (fields) => (dispatch) => {
+  dispatch(deletetUserRequest());
+  Axios.delete(`${URL_ADM}/users/${fields.id}`, {
+    headers: {
+      Authorization: `Bearer ${fields.token}`,
+    },
+  })
+    .then((res) => {
+      dispatch(deleteUserSuccess(res.data));
+    })
+    .catch((error) => {
+      dispatch(deleteUserFailed(error.message));
+    });
+};

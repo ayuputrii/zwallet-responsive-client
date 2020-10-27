@@ -42,6 +42,10 @@ const Content = (props) => {
                 <p>diki@gmail.com</p>
               </div>
               <div className="total-user-detail-text">
+                <p>Password</p>
+                <p>$2b$10$OIW59G9ExYAGceCO4ro5tucNr1mYxtNFbIDsKZXDyd/vUnkarpqHS</p>
+              </div>
+              <div className="total-user-detail-text">
                 <p>pin</p>
                 <p>112233</p>
               </div>

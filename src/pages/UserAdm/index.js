@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Row,
   Col,
@@ -10,18 +10,17 @@ import {
 } from "react-bootstrap";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
-import { getUser, deleteUser } from "../../redux/action/admin";
+import { getUser, deleteUser, editUser } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 
-const Content = (props) => {
+const Content = () => {
   const dispatch = useDispatch();
-  // const data = useSelector((state) => state.user);
-  const data = useSelector((state) => state.admin);
+
+  const { data, loading } = useSelector((state) => state.admin);
   const { token } = useSelector((state) => state.auth);
-  console.log(data);
   const [lgShow, setLgShow] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(getUser(token));
   }, []);
 
@@ -32,7 +31,17 @@ const Content = (props) => {
         token: token,
       })
     );
+    dispatch(getUser(token));
   };
+
+  // const onUpdate = (id) => {
+  //   dispatch(
+  //     editUser({
+  //       id: id,
+  //       token: token,
+  //     })
+  //   );
+  // };
   return (
     <>
       <Container>
@@ -54,34 +63,39 @@ const Content = (props) => {
                 </tr>
               </thead>
               <tbody className="table-tb">
-                {" "}
-                {!data
-                  ? "...loading"
-                  : data.data.map((item, index) => {
-                      return (
-                        <tr>
-                          <td>{item.id}</td>
-                          <td>{item.name}</td>
-                          <td>{item.email}</td>
-                          <td>{item.balance}</td>
-                          <td className="td-btn">
-                            <Button
-                              onClick={() => setLgShow(true)}
-                              className="btn-detail"
-                              variant="info"
-                            >
-                              DETAIL
-                            </Button>
-                            <Button className="btn-edit" variant="info">
-                              EDIT
-                            </Button>
-                            <Button className="delete-href" variant="danger">
-                              DELETE
-                            </Button>
-                          </td>
-                        </tr>
-                      );
-                    })}
+                {loading ? (
+                  <p>...loading</p>
+                ) : (
+                  data.map((item, index) => {
+                    return (
+                      <tr>
+                        <td>{item.id}</td>
+                        <td>{item.name}</td>
+                        <td>{item.email}</td>
+                        <td>{item.balance}</td>
+                        <td className="td-btn">
+                          <Button
+                            onClick={() => setLgShow(true)}
+                            className="btn-detail"
+                            variant="info"
+                          >
+                            DETAIL
+                          </Button>
+                          <Button className="btn-edit" variant="info">
+                            EDIT
+                          </Button>
+                          <Button
+                            onClick={() => onDelete(item.id)}
+                            className="delete-href"
+                            variant="danger"
+                          >
+                            DELETE
+                          </Button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
               </tbody>
             </Table>
           </Col>

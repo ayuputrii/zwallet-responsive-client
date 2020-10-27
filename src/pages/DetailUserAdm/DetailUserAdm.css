@@ -1,0 +1,84 @@
+.total-user-detail {
+  background-color: #fefefe;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+}
+
+.total-user-detail-text {
+  background-color: #fefefe;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 5px;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.photo-user-detail {
+  width: 100%;
+}
+
+.total {
+  background-color: #fff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.total-text {
+  padding: 20px 0px 20px 20px;
+}
+
+.total-text p {
+  margin-bottom: unset !important;
+}
+
+.btn-edit-user-bottom {
+  margin: auto !important;
+  margin-top: 15px !important;
+  margin-right: 10px !important;
+  width: 85px;
+  font-weight: bolder;
+  margin-right: 5px;
+  background-color: #6379f4 !important;
+  border-color: unset !important;
+}
+
+.btn-edit-user {
+  margin: auto !important;
+  display: block !important;
+  margin-top: 15px !important;
+  width: 85px;
+  font-weight: bolder;
+  margin-right: 5px;
+  background-color: #6379f4 !important;
+  border-color: unset !important;
+}
+
+.delete-href-detail {
+  width: 85px;
+  padding: 8px 13px 8px 13px;
+  font-size: 15px;
+  border-radius: 3px;
+  font-weight: bolder;
+  margin-right: 5px;
+  color: #fff;
+  background-color: #6379f4;
+  border-color: unset !important;
+}
+
+.delete-href-detail:hover {
+  color: #fff;
+}
+
+.total-user-detail-text-btn {
+  text-align: center;
+  background-color: #fefefe;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "Nunito Sans", sans-serif;
+}

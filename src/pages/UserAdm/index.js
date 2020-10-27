@@ -85,7 +85,7 @@ const Content = (props) => {
                         <td>{item.balance}</td>
                         <td className="td-btn">
                           <Link
-                            className="delete-href"
+                            className="btn-edit-user-bottom-user"
                             variant="info"
                             to="/admin/profile/info"
                           >

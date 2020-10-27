@@ -120,6 +120,23 @@
     color: #5c4e4e;
   }
 
+  .btn-edit-user-bottom-user {
+    margin: auto !important;
+    margin-top: 15px !important;
+    margin-right: 10px !important;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bolder;
+    margin-right: 5px;
+    color:#fff;
+    background-color: #6379f4 !important;
+    border-color: unset !important;
+  }
+
+  .btn-edit-user-bottom-user:hover{
+      color:#fff;
+  }
+
 @media screen and (min-width: 280px) and (max-width: 575px){
 
     .logo-name{

@@ -1,9 +1,22 @@
-import React from "react";
+import React, { Fragment, useEffect } from "react";
 import { Row, Col, Form, Button, Table, Modal } from "react-bootstrap";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./TopupAdmstyle.css";
 
+import { Container } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { topup } from "../../redux/action/topup";
+import Back from "../../icons/arrow-left.svg";
+import { Link } from "react-router-dom";
+
 const Content = (props) => {
+  const { token } = useSelector((state) => state.auth);
+  const { data } = useSelector((state) => state.topup);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(topup(token));
+  }, []);
+
   const [lgShow, setLgShow] = React.useState(false);
   const [smShow, setsmShow] = React.useState(false);
   return (
@@ -36,108 +49,29 @@ const Content = (props) => {
                 </tr>
               </thead>
               <tbody className="table-tb">
-                <tr>
-                  <td>1</td>
-                  <td>Go to the nearest ATM or you can use E-Banking. </td>
-                  <td>2020-10-04 03:32:23</td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-edit"
-                      variant="info"
-                    >
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Go to the nearest ATM or you can use E-Banking. </td>
-                  <td>2020-10-04 03:32:23</td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-edit"
-                      variant="info"
-                    >
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Go to the nearest ATM or you can use E-Banking. </td>
-                  <td>2020-10-04 03:32:23</td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-edit"
-                      variant="info"
-                    >
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Go to the nearest ATM or you can use E-Banking. </td>
-                  <td>2020-10-04 03:32:23</td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-edit"
-                      variant="info"
-                    >
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Go to the nearest ATM or you can use E-Banking. </td>
-                  <td>2020-10-04 03:32:23</td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-edit"
-                      variant="info"
-                    >
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Go to the nearest ATM or you can use E-Banking. </td>
-                  <td>2020-10-04 03:32:23</td>
-                  <td className="td-btn">
-                    <Button
-                      onClick={() => setLgShow(true)}
-                      className="btn-edit"
-                      variant="info"
-                    >
-                      EDIT
-                    </Button>
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
+                {!data
+                  ? "...Loading"
+                  : data.map((item, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{item.sequence}</td>
+                          <td>{item.title}</td>
+                          <td>{item.updatedAt}</td>
+                          <td className="td-btn">
+                            <Button
+                              onClick={() => setLgShow(true)}
+                              className="btn-edit"
+                              variant="info"
+                            >
+                              EDIT
+                            </Button>
+                            <Button className="delete-href" variant="danger">
+                              DELETE
+                            </Button>
+                          </td>
+                        </tr>
+                      );
+                    })}
               </tbody>
             </Table>
           </Col>

@@ -66,9 +66,10 @@ const Content = () => {
                 {loading ? (
                   <p>...loading</p>
                 ) : (
+                  typeof data === "object" &&
                   data.map((item, index) => {
                     return (
-                      <tr>
+                      <tr key={index}>
                         <td>{item.id}</td>
                         <td>{item.name}</td>
                         <td>{item.email}</td>

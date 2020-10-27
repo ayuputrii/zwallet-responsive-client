@@ -32,7 +32,7 @@ const Topup = props => {
                         <p style={{fontSize: '20px'}} className="bold">Top Up</p>
                     </div>
                     <div className="label d-flex align-items-center mb-4 d-sm-none">
-                        <div style={{backgroundColor: '#EBEEF2', borderRadius: '10px', padding: '15px'}} className="mr-3">
+                        <div onClick={() => window.snap.pay('')} style={{backgroundColor: '#EBEEF2', borderRadius: '10px', padding: '15px'}} className="mr-3">
                             <img src={TopupLogo} alt="" />
                         </div>
                         <div>

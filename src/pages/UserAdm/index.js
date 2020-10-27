@@ -3,15 +3,16 @@ import {
   Row,
   Col,
   Form,
-  Button,
   Table,
   Modal,
   Container,
 } from "react-bootstrap";
+import {Link} from "react-router-dom"
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
 import { getUser, deleteUser, editUser } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
+import person from "../../icons/person.svg";
 
 const Content = () => {
   const dispatch = useDispatch();
@@ -46,12 +47,32 @@ const Content = () => {
     <>
       <Container>
         <Row>
-          <Col lg={12} md={12} sm={12} xs={12}>
+        <Col lg={4} md={4} sm={12} xs={12}>
+            <div className="total-user">
+              <img className="photo-user" src={person} alt="" />
+              <p className="total-data">20 User</p>
+            </div>
+            &nbsp;
+            <div className="total-user">
+              <img className="photo-user" src={person} alt="" />
+              <p className="total-data">20 Admin</p>
+            </div>
+            &nbsp;
+            <div className="total-user">
+              <img className="photo-user" src={person} alt="" />
+              <p className="total-data"> Rp. 20.000.000 </p>
+            </div>
+            &nbsp;
+            <div className="total-user">
+              <img className="photo-user" src={person} alt="" />
+              <p className="total-data">20 User</p>
+            </div>
+            &nbsp;
+          </Col>
+          <Col lg={8} md={8} sm={12} xs={12}>
             <Form action="#" className="form-search">
               <input type="text" placeholder="Search..." />
             </Form>
-          </Col>
-          <Col lg={12} md={12} sm={12} xs={12}>
             <Table responsive className="table-head">
               <thead className="table-check">
                 <tr>
@@ -75,23 +96,20 @@ const Content = () => {
                         <td>{item.email}</td>
                         <td>{item.balance}</td>
                         <td className="td-btn">
-                          <Button
-                            onClick={() => setLgShow(true)}
-                            className="btn-detail"
-                            variant="info"
-                          >
-                            DETAIL
-                          </Button>
-                          <Button className="btn-edit" variant="info">
-                            EDIT
-                          </Button>
-                          <Button
+                        <Link
+                      className="delete-href"
+                      variant="info"
+                      to="/admin/profile/info"
+                    >
+                      DETAIL
+                    </Link>
+                          {/* <Button
                             onClick={() => onDelete(item.id)}
                             className="delete-href"
                             variant="danger"
                           >
                             DELETE
-                          </Button>
+                          </Button> */}
                         </td>
                       </tr>
                     );

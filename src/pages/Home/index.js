@@ -67,18 +67,18 @@ const Home = props => {
                 <Container className="d-flex mt-5 px-0 px-md-5">
                     <Menu active={1} />
                     <div style={{ flex: 1 }}>
-                        <Link to="/profile" className="d-flex justify-content-between align-items-center d-sm-none mb-3 px-3">
-                            <div className="d-flex">
+                        <div className="d-flex justify-content-between align-items-center d-sm-none mb-3 px-3">
+                            <Link to="/profile" className="d-flex">
                                 <img style={{ borderRadius: '10px', marginRight: '20px'}} width="52px" height="52px" src={imageURI+data.photo} alt="" />
                                 <div className="d-flex flex-column">
                                     <p className="text mb-2">Hello,</p>
                                     <p className="text bold mb-0">{data.name}</p>
                                 </div>
-                            </div>
+                            </Link>
                             <div>
                                 <img src={bell} alt="bell" />
                             </div>
-                        </Link>
+                        </div>
                         <div id="top-panel" className="top-panel bg-top-panel">
                             <div className="left">
                                 <p className="balance text">Balance</p>

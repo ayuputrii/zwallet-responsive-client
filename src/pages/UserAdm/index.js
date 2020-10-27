@@ -7,7 +7,7 @@ import { getUser, deleteUser } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 import person from "../../icons/person.svg";
 
-const Content = () => {
+const Content = (props) => {
   const dispatch = useDispatch();
 
   const { data, loading } = useSelector((state) => state.admin);
@@ -68,7 +68,10 @@ const Content = () => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody className="table-tb">
+              <tbody
+                className="table-tb"
+                to={{ pathname: "/admin/profile/info", state: props.data }}
+              >
                 {loading ? (
                   <p>...loading</p>
                 ) : (

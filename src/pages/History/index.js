@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Menu from '../../components/Menu'
-import { Container } from 'react-bootstrap'
+import { Container, Modal } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { getHistoryByMonth, getHistoryByWeek } from '../../redux/action/history'
 import Income from '../../icons/arrow-down.svg'
@@ -10,9 +10,19 @@ import Expense from '../../icons/arrow-up.svg'
 import Back from '../../icons/arrow-left.svg'
 import { imageURI } from '../../utils'
 import { Link } from 'react-router-dom'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment'
+import 'moment/locale/id'
+moment.locale('id')
 
 const History = props => {
     const dispatch = useDispatch()
+    const [expense, setExpense] = useState(false)
+    const [income, setIncome] = useState(false)
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(null);
+    const [isFilter, setFilter] = useState(false)
     const [pageWeek, setPageWeek] = useState(1)
     const [pageMonth, setPageMonth] = useState(1)
     const { data } = useSelector(state => state.user)
@@ -26,6 +36,19 @@ const History = props => {
     useEffect(() => {
         dispatch(getHistoryByMonth(token))
     }, [])
+
+    const onChange = dates => {
+        console.log(dates)
+        const [start, end] = dates;
+        setStartDate(start);
+        setEndDate(end);
+    }
+
+    const onSubmit = () => {
+        if(startDate && endDate) {
+            console.log(moment(startDate).format('YYYY-MM-DD'))
+        }
+    }
 
     return (
         <Fragment>
@@ -41,12 +64,6 @@ const History = props => {
                     </div>
                     <p style={{marginBottom: '30px'}} className="text bold d-none d-sm-inline">Transaction History</p>
                     <p className="med ml-2 ml-sm-0 mb-sm-4 mb-3">This Week</p>
-                    {pageWeek > 1 ?
-                        <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
-                        <img onClick={() => {
-                            setPageWeek(pageWeek - 2)
-                        }} src={Expense} alt="" />
-                    </div> : ''}
                     <div className="mb-sm-0 mb-3">
                     {dataWeek.map((item, index) => {
                         if(index <= pageWeek && index > pageWeek - 2) {
@@ -71,18 +88,20 @@ const History = props => {
                         }
                     })}
                     </div>
+                    <div className="d-flex">
+                    {pageWeek > 1 ?
+                        <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
+                        <img style={{transform: 'rotate(-90deg)'}} onClick={() => {
+                            setPageWeek(pageWeek - 2)
+                        }} src={Expense} alt="" />
+                    </div> : ''}
                     {pageWeek <= dataWeek.length - 1 ? <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
-                        <img onClick={() => {
+                        <img style={{transform: 'rotate(-90deg)'}} onClick={() => {
                             setPageWeek(pageWeek + 2)
                         }} src={Income} alt="" />
                     </div> : ''}
+                    </div>
                     <p className="med ml-2 ml-sm-0 mb-sm-4 mb-3">This Month</p>
-                    {pageMonth > 1 ?
-                        <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
-                        <img onClick={() => {
-                            setPageMonth(pageMonth - 2)
-                        }} src={Expense} alt="" />
-                    </div> : ''}
                     <div className="mb-sm-0 mb-3">
                     {dataMonth.map((item, index) => {
                         if(index <= pageMonth && index > pageMonth - 2) {
@@ -107,11 +126,19 @@ const History = props => {
                         }
                     })}
                     </div>
+                    <div className="d-flex">
+                    {pageMonth > 1 ?
+                        <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
+                        <img style={{transform: 'rotate(-90deg)'}} onClick={() => {
+                            setPageMonth(pageMonth - 2)
+                        }} src={Expense} alt="" />
+                    </div> : ''}
                     {pageMonth <= dataMonth.length - 1 ? <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
-                        <img onClick={() => {
+                        <img style={{transform: 'rotate(-90deg)'}} onClick={() => {
                             setPageMonth(pageMonth + 2)
                         }} src={Income} alt="" />
                     </div> : ''}
+                    </div>
                     <div className="d-flex d-sm-none justify-content-between">
                         <div style={{padding:'15px'}} className="history__filter mr-3 ml-3">
                             <img src={Expense} alt="expense" />
@@ -120,9 +147,35 @@ const History = props => {
                             <img src={Income} alt="income" />
                         </div>
                         <div style={{padding:'16px 39px'}} className="history__filter mr-3">
-                            <p className="text bold primary">Filter By Date</p>
+                            <p onClick={() => setFilter(true)} className="text bold primary">Filter By Date</p>
                         </div>
-                    </div>            
+                    </div>
+                    <Modal aria-labelledby="contained-modal-title-vcenter" centered show={isFilter} onHide={() => setFilter(false)}>
+                    <Modal.Body>
+                        <p className="text bold text-center mt-0">Filter By Date</p>
+                        <DatePicker
+                            selected={startDate}
+                            onChange={onChange}
+                            startDate={startDate}
+                            endDate={endDate}
+                            selectsRange
+                            inline
+                        />
+                        <div className="d-flex justify-content-between">
+                            <div>
+                                <p>From</p>
+                                <p className="bold">{moment(startDate).format('LL', 'id')}</p>
+                            </div>
+                            <div>
+                                <p>To</p>
+                                <p className="bold">{moment(endDate).format('LL')}</p>
+                            </div>
+                        </div>
+                        <div className="confirm mt-5">
+                            <button onClick={onSubmit} className="btn-primary">Apply</button>
+                        </div>
+                    </Modal.Body>
+                    </Modal>
                     </div>
             </Container>
             <Footer />

@@ -4,6 +4,10 @@ import NavbarAdm from "../../components/NavbarAdm";
 import "./DetailUserAdm.css";
 import person from "./diki.jpeg";
 
+import { useHistory } from "react-router-dom";
+import { getUser, deleteUser, updateUser } from "../../redux/action/admin";
+import { useDispatch, useSelector } from "react-redux";
+
 const Content = (props) => {
   const [show, setShow] = React.useState(false);
   const [showed, setShowed] = React.useState(false);
@@ -11,6 +15,27 @@ const Content = (props) => {
   const handleShow = () => setShow(true);
   const handleClosed = () => setShowed(false);
   const handleShowed = () => setShowed(true);
+
+  const dispatch = useDispatch();
+  const { data, loading } = useSelector((state) => state.admin);
+  const { token } = useSelector((state) => state.auth);
+  const { location } = props;
+  const history = useHistory();
+
+  React.useEffect(() => {
+    dispatch(getUser(token));
+  }, []);
+
+  const onDelete = (id) => {
+    dispatch(
+      deleteUser({
+        id: id,
+        token: token,
+      })
+    );
+    dispatch(getUser(token));
+  };
+
   return (
     <>
       <Container>
@@ -33,6 +58,7 @@ const Content = (props) => {
           <Col lg={9} md={9} sm={12} xs={12}>
             <div className="total">
               &nbsp;
+             &nbsp;
               <div className="total-user-detail-text">
                 <p>Nama</p>
                 <p>Diki Herliansyah</p>
@@ -40,6 +66,10 @@ const Content = (props) => {
               <div className="total-user-detail-text">
                 <p>Email</p>
                 <p>diki@gmail.com</p>
+              </div>
+              <div className="total-user-detail-text">
+                <p>Password</p>
+                <p>$2b$10$OIW59G9ExYAGceCO4ro5tucNr1mYxtNFbIDsKZXDyd/vUnkarpqHS</p>
               </div>
               <div className="total-user-detail-text">
                 <p>pin</p>
@@ -62,17 +92,31 @@ const Content = (props) => {
                 <p>Update At : 2020-10-22 00:35:43</p>
               </div>
               <div className="total-user-detail-text-btn">
-                <Button
-                  onClick={handleShowed}
-                  className="btn-edit-user-bottom"
-                  variant="info"
-                >
-                  EDIT
-                </Button>
-                <Button className="btn-edit-user-bottom" variant="info">
-                  DELETE
-                </Button>
-              </div>
+              {loading ? (
+                <p> ...loading </p>
+              ) : (
+                typeof data === "object" &&
+                data.map((item, index) => {
+                  return (
+                    <div className="total-user-detail-text-btn">
+                      <Button
+                        onClick={handleShowed}
+                        className="btn-edit-user-bottom"
+                        variant="info"
+                      >
+                        EDIT
+                      </Button>
+                      <Button
+                        onClick={() => onDelete(item.id)}
+                        className="btn-edit-user-bottom"
+                        variant="info"
+                      >
+                        DELETE
+                      </Button>
+                    </div>
+                  );
+                })
+              )}
             </div>
           </Col>
         </Row>

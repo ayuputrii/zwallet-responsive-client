@@ -54,28 +54,28 @@ const Password = props => {
             <Container fluid="sm" className="d-flex mt-5 px-0 px-sm-5">
                 <Menu active={4} />
                 <div className="content-main">
-                    <div className="d-flex align-items-start d-sm-none mb-4 ml-2">
+                    <div className="d-flex align-items-start d-sm-none mb-4 ml-3">
                         <Link to="/profile">
                             <img className="mr-3" src={Back} alt="back" />
                         </Link>
                         <p style={{fontSize: '20px'}} className="bold">Change Password</p>
                     </div>
                     <p className="text bold text-dark mb-4 d-none d-sm-inline">Change Password</p>
-                    <p style={{width:'334px'}} className="text-muted mb-5 ml-2 ml-sm-0">You must enter your current password and then type your new password twice.</p>
-                    <div className="d-flex flex-column">   
+                    <p style={{width:'334px'}} className="text-muted mb-5  ml-3 ml-sm-0 text-password">You must enter your current password and then type your new password twice.</p>
+                    <div className="d-flex flex-column password-password">   
                         <div className="notes bg-transparent">
                             <img className="edit" src={currActive ? LockActive : Lock} alt="" />
-                            <img onClick={() => setCurrEye(!currEye)} className="eye" src={Eye} alt="" />
+                            <img onClick={() => setCurrEye(!currEye)} className="eye eye-password" src={Eye} alt="" />
                             <input onFocus={() => setCurrActive(true)} onBlur={() => setCurrActive(false)} onChange={(e) => setCurrPassword(e.target.value)} value={currPassword} className="note bg-transparent" type={currEye ? "text" : "password"} placeholder="Current password" />
                         </div>
                         <div className="notes bg-transparent">
                             <img className="edit" src={newActive ? LockActive : Lock} alt="" />
-                            <img onClick={() => setNewEye(!newEye)} className="eye" src={Eye} alt="" />
+                            <img onClick={() => setNewEye(!newEye)} className="eye eye-password" src={Eye} alt="" />
                             <input onFocus={() => setNewActive(true)} onBlur={() => setNewActive(false)} onChange={(e) => setPassword(e.target.value)} value={password} className="note bg-transparent" type={newEye ? "text" : "password"} placeholder="New password" />
                         </div>
                         <div className="notes bg-transparent">
                             <img className="edit" src={repeatActive ? LockActive : Lock} alt="" />
-                            <img onClick={() => setRepeatEye(!repeatEye)} className="eye" src={Eye} alt="" />
+                            <img onClick={() => setRepeatEye(!repeatEye)} className="eye eye-password" src={Eye} alt="" />
                             <input onFocus={() => setRepeatActive(true)} onBlur={() => setRepeatActive(false)} onChange={(e) => setRepeatPassword(e.target.value)} value={repeatPassword} className="note bg-transparent" type={repeatEye ? "text" : "password"} placeholder="Repeat new password" />
                         </div>
                         <button onClick={onSubmit} style={currPassword && password && password === repeatPassword ? style.buttonPrimary : style.buttonGrey} className="py-3 btn-phone align-self-sm-center">Change Password</button>

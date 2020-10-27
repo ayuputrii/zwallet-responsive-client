@@ -298,6 +298,18 @@ a:hover {
     background-color: #FFFFFF !important;
   }
 
+  .password-password{
+    padding:20px;
+  }
+
+  .eye-password{
+    right:2% !important;
+  }
+
+  /* .text-password{
+    padding-left:20px;
+  } */
+
   .content-main {
     flex: 1;
     background-color: transparent;

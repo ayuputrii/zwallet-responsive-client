@@ -1,20 +1,13 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Form,
-  Table,
-  Modal,
-  Container,
-} from "react-bootstrap";
-import {Link} from "react-router-dom"
+import { Row, Col, Form, Table, Modal, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
-import { getUser, deleteUser, editUser } from "../../redux/action/admin";
+import { getUser, deleteUser } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 import person from "../../icons/person.svg";
 
-const Content = () => {
+const Content = (props) => {
   const dispatch = useDispatch();
 
   const { data, loading } = useSelector((state) => state.admin);
@@ -35,19 +28,11 @@ const Content = () => {
     dispatch(getUser(token));
   };
 
-  // const onUpdate = (id) => {
-  //   dispatch(
-  //     editUser({
-  //       id: id,
-  //       token: token,
-  //     })
-  //   );
-  // };
   return (
     <>
       <Container>
         <Row>
-        <Col lg={4} md={4} sm={12} xs={12}>
+          <Col lg={4} md={4} sm={12} xs={12}>
             <div className="total-user">
               <img className="photo-user" src={person} alt="" />
               <p className="total-data">20 User</p>
@@ -83,7 +68,10 @@ const Content = () => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody className="table-tb">
+              <tbody
+                className="table-tb"
+                to={{ pathname: "/admin/profile/info", state: props.data }}
+              >
                 {loading ? (
                   <p>...loading</p>
                 ) : (
@@ -91,18 +79,18 @@ const Content = () => {
                   data.map((item, index) => {
                     return (
                       <tr key={index}>
-                        <td>{item.id}</td>
+                        <td>{index + 1}</td>
                         <td>{item.name}</td>
                         <td>{item.email}</td>
                         <td>{item.balance}</td>
                         <td className="td-btn">
-                        <Link
-                      className="delete-href"
-                      variant="info"
-                      to="/admin/profile/info"
-                    >
-                      DETAIL
-                    </Link>
+                          <Link
+                            className="delete-href"
+                            variant="info"
+                            to="/admin/profile/info"
+                          >
+                            DETAIL
+                          </Link>
                           {/* <Button
                             onClick={() => onDelete(item.id)}
                             className="delete-href"

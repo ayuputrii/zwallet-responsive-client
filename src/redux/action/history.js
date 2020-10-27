@@ -24,22 +24,18 @@ export const maxMonth = () => {
     }
 }
 
-export const getHistoryByWeek = (token, page) => async dispatch => {
+export const getHistoryByWeek = (token) => async dispatch => {
     const res = await Axios.get(`${URI}/transfer/history`, {
         params: {
-            order: 'week',
-            page
+            order: 'week'
         },
         headers: {
             Authorization: `Bearer ${token}`
         }
     })
 
-    if(res.data.data.length) {
-        dispatch({ type: GET_HISTORY_BY_WEEK, payload: res.data.data })
-    } else {
-        dispatch(maxWeek())
-    }
+    
+    dispatch({ type: GET_HISTORY_BY_WEEK, payload: res.data.data })
 }
 
 export const getHistoryByMonth = (token, page) => async dispatch => {
@@ -53,9 +49,6 @@ export const getHistoryByMonth = (token, page) => async dispatch => {
         }
     })
 
-    if(res.data.data.length) {
-        dispatch({ type: GET_HISTORY_BY_MONTH, payload: res.data.data })
-    } else {
-        dispatch(maxMonth())
-    }
+    
+    dispatch({ type: GET_HISTORY_BY_MONTH, payload: res.data.data })
 }

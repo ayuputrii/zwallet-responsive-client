@@ -12,19 +12,19 @@ import { imageURI } from '../../utils'
 import { Link } from 'react-router-dom'
 
 const History = props => {
+    const dispatch = useDispatch()
     const [pageWeek, setPageWeek] = useState(1)
     const [pageMonth, setPageMonth] = useState(1)
-    const dispatch = useDispatch()
     const { data } = useSelector(state => state.user)
-    const { dataWeek, dataMonth, isMaxWeek, isMaxMonth } = useSelector(state => state.history)
+    const { dataWeek, dataMonth } = useSelector(state => state.history)
     const { token } = useSelector(state => state.auth)
 
     useEffect(() => {
-        dispatch(getHistoryByWeek(token, pageWeek))
+        dispatch(getHistoryByWeek(token))
     }, [])
 
     useEffect(() => {
-        dispatch(getHistoryByMonth(token, pageMonth))
+        dispatch(getHistoryByMonth(token))
     }, [])
 
     return (
@@ -44,73 +44,85 @@ const History = props => {
                     {pageWeek > 1 ?
                         <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
                         <img onClick={() => {
-                            setPageWeek(pageWeek - 1)
-                            dispatch(getHistoryByWeek(token, pageWeek))
+                            setPageWeek(pageWeek - 2)
                         }} src={Expense} alt="" />
                     </div> : ''}
                     <div className="mb-sm-0 mb-3">
                     {dataWeek.map((item, index) => {
-                        return (
-                            <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
-                                <div className="d-flex align-items-center">
-                                    <div className="avatar">
-                                        <img style={{borderRadius: '10px'}} src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
+                        if(index <= pageWeek && index > pageWeek - 2) {
+                            return (
+                                <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
+                                    <div className="d-flex align-items-center">
+                                        <div className="avatar">
+                                            <img style={{borderRadius: '10px'}} src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
+                                        </div>
+                                        <div className="info">
+                                            <p className="bold history-text">{item.receiver === data.name ? item.sender : item.receiver}</p>
+                                            <p className="small">Transfer</p>
+                                        </div>
                                     </div>
-                                    <div className="info">
-                                        <p className="bold history-text">{item.receiver === data.name ? item.sender : item.receiver}</p>
-                                        <p className="small">Transfer</p>
+                                    <div className="money">
+                                    <p className={`bold ${item.receiver === data.name ? 'text-success' : 'text-danger'}`}>{item.receiver === data.name ? '+' : '-'}Rp{item.amount}</p>
                                     </div>
                                 </div>
-                                <div className="money">
-                                <p className={`bold ${item.receiver === data.name ? 'text-success' : 'text-danger'}`}>{item.receiver === data.name ? '+' : '-'}Rp{item.amount}</p>
-                                </div>
-                            </div>
-                        )
+                            )
+                        } else {
+                            return ''
+                        }
                     })}
                     </div>
-                    {!isMaxWeek ? <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
+                    {pageWeek <= dataWeek.length - 1 ? <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
                         <img onClick={() => {
-                            setPageWeek(pageWeek + 1)
-                            dispatch(getHistoryByWeek(token, pageWeek))
+                            setPageWeek(pageWeek + 2)
                         }} src={Income} alt="" />
                     </div> : ''}
                     <p className="med ml-2 ml-sm-0 mb-sm-4 mb-3">This Month</p>
                     {pageMonth > 1 ?
                         <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
                         <img onClick={() => {
-                            setPageMonth(pageMonth - 1)
-                            dispatch(getHistoryByMonth(token, pageMonth))
+                            setPageMonth(pageMonth - 2)
                         }} src={Expense} alt="" />
                     </div> : ''}
+                    <div className="mb-sm-0 mb-3">
                     {dataMonth.map((item, index) => {
-                        return (
-                            <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
-                                <div className="d-flex align-items-center">
-                                    <div className="avatar">
-                                        <img style={{borderRadius: '10px'}} src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
+                        if(index <= pageMonth && index > pageMonth - 2) {
+                            return (
+                                <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
+                                    <div className="d-flex align-items-center">
+                                        <div className="avatar">
+                                            <img style={{borderRadius: '10px'}} src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
+                                        </div>
+                                        <div className="info">
+                                            <p className="bold history-text">{item.receiver === data.name ? item.sender : item.receiver}</p>
+                                            <p className="small">Transfer</p>
+                                        </div>
                                     </div>
-                                    <div className="info">
-                                        <p className="bold history-text">{item.receiver === data.name ? item.sender : item.receiver}</p>
-                                        <p className="small">Transfer</p>
+                                    <div className="money">
+                                    <p className={`bold ${item.receiver === data.name ? 'text-success' : 'text-danger'}`}>{item.receiver === data.name ? '+' : '-'}Rp{item.amount}</p>
                                     </div>
                                 </div>
-                                <div className="money">
-                                <p className={`bold ${item.receiver === data.name ? 'text-success' : 'text-danger'}`}>{item.receiver === data.name ? '+' : '-'}Rp{item.amount}</p>
-                                </div>
-                            </div>
-                        )
+                            )
+                        } else {
+                            return ''
+                        }
                     })}
-                    <div className="d-flex d-sm-none">
-                        <div></div>
-                        <div></div>
-                        
                     </div>
-                    {!isMaxMonth ? <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
+                    {pageMonth <= dataMonth.length - 1 ? <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
                         <img onClick={() => {
-                            setPageMonth(pageMonth + 1)
-                            dispatch(getHistoryByMonth(token, pageMonth))
+                            setPageMonth(pageMonth + 2)
                         }} src={Income} alt="" />
-                    </div> : ''}            
+                    </div> : ''}
+                    <div className="d-flex d-sm-none justify-content-between">
+                        <div style={{padding:'15px'}} className="history__filter mr-3 ml-3">
+                            <img src={Expense} alt="expense" />
+                        </div>
+                        <div style={{padding:'15px'}} className="history__filter mr-3">
+                            <img src={Income} alt="income" />
+                        </div>
+                        <div style={{padding:'16px 39px'}} className="history__filter mr-3">
+                            <p className="text bold primary">Filter By Date</p>
+                        </div>
+                    </div>            
                     </div>
             </Container>
             <Footer />

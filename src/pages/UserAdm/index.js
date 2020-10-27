@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
-import { getUser, deleteUser, editUser } from "../../redux/action/admin";
+import { getUser, deleteUser } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 
 const Content = () => {
@@ -34,14 +34,6 @@ const Content = () => {
     dispatch(getUser(token));
   };
 
-  // const onUpdate = (id) => {
-  //   dispatch(
-  //     editUser({
-  //       id: id,
-  //       token: token,
-  //     })
-  //   );
-  // };
   return (
     <>
       <Container>

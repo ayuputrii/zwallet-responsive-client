@@ -95,7 +95,7 @@ const Status = props => {
                     <div style={{margin: 'auto', marginBottom: '30px'}}>
                         <img src={Success} alt="" />
                     </div>
-                    <span className="bold logo text-center">Transfer Success</span>
+                    <span className="bold big text-center mb-4">Transfer Success</span>
                     <div className="details">
                         <p className="text bold">Details</p>
                         <div className="label">
@@ -128,7 +128,7 @@ const Status = props => {
                             </div>
                         </div>
                     </div>
-                    <div className="d-flex justify-content-sm-end justify-content-center">
+                    <div className="d-flex justify-content-sm-end justify-content-center mb-3">
                         <button className="small-btn-light-primary mr-3 d-none d-sm-block">
                             <img src={Share} alt="share" />
                         </button>
@@ -156,9 +156,10 @@ const Status = props => {
                     <div style={{margin: 'auto', marginBottom: '30px'}}>
                         <img src={Failed} alt="" />
                     </div>
-                    <span className="bold logo text-center">Transfer Failed</span>
-                    <p className="text-danger text-center">We can’t transfer your money at the moment, we recommend you to check your internet connection and try again.</p>
+                    <span className="bold big text-center mb-4">Transfer Failed</span>
+                    <p className="text-danger text-center mb-4">We can’t transfer your money at the moment, we recommend you to check your internet connection and try again.</p>
                     <div className="details">
+                        <p className="text bold d-sm-none">Details</p>
                         <div className="label">
                             <div className="title bold med">Amount</div>
                             <div className="desc big bold">Rp{dataTransfer.amount}</div>
@@ -189,8 +190,8 @@ const Status = props => {
                             </div>
                         </div>
                     </div>
-                    <div className="d-flex justify-content-end">
-                        <Link to="/dashboard">
+                    <div className="d-flex justify-content-sm-end justify-content-center mb-3">
+                        <Link to="/transfer">
                             <button className="med-btn-primary">
                                 Try Again
                             </button>

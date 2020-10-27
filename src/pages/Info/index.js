@@ -38,7 +38,7 @@ const Info = props => {
                         </Link>
                         <p className="text bold text-dark">Personal Information</p>
                     </div>
-                    <p style={{width:'334px'}} className="text-muted mb-5">We got your personal information from the sign up proccess. If you want to make changes on your information, contact our support.</p>
+                    <p style={{width:'343px'}} className="text-muted mb-5">We got your personal information from the sign up proccess. If you want to make changes on your information, contact our support.</p>
                     <div style={{padding: '15px'}} className="label d-flex flex-column justify-content-between">
                         <p className="med text-muted mb-2">First Name</p>
                         <p className="bold big mb-0">{data.firstName}</p>
@@ -54,10 +54,14 @@ const Info = props => {
                     <div style={{padding: '15px'}} className="label d-flex justify-content-between align-items-center">
                         <div>
                             <p className="med text-muted mb-2">Phone Number</p>
-                            <p className="bold big mb-0">+62 {splitPhone(data.phone)}</p>
+                            <p className="bold big mb-0 d-none d-sm-inline">+62 {splitPhone(data.phone)}</p>
+                            <p className="bold big mb-0 d-sm-none">{data.phone ? <p>+62 {splitPhone(data.phone)}</p> : <Link className="primary" to="/profile/info/phone">Add phone number</Link>}</p>
                         </div>
-                        <div>
+                        <div className="d-sm-block d-none">
                             <Link to="/profile/info/phone" style={{cursor: 'pointer'}} className="med primary">Manage</Link>
+                        </div>
+                        <div className="d-sm-none">
+                            {data.phone ? <Link to="/profile/info/phone" style={{cursor: 'pointer'}} className="med primary">Manage</Link> : ''}
                         </div>
                     </div>
                 </div>

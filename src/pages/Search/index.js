@@ -41,7 +41,7 @@ const Search = props => {
             <Navbar />
             <Container className="d-flex mt-5 px-0 px-md-5">
                 <Menu active={2} />
-                <div style={{height:'80vh'}} className="content-main">
+                <div className="content-main search-content">
                     <div className="d-flex align-items-start d-sm-none px-3 mb-4">
                         <Link to="/dashboard">
                             <img className="mr-3" src={Back} alt="back" />

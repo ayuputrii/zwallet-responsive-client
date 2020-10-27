@@ -7,7 +7,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getHistoryByMonth, getHistoryByWeek } from '../../redux/action/history'
 import Income from '../../icons/arrow-down.svg'
 import Expense from '../../icons/arrow-up.svg'
+import Back from '../../icons/arrow-left.svg'
 import { imageURI } from '../../utils'
+import { Link } from 'react-router-dom'
 
 const History = props => {
     const [pageWeek, setPageWeek] = useState(1)
@@ -28,24 +30,31 @@ const History = props => {
     return (
         <Fragment>
             <Navbar />
-            <Container className="d-flex mt-5">
+            <Container className="d-flex mt-5 px-0 px-md-5">
                 <Menu active={1} />
                     <div className="content-main">
-                    <p style={{marginBottom: '30px'}} className="text bold">Transaction History</p>
-                    <p style={{marginBottom: '45px'}} className="med">This Week</p>
+                    <div className="d-flex align-items-start d-sm-none mb-4 ml-2">
+                        <Link to="/dashboard">
+                            <img className="mr-3" src={Back} alt="back" />
+                        </Link>
+                        <p style={{fontSize: '20px'}} className="bold">History</p>
+                    </div>
+                    <p style={{marginBottom: '30px'}} className="text bold d-none d-sm-inline">Transaction History</p>
+                    <p className="med ml-2 ml-sm-0 mb-sm-4 mb-3">This Week</p>
                     {pageWeek > 1 ?
-                        <div style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
+                        <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
                         <img onClick={() => {
                             setPageWeek(pageWeek - 1)
                             dispatch(getHistoryByWeek(token, pageWeek))
                         }} src={Expense} alt="" />
                     </div> : ''}
+                    <div className="mb-sm-0 mb-3">
                     {dataWeek.map((item, index) => {
                         return (
-                            <div key={index} className="d-flex justify-content-between mb-5">
-                                <div className="d-flex">
+                            <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
+                                <div className="d-flex align-items-center">
                                     <div className="avatar">
-                                        <img src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
+                                        <img style={{borderRadius: '10px'}} src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
                                     </div>
                                     <div className="info">
                                         <p className="bold history-text">{item.receiver === data.name ? item.sender : item.receiver}</p>
@@ -58,15 +67,16 @@ const History = props => {
                             </div>
                         )
                     })}
-                    {!isMaxWeek ? <div style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
+                    </div>
+                    {!isMaxWeek ? <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
                         <img onClick={() => {
                             setPageWeek(pageWeek + 1)
                             dispatch(getHistoryByWeek(token, pageWeek))
                         }} src={Income} alt="" />
                     </div> : ''}
-                    <p style={{marginBottom: '45px'}} className="med">This Month</p>
+                    <p className="med ml-2 ml-sm-0 mb-sm-4 mb-3">This Month</p>
                     {pageMonth > 1 ?
-                        <div style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
+                        <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
                         <img onClick={() => {
                             setPageMonth(pageMonth - 1)
                             dispatch(getHistoryByMonth(token, pageMonth))
@@ -74,10 +84,10 @@ const History = props => {
                     </div> : ''}
                     {dataMonth.map((item, index) => {
                         return (
-                            <div key={index} className="d-flex justify-content-between mb-5">
-                                <div className="d-flex">
+                            <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
+                                <div className="d-flex align-items-center">
                                     <div className="avatar">
-                                        <img src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
+                                        <img style={{borderRadius: '10px'}} src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
                                     </div>
                                     <div className="info">
                                         <p className="bold history-text">{item.receiver === data.name ? item.sender : item.receiver}</p>
@@ -90,7 +100,12 @@ const History = props => {
                             </div>
                         )
                     })}
-                    {!isMaxMonth ? <div style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
+                    <div className="d-flex d-sm-none">
+                        <div></div>
+                        <div></div>
+                        
+                    </div>
+                    {!isMaxMonth ? <div className="d-none d-sm-block" style={{margin: 'auto', marginBottom: '30px', cursor: 'pointer'}}>
                         <img onClick={() => {
                             setPageMonth(pageMonth + 1)
                             dispatch(getHistoryByMonth(token, pageMonth))

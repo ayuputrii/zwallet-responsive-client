@@ -68,7 +68,7 @@ const Profile = props => {
             <Navbar />
             <Container className="d-flex mt-5">
                 <Menu active={4} />
-                <div className="content-main d-flex flex-column align-items-center py-5">
+                <div className="content-main d-flex flex-column align-items-center py-sm-5">
                     <div className="d-flex align-self-start align-items-start d-sm-none mb-4">
                         <Link to="/dashboard">
                             <img className="mr-3" src={Back} alt="back" />

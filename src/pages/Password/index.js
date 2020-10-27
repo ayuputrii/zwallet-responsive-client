@@ -8,6 +8,8 @@ import Navbar from '../../components/Navbar'
 import Lock from '../../icons/lock.svg'
 import LockActive from '../../icons/lock-active.svg'
 import Eye from '../../icons/eye-crossed.svg'
+import Back from '../../icons/arrow-left.svg'
+import { Link } from 'react-router-dom'
 
 const Password = props => {
     const [currPassword, setCurrPassword] = useState('')
@@ -27,14 +29,12 @@ const Password = props => {
             backgroundColor: "#6379F4",
             borderRadius: "12px",
             color: '#FFFFFF',
-            width: '433px',
             border: 'none'
         },
         buttonGrey: {
             backgroundColor: "#DADADA",
             borderRadius: "12px",
             color: '#88888F',
-            width: '433px',
             border: 'none'
         }
     }
@@ -51,12 +51,18 @@ const Password = props => {
     return (
         <Fragment>
             <Navbar />
-            <Container className="d-flex mt-5">
+            <Container fluid="sm" className="d-flex mt-5 px-0 px-sm-5">
                 <Menu active={4} />
                 <div className="content-main">
-                    <p className="text bold text-dark mb-4">Change Password</p>
-                    <p style={{width:'334px'}} className="text-muted mb-5">You must enter your current password and then type your new password twice.</p>
-                    <div style={{padding: '15px'}} className="d-flex flex-column justify-content-center align-items-center">   
+                    <div className="d-flex align-items-start d-sm-none mb-4 ml-2">
+                        <Link to="/profile">
+                            <img className="mr-3" src={Back} alt="back" />
+                        </Link>
+                        <p style={{fontSize: '20px'}} className="bold">Change Password</p>
+                    </div>
+                    <p className="text bold text-dark mb-4 d-none d-sm-inline">Change Password</p>
+                    <p style={{width:'334px'}} className="text-muted mb-5 ml-2 ml-sm-0">You must enter your current password and then type your new password twice.</p>
+                    <div className="d-flex flex-column">   
                         <div className="notes bg-transparent">
                             <img className="edit" src={currActive ? LockActive : Lock} alt="" />
                             <img onClick={() => setCurrEye(!currEye)} className="eye" src={Eye} alt="" />
@@ -72,7 +78,7 @@ const Password = props => {
                             <img onClick={() => setRepeatEye(!repeatEye)} className="eye" src={Eye} alt="" />
                             <input onFocus={() => setRepeatActive(true)} onBlur={() => setRepeatActive(false)} onChange={(e) => setRepeatPassword(e.target.value)} value={repeatPassword} className="note bg-transparent" type={repeatEye ? "text" : "password"} placeholder="Repeat new password" />
                         </div>
-                        <button onClick={onSubmit} style={currPassword && password && password === repeatPassword ? style.buttonPrimary : style.buttonGrey} className="py-3">Change Password</button>
+                        <button onClick={onSubmit} style={currPassword && password && password === repeatPassword ? style.buttonPrimary : style.buttonGrey} className="py-3 btn-phone align-self-sm-center">Change Password</button>
                     </div>
                 </div>
             </Container>

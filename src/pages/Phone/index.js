@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { editUser } from '../../redux/action/user'
 import Footer from '../../components/Footer'
 import Menu from '../../components/Menu'
@@ -9,6 +9,7 @@ import Navbar from '../../components/Navbar'
 import Trash from '../../icons/trash.svg'
 import Phone from '../../icons/phone.svg'
 import PhoneActive from '../../icons/phone-active.svg'
+import Back from '../../icons/arrow-left.svg'
 import './Phone.css'
 
 const ManagePhone = props => {
@@ -24,14 +25,12 @@ const ManagePhone = props => {
             backgroundColor: "#6379F4",
             borderRadius: "12px",
             color: '#FFFFFF',
-            width: '433px',
             border: 'none'
         },
         buttonGrey: {
             backgroundColor: "#DADADA",
             borderRadius: "12px",
             color: '#88888F',
-            width: '433px',
             border: 'none'
         }
     }
@@ -72,7 +71,13 @@ const ManagePhone = props => {
                 <Container className="d-flex mt-5">
                     <Menu active={4} />
                     <div className="content-main">
-                        <p className="text bold text-dark mb-4">Manage Phone Number</p>
+                        <div className="d-flex align-items-start d-sm-none mb-4">
+                            <Link to="/profile/info">
+                                <img className="mr-3" src={Back} alt="back" />
+                            </Link>
+                            <p style={{fontSize: '20px'}} className="bold">Manage Phone Number</p>
+                        </div>
+                        <p className="text bold text-dark mb-4 d-none d-sm-inline">Manage Phone Number</p>
                         <p style={{width:'334px'}} className="text-muted mb-5">You can only delete the phone number and then you must add another phone number.</p>
                         <div style={{padding: '15px'}} className="label d-flex justify-content-between align-items-center">
                             <div>
@@ -95,14 +100,20 @@ const ManagePhone = props => {
                 <Container className="d-flex mt-5">
                     <Menu active={4} />
                     <div className="content-main">
-                        <p className="text bold text-dark mb-4">Add Phone Number</p>
+                        <div className="d-flex align-items-start d-sm-none mb-4">
+                            <Link to="/profile/info">
+                                <img className="mr-3" src={Back} alt="back" />
+                            </Link>
+                            <p style={{fontSize: '20px'}} className="bold">Add Phone Number</p>
+                        </div>
+                        <p className="text bold text-dark mb-4 d-none d-sm-inline">Add Phone Number</p>
                         <p style={{width:'334px'}} className="text-muted mb-5">Add at least one phone number for the transfer ID so you can start transfering your money to another user.</p>
-                        <div style={{padding: '15px'}} className="d-flex flex-column justify-content-center align-items-center">
+                        <div className="d-flex flex-column justify-content-center align-items-center">
                             <div className="notes bg-transparent">
                                 <img src={phoneActive ? PhoneActive : Phone} className="edit" alt="" />
                                 <input onFocus={() => setPhoneActive(true)} onBlur={() => setPhoneActive(false)} onChange={(e) => setPhone(e.target.value)} value={phone} className="note bg-transparent" type="text" placeholder="Enter your phone number" />
                             </div>
-                            <button onClick={onSubmit} className="py-3" style={phone ? style.buttonPrimary : style.buttonGrey}>Add Phone Number</button>
+                            <button onClick={onSubmit} className="py-3 btn-phone" style={phone ? style.buttonPrimary : style.buttonGrey}>Add Phone Number</button>
                         </div>
                     </div>
                 </Container>

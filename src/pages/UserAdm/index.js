@@ -62,7 +62,7 @@ const Content = () => {
                   data.map((item, index) => {
                     return (
                       <tr key={index}>
-                        <td>{item.id}</td>
+                        <td>{index + 1}</td>
                         <td>{item.name}</td>
                         <td>{item.email}</td>
                         <td>{item.balance}</td>
@@ -77,13 +77,13 @@ const Content = () => {
                           <Button className="btn-edit" variant="info">
                             EDIT
                           </Button>
-                          <Button
+                          {/* <Button
                             onClick={() => onDelete(item.id)}
                             className="delete-href"
                             variant="danger"
                           >
                             DELETE
-                          </Button>
+                          </Button> */}
                         </td>
                       </tr>
                     );

@@ -82,3 +82,33 @@
   font-weight: bold;
   font-family: "Nunito Sans", sans-serif;
 }
+
+@media screen and (min-width: 700px) and (max-width: 991px) {
+  .detail-user-password{
+    font-size: 90%;
+  }
+}
+
+@media screen and (min-width: 515px) and (max-width: 699px) {
+  .detail-user-password{
+    font-size: 85%;
+  }
+}
+
+@media screen and (min-width: 482px) and (max-width: 514px) {
+  .detail-user-password{
+    font-size: 80%;
+  }
+}
+
+@media screen and (min-width: 423px) and (max-width: 481px) {
+  .detail-user-password{
+    font-size: 65%;
+  }
+}
+
+@media screen and (min-width: 250px) and (max-width: 418px) {
+  .detail-user-password{
+    font-size: 40%;
+  }
+}

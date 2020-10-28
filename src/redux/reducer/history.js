@@ -1,11 +1,11 @@
-import { GET_HISTORY_BY_MONTH, GET_HISTORY_BY_WEEK, GET_HISTORY, MAX_WEEK, MAX_MONTH } from '../type/history'
+import { GET_HISTORY_BY_MONTH, GET_HISTORY_BY_WEEK, GET_HISTORY, GET_HISTORY_TODAY, GET_HISTORY_BY_FILTER } from '../type/history'
 
 const initialState = {
     dataAll: [],
     dataWeek: [],
     dataMonth: [],
-    isMaxWeek: false,
-    isMaxMonth: false
+    dataToday: [],
+    dataFilter: []
 }
 
 export default (state = initialState, action) => {
@@ -25,21 +25,19 @@ export default (state = initialState, action) => {
                 ...state,
                 dataMonth: action.payload
             }
-        case MAX_WEEK:
+        case GET_HISTORY_TODAY:
             return {
                 ...state,
-                isMaxWeek: true
+                dataToday: action.payload
             }
-        case MAX_MONTH:
+        case GET_HISTORY_BY_FILTER:
             return {
                 ...state,
-                isMaxMonth: true
+                dataFilter: action.payload
             }
         default:
             return {
-                ...state,
-                isMaxWeek: false,
-                isMaxMonth: false
+                ...state
             }
     }
 }

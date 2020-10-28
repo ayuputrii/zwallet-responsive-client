@@ -12,7 +12,6 @@
 
 .form-search{
     width:100%;
-    margin-top: 30px;
 }
 
 .button-add{
@@ -59,31 +58,15 @@
     border-color: unset !important;
 }
 
-.delete-href{
-    width:85px;
-    padding: 8px 13px 8px 13px;
-    font-size: 15px;
-    border-radius: 3px;
-    font-weight: bolder;
-    margin-right: 5px;
-    color:#fff;
-    border-color: unset !important;
-}
-
-.delete-href {
+  .btn-edit-user-bottom {
+    margin: auto !important;
+    margin-top: 15px !important;
+    margin-right: 10px !important;
     width: 85px;
-    padding: 8px 13px 8px 13px;
-    font-size: 15px;
-    border-radius: 3px;
     font-weight: bolder;
     margin-right: 5px;
-    color: #333;
-    background-color: #6379f4;
+    background-color: #6379f4 !important;
     border-color: unset !important;
-  }
-  
-  .delete-href:hover {
-    color: #fff;
   }
 
 .btn-detail{
@@ -137,6 +120,23 @@
     color: #5c4e4e;
   }
 
+  .btn-edit-user-bottom-user {
+    margin: auto !important;
+    margin-top: 15px !important;
+    margin-right: 10px !important;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bolder;
+    margin-right: 5px;
+    color:#fff;
+    background-color: #6379f4 !important;
+    border-color: unset !important;
+  }
+
+  .btn-edit-user-bottom-user:hover{
+      color:#fff;
+  }
+
 @media screen and (min-width: 280px) and (max-width: 575px){
 
     .logo-name{
@@ -150,7 +150,6 @@
     
     .form-search{
         width:100%;
-        margin-top: 30px;
     }
     
     .button-add{

@@ -1,24 +1,14 @@
 import React from "react";
-import {
-  Row,
-  Col,
-  Form,
-  Table,
-  Modal,
-  Container,
-  Button,
-} from "react-bootstrap";
-// import { Link } from "react-router-dom";
+import { Row, Col, Form, Table, Modal, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
 import { getUser, deleteUser } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import person from "../../icons/person.svg";
 
 const Content = (props) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const { data, loading } = useSelector((state) => state.admin);
   const { token } = useSelector((state) => state.auth);
@@ -26,16 +16,16 @@ const Content = (props) => {
 
   React.useEffect(() => {
     dispatch(getUser(token));
-  }, []);
+  }, [dispatch, token]);
 
-  const onDetail = (id) => {
+  const onDelete = (id) => {
     dispatch(
-      getUser({
+      deleteUser({
         id: id,
         token: token,
       })
     );
-    history.push("/admin/profile/info");
+    dispatch(getUser(token));
   };
 
   return (
@@ -78,10 +68,7 @@ const Content = (props) => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody
-                className="table-tb"
-                to={{ pathname: "/admin/profile/info", state: props.data }}
-              >
+              <tbody className="table-tb">
                 {loading ? (
                   <p>...loading</p>
                 ) : (
@@ -94,13 +81,23 @@ const Content = (props) => {
                         <td>{item.email}</td>
                         <td>{item.balance}</td>
                         <td className="td-btn">
-                          <Button
-                            onClick={() => onDetail(item.id)}
+                          <Link
                             className="delete-href"
                             variant="info"
+                            to={{
+                              pathname: "/admin/profile/info",
+                              state: item,
+                            }}
                           >
                             DETAIL
-                          </Button>
+                          </Link>
+                          {/* <button
+                            onClick={() => onDelete(item.id)}
+                            className="delete-href"
+                            variant="danger"
+                          >
+                            DELETE
+                          </button> */}
                         </td>
                       </tr>
                     );
@@ -158,8 +155,8 @@ const UserAdm = (props) => {
   return (
     <div className="bg-white">
       <NavbarAdm />
-      <section class="my-1 container">
-        <div class="row">
+      <section className="my-1 container">
+        <div className="row">
           <Content />
         </div>
       </section>

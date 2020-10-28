@@ -1,22 +1,26 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Menu from '../../components/Menu'
-import { Container } from 'react-bootstrap'
+import { Container, Modal } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { topup } from '../../redux/action/topup'
+import { topup, chargeTopup20k, chargeTopup50k, chargeTopup100k } from '../../redux/action/topup'
 import Back from '../../icons/arrow-left.svg'
 import TopupLogo from '../../icons/menu-active/plus.svg'
 import './Topup.css'
 import { Link } from 'react-router-dom'
 
 const Topup = props => {
+    const [modalShow, setModalShow] = useState(false)
     const { token } = useSelector(state => state.auth)
-    const { data } = useSelector(state => state.topup)
+    const { data, token20k, token50k, token100k } = useSelector(state => state.topup)
     const phone = useSelector(state => state.user.data.phone)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(topup(token))
+        dispatch(chargeTopup20k(token))
+        dispatch(chargeTopup50k(token))
+        dispatch(chargeTopup100k(token))
     }, [])
     
     return (
@@ -32,7 +36,7 @@ const Topup = props => {
                         <p style={{fontSize: '20px'}} className="bold">Top Up</p>
                     </div>
                     <div className="label d-flex align-items-center mb-4 d-sm-none">
-                        <div onClick={() => window.snap.pay('2d77a004-9243-4dc5-bd6a-ee3a7f68b2b3')} style={{backgroundColor: '#EBEEF2', borderRadius: '10px', padding: '15px'}} className="mr-3">
+                        <div onClick={() => setModalShow(true)} style={{backgroundColor: '#EBEEF2', borderRadius: '10px', padding: '15px'}} className="mr-3">
                             <img src={TopupLogo} alt="" />
                         </div>
                         <div>
@@ -50,6 +54,20 @@ const Topup = props => {
                             </div>
                         )
                     }) }
+                    <Modal size="md" aria-labelledby="contained-modal-title-vcenter" centered show={modalShow} onHide={() => setModalShow(false)} >
+                    <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Charge Top Up
+                    </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="d-flex flex-column">
+                            <div onClick={() => window.snap.pay(token20k)} className="label primary">20.000</div>
+                            <div onClick={() => window.snap.pay(token50k)} className="label primary">50.000</div>
+                            <div onClick={() => window.snap.pay(token100k)} className="label primary">100.000</div>
+                        </div>
+                    </Modal.Body>
+                    </Modal>
                 </div>
             </Container>
             <Footer />

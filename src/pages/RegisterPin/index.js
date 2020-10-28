@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import AuthLogo from '../../components/AuthLogo'
 import { useForm } from 'react-hook-form'
 import { pinFilled, signup } from '../../redux/action/register'

@@ -16,7 +16,7 @@ const Content = (props) => {
 
   React.useEffect(() => {
     dispatch(getUser(token));
-  }, []);
+  }, [dispatch, token]);
 
   const onDelete = (id) => {
     dispatch(
@@ -68,10 +68,7 @@ const Content = (props) => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody
-                className="table-tb"
-                to={{ pathname: "/admin/profile/info", state: props.data }}
-              >
+              <tbody className="table-tb">
                 {loading ? (
                   <p>...loading</p>
                 ) : (
@@ -87,17 +84,20 @@ const Content = (props) => {
                           <Link
                             className="delete-href"
                             variant="info"
-                            to="/admin/profile/info"
+                            to={{
+                              pathname: "/admin/profile/info",
+                              state: item,
+                            }}
                           >
                             DETAIL
                           </Link>
-                          {/* <Button
+                          {/* <button
                             onClick={() => onDelete(item.id)}
                             className="delete-href"
                             variant="danger"
                           >
                             DELETE
-                          </Button> */}
+                          </button> */}
                         </td>
                       </tr>
                     );
@@ -155,8 +155,8 @@ const UserAdm = (props) => {
   return (
     <div className="bg-white">
       <NavbarAdm />
-      <section class="my-1 container">
-        <div class="row">
+      <section className="my-1 container">
+        <div className="row">
           <Content />
         </div>
       </section>

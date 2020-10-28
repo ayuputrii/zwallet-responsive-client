@@ -1,5 +1,6 @@
 import {
   GET_USER,
+  DETAIL_USER_SUCCESS,
   EDIT_USER_REQUEST,
   EDIT_USER_SUCCESS,
   EDIT_USER_FAILED,
@@ -18,6 +19,14 @@ export default (state = initialState, action) => {
     case GET_USER:
       return {
         ...state,
+        data: action.payload.data,
+      };
+
+    // Detail User
+    case DETAIL_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
         data: action.payload.data,
       };
 

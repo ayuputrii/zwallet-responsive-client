@@ -4,6 +4,10 @@ import NavbarAdm from "../../components/NavbarAdm";
 import "./DetailUserAdm.css";
 import person from "./diki.jpeg";
 
+import { useHistory } from "react-router-dom";
+import { getUser, detailUser, deleteUser } from "../../redux/action/admin";
+import { useDispatch, useSelector } from "react-redux";
+
 const Content = (props) => {
   const [show, setShow] = React.useState(false);
   const [showed, setShowed] = React.useState(false);
@@ -11,6 +15,29 @@ const Content = (props) => {
   const handleShow = () => setShow(true);
   const handleClosed = () => setShowed(false);
   const handleShowed = () => setShowed(true);
+
+  const dispatch = useDispatch();
+  const { data, loading } = useSelector((state) => state.admin);
+  const { token } = useSelector((state) => state.auth);
+
+  const history = useHistory();
+  const { location } = props;
+  const dataProps = history.location.state;
+
+  React.useEffect(() => {
+    dispatch(detailUser(token));
+  }, [dispatch, token]);
+
+  const onDelete = (id) => {
+    dispatch(
+      deleteUser({
+        id: id,
+        token: token,
+      })
+    );
+    dispatch(getUser(token));
+  };
+
   return (
     <>
       <Container>
@@ -32,34 +59,38 @@ const Content = (props) => {
           </Col>
           <Col lg={9} md={9} sm={12} xs={12}>
             <div className="total">
-              &nbsp;
+              &nbsp; &nbsp;
               <div className="total-user-detail-text">
                 <p>Nama</p>
-                <p>Diki Herliansyah</p>
+                <p>{dataProps.name}</p>
               </div>
               <div className="total-user-detail-text">
                 <p>Email</p>
-                <p>diki@gmail.com</p>
+                <p>{dataProps.email}</p>
+              </div>
+              <div className="total-user-detail-text">
+                <p>Password</p>
+                <p>{dataProps.password}</p>
               </div>
               <div className="total-user-detail-text">
                 <p>pin</p>
-                <p>112233</p>
+                <p>{dataProps.pin}</p>
               </div>
               <div className="total-user-detail-text">
                 <p>Phone</p>
-                <p>082114314831</p>
+                <p>{dataProps.phone}</p>
               </div>
               <div className="total-user-detail-text">
                 <p>Role</p>
-                <p>5</p>
+                <p>{dataProps.role}</p>
               </div>
               <div className="total-user-detail-text">
-                <p>Balance : Rp. 100.000</p>
-                <p>Verified : 0</p>
+                <p>Balance :{dataProps.balance}</p>
+                <p>Verified : {dataProps.verified}</p>
               </div>
               <div className="total-user-detail-text">
-                <p>Create At : 2020-10-22 00:35:43</p>
-                <p>Update At : 2020-10-22 00:35:43</p>
+                <p>Created At : {dataProps.createdAt}</p>
+                <p>Update At : {dataProps.updatedAt}</p>
               </div>
               <div className="total-user-detail-text-btn">
                 <Button
@@ -69,7 +100,11 @@ const Content = (props) => {
                 >
                   EDIT
                 </Button>
-                <Button className="btn-edit-user-bottom" variant="info">
+                <Button
+                  onClick={() => onDelete(dataProps.id)}
+                  className="btn-edit-user-bottom"
+                  variant="info"
+                >
                   DELETE
                 </Button>
               </div>

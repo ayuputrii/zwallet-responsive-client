@@ -1,6 +1,7 @@
 import Axios from "axios";
 import {
   GET_USER,
+  DETAIL_USER_SUCCESS,
   EDIT_USER_REQUEST,
   EDIT_USER_SUCCESS,
   EDIT_USER_FAILED,
@@ -60,6 +61,25 @@ export const deleteUserFailed = (error) => {
     type: DELETE_USER_FAILED,
     payload: error,
   };
+};
+
+// Update
+export const detailusersSuccess = (data) => {
+  return {
+    type: DETAIL_USER_SUCCESS,
+    payload: data,
+  };
+};
+
+// Detail User
+export const detailUser = (fields, token) => (dispatch) => {
+  Axios.get(`${URL_ADM}/users/${fields.id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => {
+    dispatch(detailusersSuccess(res.data));
+  });
 };
 
 // Update

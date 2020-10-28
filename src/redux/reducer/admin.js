@@ -1,25 +1,22 @@
 import {
-  GET_USER,
+  GET_ADMIN,
   DETAIL_USER_SUCCESS,
-  EDIT_USER_REQUEST,
-  EDIT_USER_SUCCESS,
-  EDIT_USER_FAILED,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILED,
 } from "../type/admin";
 
 const initialState = {
-  data: [],
+  dataAdmin: [],
   loading: false,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_USER:
+    case GET_ADMIN:
       return {
         ...state,
-        data: action.payload.data,
+        dataAdmin: action.payload.data,
       };
 
     // Detail User
@@ -27,31 +24,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        data: action.payload.data,
-      };
-
-    // Update
-    case EDIT_USER_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
-    case EDIT_USER_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        messageEdit: action.payload.message,
-        data: action.payload.data,
-        isEditSuccess: true,
-        isEditFailed: false,
-      };
-    case EDIT_USER_FAILED:
-      return {
-        ...state,
-        loading: false,
-        messageEdit: action.payload,
-        isEditSuccess: false,
-        isEditFailed: true,
+        dataAdmin: action.payload.data,
       };
 
     // Delete
@@ -64,20 +37,18 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        data: action.payload.message,
+        dataAdmin: action.payload.message,
       };
     case DELETE_USER_FAILED:
       return {
         ...state,
         loading: false,
-        data: action.payload,
+        dataAdmin: action.payload,
       };
 
     default:
       return {
         ...state,
-        pinCheck: "",
-        checkedPin: false,
       };
   }
 };

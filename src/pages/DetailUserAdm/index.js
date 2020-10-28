@@ -5,7 +5,7 @@ import "./DetailUserAdm.css";
 import person from "./diki.jpeg";
 
 import { useHistory } from "react-router-dom";
-import { getUser, detailUser, deleteUser } from "../../redux/action/admin";
+import { getAdmin, deleteAdmin } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 
 const Content = (props) => {
@@ -21,21 +21,21 @@ const Content = (props) => {
   const { token } = useSelector((state) => state.auth);
 
   const history = useHistory();
-  const { location } = props;
   const dataProps = history.location.state;
 
   React.useEffect(() => {
-    dispatch(detailUser(token));
+    dispatch(getAdmin(token));
   }, [dispatch, token]);
 
   const onDelete = (id) => {
     dispatch(
-      deleteUser({
+      deleteAdmin({
         id: id,
         token: token,
       })
     );
-    dispatch(getUser(token));
+    dispatch(getAdmin(token));
+    history.push("/admin/user");
   };
 
   return (
@@ -70,7 +70,7 @@ const Content = (props) => {
               </div>
               <div className="total-user-detail-text">
                 <p>Password</p>
-                <p>{dataProps.password}</p>
+                <p className="detail-user-password">{dataProps.password}</p>
               </div>
               <div className="total-user-detail-text">
                 <p>pin</p>

@@ -160,3 +160,116 @@
     background-color: #6379f4 !important;
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+  .photo-user {
+    width: 45%;
+    float: left;
+  }
+  
+  .total-data {
+    padding-left: 100px;
+    padding-top: 40px;
+    font-size: 19px;
+    font-weight: bold;
+    color: #5c4e4e;
+  }
+
+}
+
+@media screen and (min-width: 491px) and (max-width: 767px) {
+
+  .photo-user {
+    width: 15%;
+    float: left;
+  }
+  
+  .total-data {
+    padding-left: 100px;
+    padding-top: 30px;
+    font-size: 19px;
+    font-weight: bold;
+    color: #5c4e4e;
+  }
+
+  .total-user {
+    background-color: rgba(13, 103, 206, 0.3);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    min-height: 90px;
+  }
+
+}
+
+@media screen and (min-width: 400px) and (max-width: 490px) {
+
+  .photo-user {
+    width: 20%;
+    float: left;
+  }
+  
+  .total-data {
+    padding-left: 100px;
+    padding-top: 30px;
+    font-size: 19px;
+    font-weight: bold;
+    color: #5c4e4e;
+  }
+
+  .total-user {
+    background-color: rgba(13, 103, 206, 0.3);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    min-height: 90px;
+  }
+
+}
+
+@media screen and (min-width: 300px) and (max-width: 398px) {
+
+  .photo-user {
+    width: 23%;
+    float: left;
+  }
+  
+  .total-data {
+    padding-left: 100px;
+    padding-top: 28px;
+    font-size: 21px;
+    font-weight: bold;
+    color: #5c4e4e;
+  }
+
+  .total-user {
+    background-color: rgba(13, 103, 206, 0.3);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    min-height: 85px;
+  }
+
+}
+
+@media screen and (min-width: 280px) and (max-width: 299px) {
+
+  .photo-user {
+    width: 30%;
+    float: left;
+  }
+  
+  .total-data {
+    padding-left: 100px;
+    padding-top: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #5c4e4e;
+  }
+
+  .total-user {
+    background-color: rgba(13, 103, 206, 0.3);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    min-height: 90px;
+  }
+
+}

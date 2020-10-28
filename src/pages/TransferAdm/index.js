@@ -63,7 +63,7 @@ const Content = (props) => {
 
 const TransferAdm = (props) => {
   return (
-    <div className="bg-white">
+    <div>
       <NavbarAdm />
       <section class="my-1 container">
         <div class="row">

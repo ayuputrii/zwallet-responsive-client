@@ -93,6 +93,12 @@ const Content = (props) => {
               </Form.Label>
               <Form.Control type="text" placeholder="Enter tittle..." />
             </Form.Group>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label className="description-tittle">
+                SQUENCE
+              </Form.Label>
+              <Form.Control type="number" />
+            </Form.Group>
             <Button
               className="button-add-topup"
               type="submit"
@@ -123,6 +129,12 @@ const Content = (props) => {
               </Form.Label>
               <Form.Control type="text" placeholder="Enter tittle..." />
             </Form.Group>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label className="description-tittle">
+                SQUENCE
+              </Form.Label>
+              <Form.Control type="number" />
+            </Form.Group>
             <Button
               className="button-add-topup"
               type="submit"
@@ -139,7 +151,7 @@ const Content = (props) => {
 
 const TopupAdm = (props) => {
   return (
-    <div className="bg-white">
+    <div>
       <NavbarAdm />
       <section class="my-1 container">
         <div class="row">

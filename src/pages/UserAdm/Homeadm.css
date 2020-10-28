@@ -136,6 +136,23 @@
   color: #5c4e4e;
 }
 
+.page-link{
+  border: unset solid #6379f4 !important;
+}
+
+.pagination-individu{
+  justify-content: center;
+  font-weight: bold !important;
+}
+
+@media screen and (min-width: 280px) and (max-width: 575px) {
+
+  /* .pagination-individu{
+    margin-left: 170px;
+  } */
+
+}
+
 @media screen and (min-width: 280px) and (max-width: 575px) {
   .logo-name {
     text-align: center;

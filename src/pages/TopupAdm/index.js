@@ -1,13 +1,9 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Row, Col, Form, Button, Table, Modal } from "react-bootstrap";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./TopupAdmstyle.css";
-
-import { Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { topup } from "../../redux/action/topup";
-import Back from "../../icons/arrow-left.svg";
-import { Link } from "react-router-dom";
 
 const Content = (props) => {
   const { token } = useSelector((state) => state.auth);
@@ -97,8 +93,12 @@ const Content = (props) => {
               </Form.Label>
               <Form.Control type="text" placeholder="Enter tittle..." />
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Continue
+            <Button
+              className="button-add-topup"
+              type="submit"
+              variant="info"
+            >
+              EDIT TOPUP
             </Button>
           </Form>
         </Modal.Body>
@@ -123,8 +123,12 @@ const Content = (props) => {
               </Form.Label>
               <Form.Control type="text" placeholder="Enter tittle..." />
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Continue
+            <Button
+              className="button-add-topup"
+              type="submit"
+              variant="info"
+            >
+              ADD TOPUP
             </Button>
           </Form>
         </Modal.Body>

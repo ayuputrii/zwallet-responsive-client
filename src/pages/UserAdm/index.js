@@ -1,32 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Row, Col, Form, Table, Modal, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
-import { getUser, deleteUser } from "../../redux/action/admin";
+import { getAdmin } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 import person from "../../icons/person.svg";
 
-const Content = (props) => {
+const Content = () => {
   const dispatch = useDispatch();
 
-  const { data, loading } = useSelector((state) => state.admin);
+  const { dataAdmin, loading } = useSelector((state) => state.admin);
   const { token } = useSelector((state) => state.auth);
   const [lgShow, setLgShow] = React.useState(false);
-
-  React.useEffect(() => {
-    dispatch(getUser(token));
-  }, [dispatch, token]);
-
-  const onDelete = (id) => {
-    dispatch(
-      deleteUser({
-        id: id,
-        token: token,
-      })
-    );
-    dispatch(getUser(token));
+  const _function = (_data) => {
+    var r5 = [];
+    var r6 = [];
+    for (var i = 0; i < _data.length; i++) {
+      if (_data[i].role === 6) {
+        r6.push(_data[i]);
+      } else {
+        r5.push(_data[i]);
+      }
+    }
+    return { r5, r6 };
   };
+  const _dataAcc = _function(dataAdmin);
+
+  const HitungData = (data) => {
+    let angka = 0;
+    for (var i = 0; i < data.length; i++) {
+      angka += data[i].balance;
+    }
+    return angka;
+  };
+
+  const balanceAdmin = HitungData(_dataAcc.r6);
+  const balanceUser = HitungData(_dataAcc.r5);
+  const totalBalance = balanceAdmin + balanceUser;
+  React.useEffect(() => {
+    dispatch(getAdmin(token));
+  }, []);
 
   return (
     <>
@@ -35,22 +49,17 @@ const Content = (props) => {
           <Col lg={4} md={4} sm={12} xs={12}>
             <div className="total-user">
               <img className="photo-user" src={person} alt="" />
-              <p className="total-data">20 User</p>
+              <p className="total-data">{_dataAcc.r5.length} User</p>
             </div>
             &nbsp;
             <div className="total-user">
               <img className="photo-user" src={person} alt="" />
-              <p className="total-data">20 Admin</p>
+              <p className="total-data">{_dataAcc.r6.length} Admin</p>
             </div>
             &nbsp;
             <div className="total-user">
               <img className="photo-user" src={person} alt="" />
-              <p className="total-data"> Rp. 20.000.000 </p>
-            </div>
-            &nbsp;
-            <div className="total-user">
-              <img className="photo-user" src={person} alt="" />
-              <p className="total-data">20 User</p>
+              <p className="total-data"> Rp. {totalBalance}</p>
             </div>
             &nbsp;
           </Col>
@@ -72,8 +81,8 @@ const Content = (props) => {
                 {loading ? (
                   <p>...loading</p>
                 ) : (
-                  typeof data === "object" &&
-                  data.map((item, index) => {
+                  typeof dataAdmin === "object" &&
+                  dataAdmin.map((item, index) => {
                     return (
                       <tr key={index}>
                         <td>{index + 1}</td>
@@ -91,13 +100,6 @@ const Content = (props) => {
                           >
                             DETAIL
                           </Link>
-                          {/* <button
-                            onClick={() => onDelete(item.id)}
-                            className="delete-href"
-                            variant="danger"
-                          >
-                            DELETE
-                          </button> */}
                         </td>
                       </tr>
                     );

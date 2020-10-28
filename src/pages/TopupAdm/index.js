@@ -97,7 +97,7 @@ const Content = (props) => {
               <Form.Label className="description-tittle">
                 SQUENCE
               </Form.Label>
-              <Form.Control type="number" />
+              <Form.Control type="number" placeholder="Enter squence..." />
             </Form.Group>
             <Button
               className="button-add-topup"
@@ -133,7 +133,7 @@ const Content = (props) => {
               <Form.Label className="description-tittle">
                 SQUENCE
               </Form.Label>
-              <Form.Control type="number" />
+              <Form.Control type="number" placeholder="Enter squence..."  />
             </Form.Group>
             <Button
               className="button-add-topup"

@@ -311,6 +311,10 @@
         justify-content: center;
     }
 
+    .history__filter.active {
+        background-color: #6379F4;
+    }
+
     .info {
         align-items: center ;
     }

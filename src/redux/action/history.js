@@ -50,3 +50,17 @@ export const getHistoryToday = ( token ) => async dispatch => {
 
     dispatch({ type: GET_HISTORY_TODAY, payload: res.data.data })
 }
+
+export const getHistoryByFilter = ( start, end, token ) => async dispatch => {
+    const res = await Axios.get(`${URI}/transfer/history/filter`, {
+        params: {
+            start: start,
+            end: end
+        },
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+    dispatch({ type: GET_HISTORY_BY_FILTER, payload: res.data.data })
+}

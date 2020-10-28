@@ -4,7 +4,8 @@ const initialState = {
     dataAll: [],
     dataWeek: [],
     dataMonth: [],
-    dataToday: []
+    dataToday: [],
+    dataFilter: []
 }
 
 export default (state = initialState, action) => {
@@ -28,6 +29,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 dataToday: action.payload
+            }
+        case GET_HISTORY_BY_FILTER:
+            return {
+                ...state,
+                dataFilter: action.payload
             }
         default:
             return {

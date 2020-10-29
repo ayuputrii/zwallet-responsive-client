@@ -125,7 +125,7 @@ const Content = (props) => {
               </div>
               <div className="total-user-detail-text">
                 <p>Password</p>
-                <p className="detail-user-password"></p>
+                <p className="detail-user-password">{dataProps.password}</p>
               </div>
               <div className="total-user-detail-text">
                 <p>pin</p>

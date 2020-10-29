@@ -3,7 +3,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { logout } from "../redux/action/login";
 import { userLogout } from "../redux/action/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { imageURI } from "../utils";
 
 const Bar = (props) => {

@@ -1,5 +1,6 @@
 import {
   GET_ADMIN,
+  SEARCH_ADMIN,
   EDIT_USER_REQUEST,
   EDIT_USER_SUCCESS,
   EDIT_USER_FAILED,
@@ -11,11 +12,20 @@ import {
 const initialState = {
   dataAdmin: [],
   loading: false,
+  messageEdit: "",
+  isEditSuccess: false,
+  isEditFailed: false,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_ADMIN:
+      return {
+        ...state,
+        dataAdmin: action.payload.data,
+      };
+
+    case SEARCH_ADMIN:
       return {
         ...state,
         dataAdmin: action.payload.data,

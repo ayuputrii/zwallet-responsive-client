@@ -153,8 +153,8 @@ const TopupAdm = (props) => {
   return (
     <div>
       <NavbarAdm />
-      <section class="my-1 container">
-        <div class="row">
+      <section className="my-1 container">
+        <div className="row">
           <Content />
         </div>
       </section>

@@ -136,8 +136,9 @@
   color: #5c4e4e;
 }
 
-.page-link{
+.page-link {
   border: unset solid #6379f4 !important;
+  padding: 0.5rem 2.75rem !important;
 }
 
 .pagination-individu{

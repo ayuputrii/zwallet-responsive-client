@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import { GET_USER, EDIT_USER_REQUEST, EDIT_USER_SUCCESS, EDIT_USER_FAILED, CHECK_PIN, PIN_CHECKED, USER_LOGOUT } from '../type/user'
+import { GET_USER, EDIT_USER_REQUEST, EDIT_USER_SUCCESS, EDIT_USER_FAILED, CHECK_PIN, PIN_CHECKED, USER_LOGOUT, NOTIFICATION } from '../type/user'
 import { URI } from '../../utils'
 
 export const getUser = token => async dispatch => {
@@ -70,5 +70,11 @@ export const checkPin = (pin, token) => async dispatch => {
 export const userLogout = () => {
     return {
         type: USER_LOGOUT
+    }
+}
+
+export const notification = () => {
+    return {
+        type: NOTIFICATION
     }
 }

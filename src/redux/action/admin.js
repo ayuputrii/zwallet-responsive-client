@@ -1,7 +1,9 @@
 import Axios from "axios";
 import {
   GET_ADMIN,
-  DETAIL_USER_SUCCESS,
+  EDIT_USER_REQUEST,
+  EDIT_USER_SUCCESS,
+  EDIT_USER_FAILED,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILED,
@@ -24,7 +26,7 @@ export const getAdmin = (token) => async (dispatch) => {
 };
 
 ///delete
-export const deletetUserRequest = () => {
+export const deleteUserRequest = () => {
   return {
     type: DELETE_USER_REQUEST,
   };
@@ -43,28 +45,8 @@ export const deleteAdminFailed = (error) => {
   };
 };
 
-// Detail Admin
-export const detailAdminSuccess = (data) => {
-  return {
-    type: DETAIL_USER_SUCCESS,
-    payload: data,
-  };
-};
-
-// Detail Admin
-export const detailAdmin = (fields, token) => (dispatch) => {
-  Axios.get(`${URL_ADM}/users/${fields.id}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((res) => {
-    dispatch(detailAdminSuccess(res.data));
-  });
-};
-
-// Delete Admin
 export const deleteAdmin = (fields) => (dispatch) => {
-  dispatch(deletetUserRequest());
+  dispatch(deleteUserRequest());
   Axios.delete(`${URL_ADM}/users/${fields.id}`, {
     headers: {
       Authorization: `Bearer ${fields.token}`,
@@ -76,4 +58,38 @@ export const deleteAdmin = (fields) => (dispatch) => {
     .catch((error) => {
       dispatch(deleteAdminFailed(error.message));
     });
+};
+
+// Edit Admin
+export const editAdminRequest = () => {
+  return {
+    type: EDIT_USER_REQUEST,
+  };
+};
+
+export const editAdminSuccess = (data) => {
+  return {
+    type: EDIT_USER_SUCCESS,
+    payload: data,
+  };
+};
+export const editAdminFailed = (error) => {
+  return {
+    type: EDIT_USER_FAILED,
+    payload: error,
+  };
+};
+
+export const editAdmin = (data, token, fields) => async (dispatch) => {
+  dispatch(editAdminRequest());
+  try {
+    const res = await Axios.patch(`${URL_ADM}/users/${fields.id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch(editAdminSuccess(res.data));
+  } catch (error) {
+    dispatch(editAdminFailed(error.message));
+  }
 };

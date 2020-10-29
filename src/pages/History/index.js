@@ -16,6 +16,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment'
 import 'moment/locale/id'
+import Notification from '../../components/Notification'
 moment.locale('id')
 
 const History = props => {
@@ -328,7 +329,7 @@ const History = props => {
                             <div className="d-flex justify-content-between">
                                 <div>
                                     <p>From</p>
-                                    <p className="bold">{moment(startDate).format('LL', 'id')}</p>
+                                    <p className="bold">{moment(startDate).format('LL')}</p>
                                 </div>
                                 <div>
                                     <p>To</p>
@@ -340,6 +341,7 @@ const History = props => {
                             </div>
                         </Modal.Body>
                         </Modal>
+                        <Notification />
                     </div>
                 </Container>
                 <Footer />

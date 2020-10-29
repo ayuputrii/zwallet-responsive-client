@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom'
 import Footer from '../../components/Footer'
 import Menu from '../../components/Menu'
 import Navbar from '../../components/Navbar'
+import Notification from '../../components/Notification'
 
 const NewPin = props => {
     const [buttonActive, setButtonActive] = useState(false)
@@ -60,6 +61,7 @@ const NewPin = props => {
                     <p className="text-danger med">{messageEdit}</p>
                     <button style={buttonActive ? style.buttonPrimary : style.buttonGrey} type="submit" className="py-3">Continue</button>
                     </form>
+                    <Notification />
                 </div>
             </Container>
             <Footer />

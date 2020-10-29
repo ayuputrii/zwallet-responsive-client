@@ -3,7 +3,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import bell from '../icons/bell.svg'
 import { logout } from '../redux/action/login'
-import { userLogout } from '../redux/action/user'
+import { userLogout, notification } from '../redux/action/user'
 import { useSelector, useDispatch } from 'react-redux'
 import { imageURI } from '../utils'
 
@@ -41,7 +41,7 @@ const Bar = props => {
                         <div className="small">+62 {splitPhone(data.phone)}</div>
                     </div>
                     <div className="mr-4 icon">
-                        <img id="bell" src={bell} alt="bell" />
+                        <img onClick={() => dispatch(notification())} style={{cursor: 'pointer'}} id="bell" src={bell} alt="bell" />
                     </div>
                 </Nav.Item>
                 <div className={`sidenav ${sidebarActive ? 'active' : ''}`}>

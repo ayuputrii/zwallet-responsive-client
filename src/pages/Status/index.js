@@ -11,6 +11,7 @@ import Share from '../../icons/share.svg'
 import Download from '../../icons/download-pdf.svg'
 import './Confirm.css'
 import { Link } from 'react-router-dom'
+import Notification from '../../components/Notification'
 
 const Status = props => {
     const { userTransfer} = useSelector(state => state.search)
@@ -141,6 +142,7 @@ const Status = props => {
                             </button>
                         </Link>
                     </div>
+                    <Notification />
                     </div>
                 </Container>
                 <Footer />
@@ -196,7 +198,8 @@ const Status = props => {
                                 Try Again
                             </button>
                         </Link>
-                        </div>
+                    </div>
+                    <Notification />
                     </div>
                 </Container>
                 <Footer />
@@ -210,6 +213,7 @@ const Status = props => {
                     <Menu active={2} />
                     <div className="content-main">
                         ...Loading
+                        <Notification />
                     </div>
                 </Container>
                 <Footer />

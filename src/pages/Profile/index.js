@@ -11,6 +11,7 @@ import { logout } from '../../redux/action/login'
 import { userLogout, editUser } from '../../redux/action/user'
 import Back from '../../icons/arrow-left.svg'
 import { imageURI } from '../../utils'
+import Notification from '../../components/Notification'
 
 const Profile = props => {
     const [name, setName] = useState('')
@@ -117,6 +118,7 @@ const Profile = props => {
                         </form>
                     </Modal.Body>
                     </Modal>
+                    <Notification />
                 </div>
             </Container>
             <Footer />

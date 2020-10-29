@@ -10,6 +10,7 @@ import LockActive from '../../icons/lock-active.svg'
 import Eye from '../../icons/eye-crossed.svg'
 import Back from '../../icons/arrow-left.svg'
 import { Link } from 'react-router-dom'
+import Notification from '../../components/Notification'
 
 const Password = props => {
     const [currPassword, setCurrPassword] = useState('')
@@ -80,6 +81,7 @@ const Password = props => {
                         </div>
                         <button onClick={onSubmit} style={currPassword && password && password === repeatPassword ? style.buttonPrimary : style.buttonGrey} className="py-3 btn-phone align-self-sm-center">Change Password</button>
                     </div>
+                    <Notification />
                 </div>
             </Container>
             <Footer />

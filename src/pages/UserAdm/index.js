@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Row, Col, Form, Table, Modal, Container } from "react-bootstrap";
+import { Row, Col, Form, Table, Modal, Container, Pagination } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
@@ -107,6 +107,16 @@ const Content = () => {
                 )}
               </tbody>
             </Table>
+            <Pagination className="pagination-individu">
+  <Pagination.Prev />
+  <Pagination.Item>{1}</Pagination.Item>
+  <Pagination.Ellipsis />
+  <Pagination.Item>{11}</Pagination.Item>
+  <Pagination.Item active>{12}</Pagination.Item>
+  <Pagination.Ellipsis />
+  <Pagination.Item>{20}</Pagination.Item>
+  <Pagination.Next />
+</Pagination>
           </Col>
         </Row>
       </Container>
@@ -155,7 +165,7 @@ const Content = () => {
 
 const UserAdm = (props) => {
   return (
-    <div className="bg-white">
+    <div>
       <NavbarAdm />
       <section className="my-1 container">
         <div className="row">

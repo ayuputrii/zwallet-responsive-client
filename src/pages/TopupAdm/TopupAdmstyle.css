@@ -106,7 +106,6 @@ table.table-head th {background-color:#6379F4;color:#ffffff;} */
 .table-responsive{
     margin-top: 30px;		
     overflow-y: scroll; 
-    max-height:400px;
 }
 
 /* .modal-header{

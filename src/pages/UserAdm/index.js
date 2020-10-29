@@ -115,45 +115,6 @@ const Content = () => {
           </Col>
         </Row>
       </Container>
-
-      {/* <Modal
-        size="lg"
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg modal-user">
-            Detail User
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Table responsive className="table-modal">
-            <thead className="table-check">
-              <tr>
-                <th>Password</th>
-                <th>Pin</th>
-                <th>Photo</th>
-                <th>Phone</th>
-                <th>Verified</th>
-                <th>Date Create</th>
-                <th>Date Update</th>
-              </tr>
-            </thead>
-            <tbody className="table-tb">
-              <tr>
-                <td></td>
-                <td>112233 </td>
-                <td>Tablecell.jpg </td>
-                <td>08211414831 </td>
-                <td> 0 </td>
-                <td>25/10/2020</td>
-                <td>25/10/2020</td>
-              </tr>
-            </tbody>
-          </Table>
-        </Modal.Body>
-      </Modal> */}
     </>
   );
 };

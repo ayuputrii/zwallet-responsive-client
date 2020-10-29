@@ -317,7 +317,7 @@ const History = props => {
                         </div>
                         <Notification />
                     </div>
-                    <div className={`custom__modal ${isFilter ? 'active' : ''} d-flex flex-column`}>
+                    <div className={`d-sm-none custom__modal ${isFilter ? 'active' : ''} d-flex flex-column`}>
                             <p className="text bold text-center mt-0 mb-5">Filter By Date</p>
                             <div className="align-self-center mb-5">
                             <DatePicker

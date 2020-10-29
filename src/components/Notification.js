@@ -32,6 +32,8 @@ const Notification = (props) => {
                                 </div>
                             </div>
                         )
+                    } else {
+                        return ''
                     }
                 })}
             </div>
@@ -50,6 +52,8 @@ const Notification = (props) => {
                                 </div>
                             </div>
                         )
+                    } else {
+                        return ''
                     }
                 })}
             </div>

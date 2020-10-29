@@ -17,10 +17,11 @@ import './Home.css'
 import { imageURI } from '../../utils'
 
 const Home = props => {
+    const [isNotification, setNotification] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.user)
-    const { dataAll } = useSelector(state => state.history)
+    const { dataAll, dataToday, dataWeek } = useSelector(state => state.history)
     const { token } = useSelector(state => state.auth)
 
     useEffect(() => {
@@ -61,7 +62,132 @@ const Home = props => {
         }
     }
 
-    if(!isMobile) {
+    if(isMobile) {
+        return (
+            <Fragment>
+                <Navbar />
+                <Container className="d-flex mt-5 px-0">
+                    <Menu />
+                    <div className="content-main">
+                        <div className="d-flex align-items-start d-sm-none mb-4 px-3">
+                            <div onClick={() => setIsMobile(false)}>
+                                <img className="mr-3" src={Back} alt="back" />
+                            </div>
+                            <p style={{fontSize: '20px'}} className="bold">Transaction</p>
+                        </div>
+                        <div className="bottom-panel">
+                            <div className="chart px-3">
+                                <div className="top">
+                                    <div className="left">
+                                        <img src={Income} alt=""/>
+                                        <p className="small">Income</p>
+                                        <p className="text bold">Rp{handleGraph('income')}</p>
+                                    </div>
+                                    <div className="right">
+                                        <img src={Expense} alt=""/>
+                                        <p className="small">Expense</p>
+                                        <p className="text bold">Rp{handleGraph('expense')}</p>
+                                    </div>
+                                </div>
+                                <div className="bottom">
+                                    <canvas id="myChart" height="268px"></canvas>
+                                </div>
+                            </div>
+                            <div className="history">
+                                <div className="desc">
+                                    <span className="text bold desc-title">Transaction History</span>
+                                    <Link to="/dashboard/history" className="small primary">See all</Link>
+                                </div>
+                                <div className="d-flex flex-column">
+                                {dataAll.map((item, index) => {
+                                    if(index <= 3) {
+                                        return (
+                                            <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
+                                                <div className="d-flex align-items-center">
+                                                    <div className="avatar">
+                                                        <img style={{borderRadius: '10px'}} src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
+                                                    </div>
+                                                    <div className="info">
+                                                        <p className="bold history-text">{item.receiver === data.name ? item.sender : item.receiver}</p>
+                                                        <p className="small">Transfer</p>
+                                                    </div>
+                                                </div>
+                                                <div className="money">
+                                                    <p className={`bold ${item.receiver === data.name ? 'text-success' : 'text-danger'}`}>{item.receiver === data.name ? '+' : '-'}{item.amount}</p>
+                                                </div>
+                                            </div>
+                                        )
+                                    } else {
+                                        return ''
+                                    }
+                                })}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Container>
+                <Footer />
+            </Fragment>
+        ) 
+    } else if(isNotification) {
+        return (
+            <Fragment>
+                <Navbar />
+                <Container className="d-flex mt-5">
+                    <Menu />
+                    <div className="content-main">
+                        <div className="d-flex align-items-start d-sm-none mb-4">
+                            <div onClick={() => setNotification(false)}>
+                                <img className="mr-3" src={Back} alt="back" />
+                            </div>
+                            <p style={{fontSize: '20px'}} className="bold">Notification</p>
+                        </div>
+                        <div className="report">
+                            <p className="med date">Today</p>
+                            {dataToday.map((item, index) => {
+                                if(index <= 2) {
+                                    return (
+                                        <div key={index} className="label">
+                                            <div className="icon mr-3">
+                                                <img src={item.receiver === data.name ? Income: Expense} alt="" />
+                                            </div>
+                                            <div className="info">
+                                                {item.receiver === data.name ? <p className="small">Transfered from {data.sender}</p> : <p className="small">Transfer to {item.receiver}</p>}
+                                                <p className="text bold">Rp{item.amount}</p>
+                                            </div>
+                                        </div>
+                                    )
+                                } else {
+                                    return ''
+                                }
+                            })}
+                        </div>
+                        <div className="report">
+                            <p className="med date">This Week</p>
+                            {dataWeek.map((item, index) => {
+                                if(index <= 2) {
+                                    return (
+                                        <div key={index} className="label">
+                                            <div className="icon mr-3">
+                                                <img src={item.receiver === data.name ? Income: Expense} alt="" />
+                                            </div>
+                                            <div className="info">
+                                                {item.receiver === data.name ? <p className="small">Transfered from {data.sender}</p> : <p className="small">Transfer to {item.receiver}</p>}
+                                                <p className="text bold">Rp{item.amount}</p>
+                                            </div>
+                                        </div>
+                                    )
+                                } else {
+                                    return ''
+                                }
+                            })}
+                        </div>
+                    </div>
+                </Container>
+                <Footer />
+            </Fragment>
+        )
+    } else {
         return (
             <Fragment>
                 <Navbar/>
@@ -77,7 +203,7 @@ const Home = props => {
                                 </div>
                             </Link>
                             <div>
-                                <img src={bell} alt="bell" />
+                                <img onClick={() => setNotification(true)} style={{cursor: 'pointer'}} src={bell} alt="bell" />
                             </div>
                         </div>
                         <div id="top-panel" className="top-panel bg-top-panel">
@@ -160,74 +286,8 @@ const Home = props => {
                 <Footer />
             </Fragment>
         )
-    } else {
-        return (
-            <Fragment>
-                <Navbar />
-                <Container className="d-flex mt-5 px-0">
-                    <Menu />
-                    <div className="content-main">
-                        <div className="d-flex align-items-start d-sm-none mb-4 px-3">
-                            <div onClick={() => setIsMobile(false)}>
-                                <img className="mr-3" src={Back} alt="back" />
-                            </div>
-                            <p style={{fontSize: '20px'}} className="bold">Transaction</p>
-                        </div>
-                        <div className="bottom-panel">
-                            <div className="chart px-3">
-                                <div className="top">
-                                    <div className="left">
-                                        <img src={Income} alt=""/>
-                                        <p className="small">Income</p>
-                                        <p className="text bold">Rp{handleGraph('income')}</p>
-                                    </div>
-                                    <div className="right">
-                                        <img src={Expense} alt=""/>
-                                        <p className="small">Expense</p>
-                                        <p className="text bold">Rp{handleGraph('expense')}</p>
-                                    </div>
-                                </div>
-                                <div className="bottom">
-                                    <canvas id="myChart" height="268px"></canvas>
-                                </div>
-                            </div>
-                            <div className="history">
-                                <div className="desc">
-                                    <span className="text bold desc-title">Transaction History</span>
-                                    <Link to="/dashboard/history" className="small primary">See all</Link>
-                                </div>
-                                <div className="d-flex flex-column">
-                                {dataAll.map((item, index) => {
-                                    if(index <= 3) {
-                                        return (
-                                            <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
-                                                <div className="d-flex align-items-center">
-                                                    <div className="avatar">
-                                                        <img style={{borderRadius: '10px'}} src={`${imageURI}${item.receiver === data.name ? item.photo_sender : item.photo}`} width="56px" height="56px" alt="" />
-                                                    </div>
-                                                    <div className="info">
-                                                        <p className="bold history-text">{item.receiver === data.name ? item.sender : item.receiver}</p>
-                                                        <p className="small">Transfer</p>
-                                                    </div>
-                                                </div>
-                                                <div className="money">
-                                                    <p className={`bold ${item.receiver === data.name ? 'text-success' : 'text-danger'}`}>{item.receiver === data.name ? '+' : '-'}{item.amount}</p>
-                                                </div>
-                                            </div>
-                                        )
-                                    } else {
-                                        return ''
-                                    }
-                                })}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Container>
-                <Footer />
-            </Fragment>
-        )
     }
 }
 
 export default Home
+

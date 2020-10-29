@@ -190,6 +190,7 @@ a:hover {
   border-radius: 25px;
   padding: 30px;
   box-sizing: border-box;
+  position: relative;
 }
 
 .content-notification {

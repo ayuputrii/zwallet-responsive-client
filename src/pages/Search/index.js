@@ -10,6 +10,7 @@ import SearchIcon from '../../icons/search.svg'
 import Back from '../../icons/arrow-left.svg'
 import { imageURI } from '../../utils'
 import './Search.css'
+import Notification from '../../components/Notification'
 
 const Search = props => {
     const dispatch = useDispatch()
@@ -80,6 +81,7 @@ const Search = props => {
                             }
                         })}
                     </div>
+                    <Notification />
                 </div>
             </Container>
             <Footer />

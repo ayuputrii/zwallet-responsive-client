@@ -12,6 +12,7 @@ import EditActive from '../../icons/edit-active.svg'
 import Back from '../../icons/arrow-left.svg'
 import { imageURI } from '../../utils'
 import './Input.css'
+import Notification from '../../components/Notification'
 
 const Input = props => {
     const history = useHistory()
@@ -92,6 +93,7 @@ const Input = props => {
                         <button type="submit" className="btn-primary">Continue</button>
                     </div>
                 </form>
+                <Notification />
                 </div>
             </Container>
             <Footer />

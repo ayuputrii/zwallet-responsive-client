@@ -9,6 +9,7 @@ import Back from '../../icons/arrow-left.svg'
 import TopupLogo from '../../icons/menu-active/plus.svg'
 import './Topup.css'
 import { Link } from 'react-router-dom'
+import Notification from '../../components/Notification'
 
 const Topup = props => {
     const [modalShow, setModalShow] = useState(false)
@@ -68,6 +69,7 @@ const Topup = props => {
                         </div>
                     </Modal.Body>
                     </Modal>
+                    <Notification />
                 </div>
             </Container>
             <Footer />

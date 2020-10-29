@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import Notification from '../../components/Notification'
 import Menu from '../../components/Menu'
 import { Container } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
@@ -66,7 +67,7 @@ const Home = props => {
                 <Navbar/>
                 <Container className="d-flex mt-5 px-0 px-md-5">
                     <Menu active={1} />
-                    <div style={{ flex: 1 }}>
+                    <div style={{ flex: 1, position: 'relative'}}>
                         <div className="d-flex justify-content-between align-items-center d-sm-none mb-3 px-3">
                             <Link to="/profile" className="d-flex">
                                 <img style={{ borderRadius: '10px', marginRight: '20px'}} width="52px" height="52px" src={imageURI+data.photo} alt="" />
@@ -153,7 +154,8 @@ const Home = props => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <Notification />
+                    </div> 
                 </Container>
                 <Footer />
             </Fragment>

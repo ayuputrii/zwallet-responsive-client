@@ -9,6 +9,7 @@ import Navbar from '../../components/Navbar'
 import Back from '../../icons/arrow-left.svg'
 import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
+import Notification from '../../components/Notification'
 
 const Pin = props => {
     const [buttonActive, setButtonActive] = useState(false)
@@ -64,6 +65,7 @@ const Pin = props => {
                         <p className="text-danger med">{pinCheck}</p>
                         <button style={buttonActive ? style.buttonPrimary : style.buttonGrey} type="submit" className="py-3 btn-phone">Continue</button>
                         </form>
+                        <Notification />
                     </div>
                 </Container>
                 <Footer />

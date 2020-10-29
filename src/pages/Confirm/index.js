@@ -11,6 +11,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { imageURI } from '../../utils'
 import Back from '../../icons/arrow-left.svg'
 import './Confirm.css'
+import Notification from '../../components/Notification'
 
 const Confirm = props => {
     const history = useHistory()
@@ -181,6 +182,7 @@ const Confirm = props => {
                                 </Modal.Footer>
                             </form>
                         </Modal>
+                        <Notification />
                     </div>
                 </Container>
                 <Footer />

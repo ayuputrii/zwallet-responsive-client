@@ -11,6 +11,7 @@ import Phone from '../../icons/phone.svg'
 import PhoneActive from '../../icons/phone-active.svg'
 import Back from '../../icons/arrow-left.svg'
 import './Phone.css'
+import Notification from '../../components/Notification'
 
 const ManagePhone = props => {
     const [phone, setPhone] = useState('')
@@ -88,6 +89,7 @@ const ManagePhone = props => {
                                 <img onClick={deletePhone} style={{cursor: 'pointer'}} src={Trash} alt="trash" />
                             </div>
                         </div>
+                        <Notification />
                     </div>
                 </Container>
                 <Footer />
@@ -115,6 +117,7 @@ const ManagePhone = props => {
                             </div>
                             <button onClick={onSubmit} className="py-3 btn-phone" style={phone ? style.buttonPrimary : style.buttonGrey}>Add Phone Number</button>
                         </div>
+                        <Notification />
                     </div>
                 </Container>
                 <Footer />

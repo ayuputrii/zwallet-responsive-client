@@ -1,6 +1,7 @@
 import Axios from "axios";
 import {
   GET_ADMIN,
+  SEARCH_ADMIN,
   EDIT_USER_REQUEST,
   EDIT_USER_SUCCESS,
   EDIT_USER_FAILED,
@@ -23,6 +24,17 @@ export const getAdmin = (token) => async (dispatch) => {
   });
 
   dispatch({ type: GET_ADMIN, payload: res.data });
+};
+
+// Search User
+export const searchAdmin = (token) => async (dispatch) => {
+  const res = await Axios.get(`${URL_ADM}/users/search/query`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  dispatch({ type: SEARCH_ADMIN, payload: res.data });
 };
 
 ///delete
@@ -80,12 +92,12 @@ export const editAdminFailed = (error) => {
   };
 };
 
-export const editAdmin = (data, token, fields) => async (dispatch) => {
+export const editAdmin = (fields) => async (dispatch) => {
   dispatch(editAdminRequest());
   try {
-    const res = await Axios.patch(`${URL_ADM}/users/${fields.id}`, data, {
+    const res = await Axios.patch(`${URL_ADM}/users/${fields.id}`, fields, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${fields.token}`,
       },
     });
     dispatch(editAdminSuccess(res.data));

@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { Row, Col, Form, Table, Modal, Container, Pagination } from "react-bootstrap";
+import React from "react";
+import { Row, Col, Form, Table, Container, Pagination } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
-import { getAdmin } from "../../redux/action/admin";
+
+import { getAdmin, searchAdmin } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 import person from "../../icons/person.svg";
 
@@ -12,7 +13,7 @@ const Content = () => {
 
   const { dataAdmin, loading } = useSelector((state) => state.admin);
   const { token } = useSelector((state) => state.auth);
-  const [lgShow, setLgShow] = React.useState(false);
+
   const _function = (_data) => {
     var r5 = [];
     var r6 = [];
@@ -64,7 +65,7 @@ const Content = () => {
             &nbsp;
           </Col>
           <Col lg={8} md={8} sm={12} xs={12}>
-            <Form action="#" className="form-search">
+            <Form className="form-search">
               <input type="text" placeholder="Search..." />
             </Form>
             <Table responsive className="table-head">
@@ -108,20 +109,20 @@ const Content = () => {
               </tbody>
             </Table>
             <Pagination className="pagination-individu">
-  <Pagination.Prev />
-  <Pagination.Item>{1}</Pagination.Item>
-  <Pagination.Ellipsis />
-  <Pagination.Item>{11}</Pagination.Item>
-  <Pagination.Item active>{12}</Pagination.Item>
-  <Pagination.Ellipsis />
-  <Pagination.Item>{20}</Pagination.Item>
-  <Pagination.Next />
-</Pagination>
+              <Pagination.Prev />
+              <Pagination.Item>{1}</Pagination.Item>
+              <Pagination.Ellipsis />
+              <Pagination.Item>{11}</Pagination.Item>
+              <Pagination.Item active>{12}</Pagination.Item>
+              <Pagination.Ellipsis />
+              <Pagination.Item>{20}</Pagination.Item>
+              <Pagination.Next />
+            </Pagination>
           </Col>
         </Row>
       </Container>
 
-      <Modal
+      {/* <Modal
         size="lg"
         show={lgShow}
         onHide={() => setLgShow(false)}
@@ -158,7 +159,7 @@ const Content = () => {
             </tbody>
           </Table>
         </Modal.Body>
-      </Modal>
+      </Modal> */}
     </>
   );
 };

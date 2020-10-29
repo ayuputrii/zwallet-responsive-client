@@ -1,4 +1,5 @@
 export const GET_ADMIN = "GET_ADMIN";
+export const SEARCH_ADMIN = "SEARCH_ADMIN";
 export const EDIT_USER_REQUEST = "EDIT_USER_REQUEST";
 export const EDIT_USER_SUCCESS = "EDIT_USER_SUCCESS";
 export const EDIT_USER_FAILED = "EDIT_USER_FAILED";

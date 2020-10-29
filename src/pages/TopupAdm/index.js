@@ -3,14 +3,14 @@ import { Row, Col, Form, Button, Table, Modal } from "react-bootstrap";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./TopupAdmstyle.css";
 import { useSelector, useDispatch } from "react-redux";
-import { topup } from "../../redux/action/topup";
+import { topupAdm } from "../../redux/action/topupAdm";
 
 const Content = (props) => {
   const { token } = useSelector((state) => state.auth);
   const { data } = useSelector((state) => state.topup);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(topup(token));
+    dispatch(topupAdm(token));
   }, []);
 
   const [lgShow, setLgShow] = React.useState(false);

@@ -3,14 +3,14 @@ import { Row, Col, Form, Button, Table, Modal } from "react-bootstrap";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./TopupAdmstyle.css";
 import { useSelector, useDispatch } from "react-redux";
-import { topup } from "../../redux/action/topup";
+import { topupAdm } from "../../redux/action/topupAdm";
 
 const Content = (props) => {
   const { token } = useSelector((state) => state.auth);
   const { data } = useSelector((state) => state.topup);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(topup(token));
+    dispatch(topupAdm(token));
   }, []);
 
   const [lgShow, setLgShow] = React.useState(false);
@@ -19,11 +19,11 @@ const Content = (props) => {
     <>
       <Col lg={12} md={12} sm={12} xs={12}>
         <Row>
-          <Col lg={12} md={12} sm={12} xs={12}>
+          {/* <Col lg={12} md={12} sm={12} xs={12}>
             <Form action="#" className="form-search">
               <input type="text" placeholder="Search..." />
             </Form>
-          </Col>
+          </Col> */}
           <Col lg={12} md={12} sm={12} xs={12}>
             <Button
               className="button-add-topup"
@@ -40,7 +40,7 @@ const Content = (props) => {
                 <tr>
                   <th>No</th>
                   <th>Tittle</th>
-                  <th>Date Topup</th>
+                  {/* <th>Date Topup</th> */}
                   <th>Action</th>
                 </tr>
               </thead>
@@ -52,7 +52,7 @@ const Content = (props) => {
                         <tr key={index}>
                           <td>{item.sequence}</td>
                           <td>{item.title}</td>
-                          <td>{item.updatedAt}</td>
+                          {/* <td>{item.updatedAt}</td> */}
                           <td className="td-btn">
                             <Button
                               onClick={() => setLgShow(true)}

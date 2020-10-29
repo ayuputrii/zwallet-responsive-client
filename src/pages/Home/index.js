@@ -15,6 +15,7 @@ import bell from '../../icons/bell.svg'
 import Back from '../../icons/arrow-left.svg'
 import './Home.css'
 import { imageURI } from '../../utils'
+import MyChart from '../../components/Chart'
 
 const Home = props => {
     const [isNotification, setNotification] = useState(false)
@@ -89,8 +90,9 @@ const Home = props => {
                                         <p className="text bold">Rp{handleGraph('expense')}</p>
                                     </div>
                                 </div>
-                                <div className="bottom">
-                                    <canvas id="myChart" height="268px"></canvas>
+                                <p className="text bold mb-3 mt-5">In This Week</p>
+                                <div className="bottom mb-5">
+                                    <MyChart />
                                 </div>
                             </div>
                             <div className="history">
@@ -242,7 +244,7 @@ const Home = props => {
                                     </div>
                                 </div>
                                 <div className="bottom">
-                                    <canvas id="myChart" height="268px"></canvas>
+                                    <MyChart />
                                 </div>
                             </div>
                             <div className="history">

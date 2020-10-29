@@ -68,7 +68,7 @@ const History = props => {
         return (
             <Fragment>
                 <Navbar />
-                <Container className="d-flex mt-5 px-0 px-md-5">
+                <Container className="d-flex pt-5 px-0 px-md-5">
                     <Menu />
                     <div className="content-main">
                         <div className="d-flex align-items-start d-sm-none mb-4 ml-2">
@@ -114,17 +114,17 @@ const History = props => {
         return (
             <Fragment>
                 <Navbar />
-                <Container className="d-flex mt-5 px-0 px-md-5">
+                <Container className="d-flex px-0 px-md-5">
                     <Menu active={1} />
-                    <div className="content-main">
-                        <div className="d-flex align-items-start d-sm-none mb-4 ml-2">
+                    <div className={`pt-5 content-main ${isFilter ? 'onfilter' : ''}`}>
+                        <div onClick={() => setFilter(false)} className="d-flex align-items-start d-sm-none mb-4 pl-2">
                             <Link to="/dashboard">
                                 <img className="mr-3" src={Back} alt="back" />
                             </Link>
                             <p style={{fontSize: '20px'}} className="bold">History</p>
                         </div>
                         <p style={{marginBottom: '30px'}} className="text bold d-none d-sm-inline">Transaction History</p>
-                        <p className="med ml-2 ml-sm-0 mb-sm-4 mb-3">This Week</p>
+                        <p onClick={() => setFilter(false)} className="med ml-2 ml-sm-0 mb-sm-4 mb-3">This Week</p>
                         <div className="mb-sm-0 mb-3">
                         {!income && !expense ? dataWeek.map((item, index) => {
                             if(index <= pageWeek && index > pageWeek - 2) {
@@ -315,9 +315,11 @@ const History = props => {
                                 <p onClick={() => setFilter(true)} className="text bold primary">Filter By Date</p>
                             </div>
                         </div>
-                        <Modal aria-labelledby="contained-modal-title-vcenter" centered show={isFilter} onHide={() => setFilter(false)}>
-                        <Modal.Body>
-                            <p className="text bold text-center mt-0">Filter By Date</p>
+                        <Notification />
+                    </div>
+                    <div className={`d-sm-none custom__modal ${isFilter ? 'active' : ''} d-flex flex-column`}>
+                            <p className="text bold text-center mt-0 mb-5">Filter By Date</p>
+                            <div className="align-self-center mb-5">
                             <DatePicker
                                 selected={startDate}
                                 onChange={onChange}
@@ -326,6 +328,7 @@ const History = props => {
                                 selectsRange
                                 inline
                             />
+                            </div>
                             <div className="d-flex justify-content-between">
                                 <div>
                                     <p>From</p>
@@ -339,10 +342,7 @@ const History = props => {
                             <div className="confirm mt-5">
                                 <button onClick={onSubmit} className="btn-primary">Apply</button>
                             </div>
-                        </Modal.Body>
-                        </Modal>
-                        <Notification />
-                    </div>
+                        </div>
                 </Container>
                 <Footer />
             </Fragment>

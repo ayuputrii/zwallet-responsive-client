@@ -3,7 +3,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { logout } from "../redux/action/login";
 import { userLogout } from "../redux/action/user";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { imageURI } from "../utils";
 
 const Bar = (props) => {
@@ -57,7 +57,7 @@ const Bar = (props) => {
         <div className={`sidenav ${sidebarActive ? "active" : ""}`}>
           <div className="d-flex flex-column align-items-center justify-content-between bottom">
             <div className="d-flex justify-content-between flex-column align-items-center">
-            <div className="py-4 my-5">
+              <div className="py-4 my-5">
                 <span className="big primary bold">
                   <Link to={{ pathname: `/admin/user` }}>User</Link>
                 </span>

@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Container, Button, Modal, Form } from "react-bootstrap";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./DetailUserAdm.css";
-import { imageURI } from "../../utils";
+// import { imageURI } from "../../utils";
 
 import { useHistory } from "react-router-dom";
 import { getAdmin, deleteAdmin, editAdmin } from "../../redux/action/admin";
@@ -21,7 +21,7 @@ const Content = () => {
   const dataProps = history.location.state;
 
   const [stateId] = React.useState(dataProps?.id ?? "");
-  const [photo, setPhoto] = React.useState(dataProps?.photo ?? "");
+  // const [photo, setPhoto] = React.useState(dataProps?.photo ?? "");
   const [name, setName] = React.useState(dataProps?.name ?? "");
   const [email, setEmail] = React.useState(dataProps?.email ?? "");
   const [password, setPassword] = React.useState(dataProps?.password ?? "");
@@ -56,16 +56,16 @@ const Content = () => {
     history.push("/admin/user");
   };
 
-  const clickPhoto = (e) => {
-    dispatch(
-      editAdmin({
-        id: stateId,
-        token: token,
-        photo: photo,
-      })
-    );
-    history.push("/admin/user");
-  };
+  // const clickPhoto = (e) => {
+  //   dispatch(
+  //     editAdmin({
+  //       id: stateId,
+  //       token: token,
+  //       photo: photo,
+  //     })
+  //   );
+  //   history.push("/admin/user");
+  // };
 
   const onDelete = (id) => {
     dispatch(
@@ -85,7 +85,8 @@ const Content = () => {
           <Col lg={3} md={3} sm={12} xs={12}>
             <div className="total-user-detail">
               <div>
-                <img className="photo-user-detail" src={imageURI + photo} />
+                <img className="photo-user-detail" />
+                {/* src={imageURI + photo} */}
               </div>
               <Button
                 onClick={handleShow}
@@ -123,7 +124,6 @@ const Content = () => {
               <div className="total-user-detail-text">
                 <p>Role</p>
                 <p>{role}</p>
-                {/* <p>{role === 5 ? 'User' : role === 6 ? 'Admin' : null}</p> */}
               </div>
               <div className="total-user-detail-text">
                 <p>Balance :{balance}</p>
@@ -162,12 +162,12 @@ const Content = () => {
           <Form enctype="multipart/form-data">
             <Form.Group controlId="formBasicEmail">
               <Form.Control
-                onChange={(e) => setPhoto(e.target.value)}
+                // onChange={(e) => setPhoto(e.target.value)}
                 type="file"
               />
             </Form.Group>
             <Button
-              onClick={clickPhoto}
+              // onClick={clickPhoto}
               type="submit"
               className="btn-edit-user"
               variant="info"

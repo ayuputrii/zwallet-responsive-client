@@ -98,7 +98,7 @@ export const editAdmin = (fields) => async (dispatch) => {
     const res = await Axios.patch(
       `${URL_ADM}/users/${fields.id}`,
       {
-        photo: fields.photo,
+        // photo: fields.photo,
         name: fields.name,
         email: fields.email,
         password: fields.password,

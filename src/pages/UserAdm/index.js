@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
 
-import { getAdmin, searchAdmin } from "../../redux/action/admin";
+import { getAdmin } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 import person from "../../icons/person.svg";
 
@@ -80,7 +80,9 @@ const Content = () => {
               </thead>
               <tbody className="table-tb">
                 {loading ? (
-                  <p>...loading</p>
+                  <tr>
+                    <td>Loading ...</td>
+                  </tr>
                 ) : (
                   typeof dataAdmin === "object" &&
                   dataAdmin.map((item, index) => {

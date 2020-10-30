@@ -95,11 +95,24 @@ export const editAdminFailed = (error) => {
 export const editAdmin = (fields) => async (dispatch) => {
   dispatch(editAdminRequest());
   try {
-    const res = await Axios.patch(`${URL_ADM}/users/${fields.id}`, fields, {
-      headers: {
-        Authorization: `Bearer ${fields.token}`,
+    const res = await Axios.patch(
+      `${URL_ADM}/users/${fields.id}`,
+      {
+        photo: fields.photo,
+        name: fields.name,
+        email: fields.email,
+        password: fields.password,
+        pin: fields.pin,
+        phone: fields.phone,
+        balance: fields.balance,
+        verified: fields.verified,
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${fields.token}`,
+        },
+      }
+    );
     dispatch(editAdminSuccess(res.data));
   } catch (error) {
     dispatch(editAdminFailed(error.message));

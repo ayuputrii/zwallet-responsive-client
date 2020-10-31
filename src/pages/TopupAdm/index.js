@@ -1,17 +1,47 @@
 import React, { useEffect } from "react";
 import { Row, Col, Form, Button, Table, Modal } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./TopupAdmstyle.css";
+import { topupAdm, deleteTopup, editTopup } from "../../redux/action/topupAdm";
 import { useSelector, useDispatch } from "react-redux";
-import { topupAdm } from "../../redux/action/topupAdm";
+import { useHistory } from "react-router-dom";
 
 const Content = (props) => {
   const { token } = useSelector((state) => state.auth);
   const { data } = useSelector((state) => state.topup);
+  const history = useHistory();
+  // const dataProps = history.location.state;
   const dispatch = useDispatch();
+
+  const [sequence, setSequence] = React.useState("");
+  const [title, setTitle] = React.useState("");
+
   useEffect(() => {
     dispatch(topupAdm(token));
-  }, []);
+  }, [dispatch, token]);
+
+  const clickSubmit = (e) => {
+    dispatch(
+      editTopup({
+        sequence: sequence,
+        title: title,
+        token: token,
+      })
+    );
+    history.push("/admin/topup");
+  };
+
+  const onDelete = (sequence) => {
+    dispatch(
+      deleteTopup({
+        sequence: sequence,
+        token: token,
+      })
+    );
+    dispatch(topupAdm(token));
+    history.push("admin/topup");
+  };
 
   const [lgShow, setLgShow] = React.useState(false);
   const [smShow, setsmShow] = React.useState(false);
@@ -48,6 +78,7 @@ const Content = (props) => {
                 {!data
                   ? "...Loading"
                   : data.map((item, index) => {
+                      // console.log(sequence)
                       return (
                         <tr key={index}>
                           <td>{item.sequence}</td>
@@ -61,7 +92,11 @@ const Content = (props) => {
                             >
                               EDIT
                             </Button>
-                            <Button className="delete-href" variant="danger">
+                            <Button
+                              onClick={() => onDelete(item.sequence)}
+                              className="delete-href"
+                              variant="danger"
+                            >
                               DELETE
                             </Button>
                           </td>
@@ -91,18 +126,27 @@ const Content = (props) => {
               <Form.Label className="description-tittle">
                 DESCRIPTION TITTLE
               </Form.Label>
-              <Form.Control type="text" placeholder="Enter tittle..." />
+              <Form.Control
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+                type="text"
+                placeholder="Enter tittle..."
+              />
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label className="description-tittle">
-                SQUENCE
-              </Form.Label>
-              <Form.Control type="number" placeholder="Enter squence..." />
+              <Form.Label className="description-tittle">SQUENCE</Form.Label>
+              <Form.Control
+                onChange={(e) => setSequence(e.target.value)}
+                value={sequence}
+                type="number"
+                placeholder="Enter squence..."
+              />
             </Form.Group>
             <Button
               className="button-add-topup"
               type="submit"
               variant="info"
+              onClick={clickSubmit}
             >
               EDIT TOPUP
             </Button>
@@ -130,16 +174,10 @@ const Content = (props) => {
               <Form.Control type="text" placeholder="Enter tittle..." />
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label className="description-tittle">
-                SQUENCE
-              </Form.Label>
-              <Form.Control type="number" placeholder="Enter squence..."  />
+              <Form.Label className="description-tittle">SQUENCE</Form.Label>
+              <Form.Control type="number" placeholder="Enter squence..." />
             </Form.Group>
-            <Button
-              className="button-add-topup"
-              type="submit"
-              variant="info"
-            >
+            <Button className="button-add-topup" type="submit" variant="info">
               ADD TOPUP
             </Button>
           </Form>

@@ -5,6 +5,7 @@ import {
   EDIT_USER_REQUEST,
   EDIT_USER_SUCCESS,
   EDIT_USER_FAILED,
+  EDIT_PHOTO,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILED,
@@ -60,11 +61,11 @@ export const deleteAdminFailed = (error) => {
   };
 };
 
-export const deleteAdmin = (fields) => (dispatch) => {
+export const deleteAdmin = (fields, token) => (dispatch) => {
   dispatch(deleteUserRequest());
   Axios.delete(`${URL_ADM}/users/${fields.id}`, {
     headers: {
-      Authorization: `Bearer ${fields.token}`,
+      Authorization: `Bearer ${token}`,
     },
   })
     .then((res) => {
@@ -95,7 +96,7 @@ export const editAdminFailed = (error) => {
   };
 };
 
-export const editAdmin = (fields) => async (dispatch) => {
+export const editAdmin = (fields, token) => async (dispatch) => {
   dispatch(editAdminRequest());
   try {
     const res = await Axios.patch(
@@ -112,7 +113,7 @@ export const editAdmin = (fields) => async (dispatch) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${fields.token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -121,3 +122,13 @@ export const editAdmin = (fields) => async (dispatch) => {
     dispatch(editAdminFailed(error.message));
   }
 };
+
+export const editPhotoAdmin = (data, id, token) => async dispatch => {
+  const res = await Axios.patch(`${URL_ADM}/users/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+
+  dispatch({ type: EDIT_PHOTO, payload: res.data})
+}

@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import { FORM_FILLED, TRANSFER_REQUEST, TRANSFER_SUCCESS, TRANSFER_FAILED } from '../type/transfer'
+import { FORM_FILLED, TRANSFER_REQUEST, TRANSFER_SUCCESS, TRANSFER_FAILED, WRONG_PIN } from '../type/transfer'
 import { URI } from '../../utils'
 
 export const formFilled = data => {
@@ -29,10 +29,16 @@ export const transferFailed = data => {
     }
 }
 
+export const wrongPin = message => {
+    return {
+        type: WRONG_PIN,
+        payload: message
+    }
+}
+
 export const transfer = (token, data, balance) => async dispatch => {
     dispatch(transferRequest())
     try {
-        console.log(token, data)
         const res = await Axios.post(`${URI}/transfer`, data, {
             params: {
                 balance_receiver: balance
@@ -43,6 +49,10 @@ export const transfer = (token, data, balance) => async dispatch => {
         })
         dispatch(transferSuccess(res.data.message))
     } catch (error) {
-        dispatch(transferFailed(error.response.data))
+        if(error.response.data.message !== 'Invalid PIN') {
+            dispatch(transferFailed(error.response.data))
+        } else {
+            dispatch(wrongPin(error.response.data))
+        }
     }
 }

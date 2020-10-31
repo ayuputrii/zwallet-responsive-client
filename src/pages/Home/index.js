@@ -3,8 +3,9 @@ import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Notification from '../../components/Notification'
 import Menu from '../../components/Menu'
-import { Container } from 'react-bootstrap'
+import { Container, Modal } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
+import { chargeTopup20k, chargeTopup50k, chargeTopup100k } from '../../redux/action/topup'
 import { getHistory } from '../../redux/action/history'
 import { Link } from 'react-router-dom'
 import Transfer from '../../icons/balance/arrow-up.svg'
@@ -18,15 +19,20 @@ import { imageURI } from '../../utils'
 import MyChart from '../../components/Chart'
 
 const Home = props => {
+    const [modalShow, setModalShow] = useState(false)
     const [isNotification, setNotification] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
     const dispatch = useDispatch()
     const { data } = useSelector(state => state.user)
     const { dataAll, dataToday, dataWeek } = useSelector(state => state.history)
+    const { token20k, token50k, token100k } = useSelector(state => state.topup)
     const { token } = useSelector(state => state.auth)
 
     useEffect(() => {
         dispatch(getHistory(token))
+        dispatch(chargeTopup20k(token))
+        dispatch(chargeTopup50k(token))
+        dispatch(chargeTopup100k(token))
     }, [])
 
     const splitPhone = (phone) => {
@@ -221,12 +227,17 @@ const Home = props => {
                                         Transfer
                                     </button>   
                                 </Link>
-                                <Link to={{pathname: `/topup`}}>
+                                <Link to={{ pathname: `/topup`}} className="d-sm-none">
                                     <button className="btn-light-primary home-button">
                                         <img className="mr-2" src={Topup} alt=""/>
                                         Top Up
-                                    </button>
+                                    </button>   
                                 </Link>
+                                <button onClick={() => setModalShow(true)} 
+                                className="btn-light-primary home-button d-none d-sm-block">
+                                    <img className="mr-2" src={Topup} alt=""/>
+                                    Top Up
+                                </button>
                             </div>
                         </div>
                         <div className="bottom-panel">
@@ -282,6 +293,20 @@ const Home = props => {
                                 </div>
                             </div>
                         </div>
+                        <Modal size="md" aria-labelledby="contained-modal-title-vcenter" centered show={modalShow} onHide={() => setModalShow(false)} >
+                        <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            Charge Top Up
+                        </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <div className="d-flex flex-column">
+                                <div onClick={() => window.snap.pay(token20k)} className="label primary">20.000</div>
+                                <div onClick={() => window.snap.pay(token50k)} className="label primary">50.000</div>
+                                <div onClick={() => window.snap.pay(token100k)} className="label primary">100.000</div>
+                            </div>
+                        </Modal.Body>
+                        </Modal>
                         <Notification />
                     </div> 
                 </Container>

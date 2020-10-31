@@ -20,7 +20,7 @@ const Notification = (props) => {
             <div className="report">
                 <p className="med date">Today</p>
                 {dataToday.map((item, index) => {
-                    if(index <= 2) {
+                    if(index < 2) {
                         return (
                             <div key={index} className="label">
                                 <div className="icon mr-3">
@@ -40,7 +40,7 @@ const Notification = (props) => {
             <div className="report">
                 <p className="med date">This Week</p>
                 {dataWeek.map((item, index) => {
-                    if(index <= 2) {
+                    if(index < 2) {
                         return (
                             <div key={index} className="label">
                                 <div className="icon mr-3">

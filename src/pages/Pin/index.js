@@ -34,6 +34,7 @@ const Pin = props => {
     }
 
     const onSubmit = data => {
+        console.log(data)
         const pin = Object.values(data).join('')
         dispatch(checkPin({ pin }, token))     
     }

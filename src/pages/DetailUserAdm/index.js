@@ -2,7 +2,6 @@ import React from "react";
 import { Row, Col, Container, Button, Modal, Form } from "react-bootstrap";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./DetailUserAdm.css";
-import person from "./diki.jpeg";
 
 import { useHistory } from "react-router-dom";
 import { getAdmin, deleteAdmin, editAdmin } from "../../redux/action/admin";
@@ -69,7 +68,6 @@ const Content = (props) => {
     dispatch(
       editAdmin({
         id: stateId,
-        token: token,
         name: name,
         email: email,
         password: password,
@@ -78,7 +76,7 @@ const Content = (props) => {
         role: role,
         balance: balance,
         verified: verified,
-      })
+      }, token)
     );
   };
 

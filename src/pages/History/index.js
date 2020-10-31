@@ -123,6 +123,7 @@ const History = props => {
                             </Link>
                             <p style={{fontSize: '20px'}} className="bold">History</p>
                         </div>
+                        <div onClick={() => setFilter(false)}>
                         <p style={{marginBottom: '30px'}} className="text bold d-none d-sm-inline">Transaction History</p>
                         <p onClick={() => setFilter(false)} className="med ml-2 ml-sm-0 mb-sm-4 mb-3">This Week</p>
                         <div className="mb-sm-0 mb-3">
@@ -304,6 +305,7 @@ const History = props => {
                             }} src={Income} alt="" />
                         </div> : '': ''}
                         </div>
+                        </div>
                         <div className="d-flex d-sm-none justify-content-between">
                             <div onClick={() => {setExpense(!expense); setIncome(false)}} style={{padding:'15px'}} className={`history__filter ${expense ? 'active' : ''} mr-3 ml-3`}>
                                 <img src={expense ? ExpenseActive : Expense} alt="expense" />
@@ -318,8 +320,8 @@ const History = props => {
                         <Notification />
                     </div>
                     <div className={`d-sm-none custom__modal ${isFilter ? 'active' : ''} d-flex flex-column`}>
-                            <p className="text bold text-center mt-0 mb-5">Filter By Date</p>
-                            <div className="align-self-center mb-5">
+                            <p className="text bold text-center mt-0">Filter By Date</p>
+                            <div className="align-self-center">
                             <DatePicker
                                 selected={startDate}
                                 onChange={onChange}
@@ -339,7 +341,7 @@ const History = props => {
                                     <p className="bold">{moment(endDate).format('LL')}</p>
                                 </div>
                             </div>
-                            <div className="confirm mt-5">
+                            <div className="confirm">
                                 <button onClick={onSubmit} className="btn-primary">Apply</button>
                             </div>
                         </div>

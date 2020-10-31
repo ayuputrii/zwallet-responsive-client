@@ -1,11 +1,12 @@
-import { FORM_FILLED, TRANSFER_REQUEST, TRANSFER_SUCCESS, TRANSFER_FAILED } from '../type/transfer'
+import { FORM_FILLED, TRANSFER_REQUEST, TRANSFER_SUCCESS, TRANSFER_FAILED, WRONG_PIN } from '../type/transfer'
 
 const initialState = {
     dataTransfer: {},
     loading: false,
     isSuccess: false,
     isFailed: false,
-    message: ''
+    message: '',
+    messagePIN: ''
 }
 
 export default (state = initialState, action) => {
@@ -35,6 +36,12 @@ export default (state = initialState, action) => {
                 isSuccess: false,
                 isFailed: true,
                 message: action.payload.message
+            }
+        case WRONG_PIN:
+            return {
+                ...state,
+                loading: false,
+                messagePIN: action.payload.message
             }
         default:
             return {

@@ -19,9 +19,6 @@ const Topup = props => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(topup(token))
-        dispatch(chargeTopup20k(token))
-        dispatch(chargeTopup50k(token))
-        dispatch(chargeTopup100k(token))
     }, [])
     
     return (

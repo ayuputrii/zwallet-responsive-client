@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Container, Button, Modal, Form } from "react-bootstrap";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./DetailUserAdm.css";
-// import { imageURI } from "../../utils";
+import { imageURI } from "../../utils";
 
 import { useHistory } from "react-router-dom";
 import { getAdmin, deleteAdmin, editAdmin } from "../../redux/action/admin";
@@ -21,7 +21,7 @@ const Content = () => {
   const dataProps = history.location.state;
 
   const [stateId] = React.useState(dataProps?.id ?? "");
-  // const [photo, setPhoto] = React.useState(dataProps?.photo ?? "");
+  const [photo, setPhoto] = React.useState(dataProps?.photo ?? "");
   const [name, setName] = React.useState(dataProps?.name ?? "");
   const [email, setEmail] = React.useState(dataProps?.email ?? "");
   const [password, setPassword] = React.useState(dataProps?.password ?? "");
@@ -57,6 +57,7 @@ const Content = () => {
   };
 
   // const clickPhoto = (e) => {
+  //   e.preventDefault();
   //   dispatch(
   //     editAdmin({
   //       id: stateId,
@@ -64,6 +65,7 @@ const Content = () => {
   //       photo: photo,
   //     })
   //   );
+  //   console.log(photo);
   //   history.push("/admin/user");
   // };
 
@@ -85,16 +87,16 @@ const Content = () => {
           <Col lg={3} md={3} sm={12} xs={12}>
             <div className="total-user-detail">
               <div>
-                <img className="photo-user-detail" />
+                <img className="photo-user-detail" src={imageURI + photo} />
                 {/* src={imageURI + photo} */}
               </div>
-              <Button
+              {/* <Button
                 onClick={handleShow}
                 className="btn-edit-user"
                 variant="info"
               >
                 EDIT
-              </Button>
+              </Button> */}
             </div>
             &nbsp;
           </Col>
@@ -159,21 +161,21 @@ const Content = () => {
           <Modal.Title>Upload Photo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form enctype="multipart/form-data">
-            <Form.Group controlId="formBasicEmail">
+          <Form encType="multipart/form-data">
+            <Form.Group controlId="formBasicPhoto">
               <Form.Control
-                // onChange={(e) => setPhoto(e.target.value)}
+                // onChange={(e) => setPhoto(e.target.files)}
                 type="file"
               />
             </Form.Group>
-            <Button
-              // onClick={clickPhoto}
+            {/* <Button
+              onClick={clickPhoto}
               type="submit"
               className="btn-edit-user"
               variant="info"
             >
               Update Photo
-            </Button>
+            </Button> */}
           </Form>
         </Modal.Body>
       </Modal>

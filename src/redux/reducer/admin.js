@@ -7,6 +7,8 @@ import {
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILED,
+  GET_SENDER,
+  SEARCH_SENDER,
 } from "../type/admin";
 
 const initialState = {
@@ -72,6 +74,19 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         dataAdmin: action.payload,
+      };
+
+    case GET_SENDER:
+      return {
+        ...state,
+        dataAdmin: action.payload.data,
+        loading: false,
+      };
+
+    case SEARCH_SENDER:
+      return {
+        ...state,
+        dataAdmin: action.payload.data,
       };
 
     default:

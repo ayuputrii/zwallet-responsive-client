@@ -1,10 +1,10 @@
 import React from "react";
-import { Row, Col, Form, Table, Container, Pagination } from "react-bootstrap";
+import { Row, Col, Table, Container, Pagination } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
 
-import { getAdmin } from "../../redux/action/admin";
+import { getAdmin, searchAdmin } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 import person from "../../icons/person.svg";
 
@@ -65,9 +65,15 @@ const Content = () => {
             &nbsp;
           </Col>
           <Col lg={8} md={8} sm={12} xs={12}>
-            <Form className="form-search">
-              <input type="text" placeholder="Search..." />
-            </Form>
+          <div className="form-search">
+              <input
+                name="q"
+                type="search"
+                onChange={(e) => dispatch(searchAdmin(token, e.target.value))}
+                autoComplete="off"
+                placeholder="Search receiver here"
+              />
+            </div>
             <Table responsive className="table-head">
               <thead className="table-check">
                 <tr>

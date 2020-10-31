@@ -27,13 +27,16 @@ export const getAdmin = (token) => async (dispatch) => {
 };
 
 // Search User
-export const searchAdmin = (token) => async (dispatch) => {
+export const searchAdmin = (token, query) => async (dispatch) => {
   const res = await Axios.get(`${URL_ADM}/users/search/query`, {
+    params: {
+      q: query,
+    },
+
     headers: {
       Authorization: `Bearer ${token}`,
-    },
+    }
   });
-
   dispatch({ type: SEARCH_ADMIN, payload: res.data });
 };
 

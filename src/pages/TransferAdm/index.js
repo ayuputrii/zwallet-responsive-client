@@ -1,17 +1,46 @@
-import React from "react";
-import { Row, Col, Form, Button, Table} from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Row, Col, Button, Table } from "react-bootstrap";
 import "./TransferAdmstyle.css";
 import NavbarAdm from "../../components/NavbarAdm";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getSender,
+  deleteSender,
+  searchSender,
+} from "../../redux/action/adminTransfer";
 
 const Content = (props) => {
+  const dispatch = useDispatch();
+  const { loading, data } = useSelector((state) => state.sender);
+  const { token } = useSelector((state) => state.auth);
+
+  React.useEffect(() => {
+    dispatch(getSender(token));
+  }, []);
+
+  const onDelete = (id) => {
+    dispatch(
+      deleteSender({
+        id: id,
+        token: token,
+      })
+    );
+    dispatch(getSender(token));
+  };
   return (
     <>
       <Col lg={12} md={12} sm={12} xs={12}>
         <Row>
           <Col lg={12} md={12} sm={12} xs={12}>
-            <Form action="#" className="form-search">
-              <input type="text" placeholder="Search..." />
-            </Form>
+          <div className="form-search">
+              <input
+                name="q"
+                type="search"
+                onChange={(e) => dispatch(searchSender(token, e.target.value))}
+                autoComplete="off"
+                placeholder="Search receiver here"
+              />
+            </div>
           </Col>
           <Col lg={12} md={12} sm={12} xs={12}>
             <Table responsive className="table-head">
@@ -26,32 +55,31 @@ const Content = (props) => {
                 </tr>
               </thead>
               <tbody className="table-tb">
-                <tr>
-                  <td>1</td>
-                  <td>Diki Herliansyah </td>
-                  <td>diki@gmail.com</td>
-                  <td>admin </td>
-                  <td>Rp. 100.000 </td>
-                  <td className="td-btn">
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Diki Herliansyah </td>
-                  <td>diki@gmail.com</td>
-                  <td>admin </td>
-                  <td>Rp. 100.000 </td>
-                  <td className="td-btn">
-                    <Button className="delete-href" variant="danger">
-                      DELETE
-                    </Button>
-                  </td>
-                </tr>
-
-
+              {loading ? (
+                  <p> Loading... </p>
+                ) : (
+                  typeof data === "object" &&
+                  data.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <td> {index + 1} </td>
+                        <td> {item.sender} </td>
+                        <td> {item.receiver} </td>
+                        <td> {item.amount} </td>
+                        <td> {item.note} </td>
+                        <td className="td-btn">
+                          <Button
+                            className="delete-href"
+                            variant="danger"
+                            onClick={() => onDelete(item.id)}
+                          >
+                            DELETE
+                          </Button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
               </tbody>
             </Table>
           </Col>

@@ -19,7 +19,7 @@ const Content = (props) => {
 
   useEffect(() => {
     dispatch(topupAdm(token));
-  }, [dispatch, token]);
+  }, []);
 
   const clickSubmit = (e) => {
     dispatch(
@@ -40,7 +40,7 @@ const Content = (props) => {
       })
     );
     dispatch(topupAdm(token));
-    history.push("admin/topup");
+    history.push("/admin/topup");
   };
 
   const [lgShow, setLgShow] = React.useState(false);

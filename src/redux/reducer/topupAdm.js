@@ -59,13 +59,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        dataTopup: action.payload.message,
+        data: action.payload.message,
       };
     case DELETE_TOPUP_FAILED:
       return {
         ...state,
         loading: false,
-        dataTopup: action.payload,
+        data: action.payload,
       };
     default:
       return state;

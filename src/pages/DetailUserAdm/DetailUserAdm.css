@@ -43,6 +43,21 @@
   border-color: unset !important;
 }
 
+.input-photo{
+  padding: 0px !important;
+}
+
+.btn-edit-user-bottom-photo {
+  margin: auto !important;
+  margin-top: 15px !important;
+  margin-right: 10px !important;
+  width: 110px;
+  font-weight: bolder;
+  margin-right: 5px;
+  background-color: #6379f4 !important;
+  border-color: unset !important;
+}
+
 .btn-edit-user {
   margin: auto !important;
   display: block !important;

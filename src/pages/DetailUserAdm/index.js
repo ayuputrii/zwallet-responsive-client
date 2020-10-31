@@ -85,8 +85,8 @@ const Content = () => {
             <div className="total-user-detail">
               <form encType="multipart/form-data" onSubmit={editPhoto}>
                 <img className="photo-user-detail" src={imageURI + photo} alt="" />
-                <input name="photo" className="bg-transparent" type="file" onChange={(e) => setImageFile(e.target.files[0])}/>
-                <Button type="submit">Edit Photo</Button>
+                <input name="photo" className="bg-transparent input-photo" type="file" onChange={(e) => setImageFile(e.target.files[0])}/>
+                <Button type="submit" className="btn-edit-user-bottom-photo" variant="info">Edit Photo</Button>
               </form>
             </div>
             &nbsp;

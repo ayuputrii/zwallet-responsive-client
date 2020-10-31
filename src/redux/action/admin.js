@@ -27,13 +27,16 @@ export const getAdmin = (token) => async (dispatch) => {
 };
 
 // Search User
-export const searchAdmin = (token) => async (dispatch) => {
+export const searchAdmin = (token, query) => async (dispatch) => {
   const res = await Axios.get(`${URL_ADM}/users/search/query`, {
+    params: {
+      q: query,
+    },
+
     headers: {
       Authorization: `Bearer ${token}`,
-    },
+    }
   });
-
   dispatch({ type: SEARCH_ADMIN, payload: res.data });
 };
 
@@ -95,11 +98,24 @@ export const editAdminFailed = (error) => {
 export const editAdmin = (fields) => async (dispatch) => {
   dispatch(editAdminRequest());
   try {
-    const res = await Axios.patch(`${URL_ADM}/users/${fields.id}`, fields, {
-      headers: {
-        Authorization: `Bearer ${fields.token}`,
+    const res = await Axios.patch(
+      `${URL_ADM}/users/${fields.id}`,
+      {
+        // photo: fields.photo,
+        name: fields.name,
+        email: fields.email,
+        password: fields.password,
+        pin: fields.pin,
+        phone: fields.phone,
+        balance: fields.balance,
+        verified: fields.verified,
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${fields.token}`,
+        },
+      }
+    );
     dispatch(editAdminSuccess(res.data));
   } catch (error) {
     dispatch(editAdminFailed(error.message));

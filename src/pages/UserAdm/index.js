@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Form, Table, Container, Pagination } from "react-bootstrap";
+import { Row, Col, Table, Container, Pagination } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
@@ -65,9 +65,15 @@ const Content = () => {
             &nbsp;
           </Col>
           <Col lg={8} md={8} sm={12} xs={12}>
-            <Form className="form-search">
-              <input type="text" placeholder="Search..." />
-            </Form>
+          <div className="form-search">
+              <input
+                name="q"
+                type="search"
+                onChange={(e) => dispatch(searchAdmin(token, e.target.value))}
+                autoComplete="off"
+                placeholder="Search receiver here"
+              />
+            </div>
             <Table responsive className="table-head">
               <thead className="table-check">
                 <tr>
@@ -80,7 +86,9 @@ const Content = () => {
               </thead>
               <tbody className="table-tb">
                 {loading ? (
-                  <p>...loading</p>
+                  <tr>
+                    <td>Loading ...</td>
+                  </tr>
                 ) : (
                   typeof dataAdmin === "object" &&
                   dataAdmin.map((item, index) => {
@@ -115,45 +123,6 @@ const Content = () => {
           </Col>
         </Row>
       </Container>
-
-      {/* <Modal
-        size="lg"
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg modal-user">
-            Detail User
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Table responsive className="table-modal">
-            <thead className="table-check">
-              <tr>
-                <th>Password</th>
-                <th>Pin</th>
-                <th>Photo</th>
-                <th>Phone</th>
-                <th>Verified</th>
-                <th>Date Create</th>
-                <th>Date Update</th>
-              </tr>
-            </thead>
-            <tbody className="table-tb">
-              <tr>
-                <td></td>
-                <td>112233 </td>
-                <td>Tablecell.jpg </td>
-                <td>08211414831 </td>
-                <td> 0 </td>
-                <td>25/10/2020</td>
-                <td>25/10/2020</td>
-              </tr>
-            </tbody>
-          </Table>
-        </Modal.Body>
-      </Modal> */}
     </>
   );
 };

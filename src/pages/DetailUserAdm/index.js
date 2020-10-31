@@ -2,69 +2,44 @@ import React from "react";
 import { Row, Col, Container, Button, Modal, Form } from "react-bootstrap";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./DetailUserAdm.css";
+import { imageURI } from "../../utils";
 
 import { useHistory } from "react-router-dom";
 import { getAdmin, deleteAdmin, editAdmin } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 
-const Content = (props) => {
+const Content = () => {
   const [show, setShow] = React.useState(false);
   const [showed, setShowed] = React.useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleClosed = () => setShowed(false);
-  const handleShowed = () => setShowed(true);
 
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const history = useHistory();
   const dataProps = history.location.state;
 
-  // const { location } = props;
-  const [stateId, setStateId] = React.useState(dataProps?.id ?? "");
+  const [stateId] = React.useState(dataProps?.id ?? "");
+  const [photo, setPhoto] = React.useState(dataProps?.photo ?? "");
   const [name, setName] = React.useState(dataProps?.name ?? "");
-  const [email, setEmail] = React.useState(dataProps.email ?? "");
+  const [email, setEmail] = React.useState(dataProps?.email ?? "");
   const [password, setPassword] = React.useState(dataProps?.password ?? "");
   const [pin, setPin] = React.useState(dataProps?.pin ?? "");
   const [phone, setPhone] = React.useState(dataProps?.phone ?? "");
-  const [role, setRole] = React.useState(dataProps?.role ?? "");
+  const [role, setRole] = React.useState(
+    dataProps?.role === 5 ? "User" : dataProps?.role === 6 ? "Admin" : ""
+  );
   const [balance, setBalance] = React.useState(dataProps?.balance ?? "");
   const [verified, setVerified] = React.useState(dataProps?.verified ?? "");
+  const [createdAt] = React.useState(dataProps?.createdAt ?? "");
+  const [updatedAt] = React.useState(dataProps?.updatedAt ?? "");
 
   React.useEffect(() => {
     dispatch(getAdmin(token));
   }, [dispatch, token]);
 
-  // const handleShowed = (id) => {
-  //   dispatch(
-  //     editAdmin({
-  //       id: id,
-  //       token: token,
-  //     })
-  //   );
-  //   setShowed(true);
-  // };
-
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  //   dispatch(
-  //     editAdmin({
-  //       stateId: stateId,
-  //       token: token,
-  //       name: name,
-  //       email: email,
-  //       password: password,
-  //       pin: pin,
-  //       phone: phone,
-  //       role: role,
-  //       balance: balance,
-  //       verified: verified,
-  //     })
-  //   );
-  // };
-
   const clickSubmit = (e) => {
-    e.preventDefault();
     dispatch(
       editAdmin({
         id: stateId,
@@ -73,12 +48,25 @@ const Content = (props) => {
         password: password,
         pin: pin,
         phone: phone,
-        role: role,
         balance: balance,
         verified: verified,
       }, token)
     );
+    history.push("/admin/user");
   };
+
+  // const clickPhoto = (e) => {
+  //   e.preventDefault();
+  //   dispatch(
+  //     editAdmin({
+  //       id: stateId,
+  //       token: token,
+  //       photo: photo,
+  //     })
+  //   );
+  //   console.log(photo);
+  //   history.push("/admin/user");
+  // };
 
   const onDelete = (id) => {
     dispatch(
@@ -98,15 +86,16 @@ const Content = (props) => {
           <Col lg={3} md={3} sm={12} xs={12}>
             <div className="total-user-detail">
               <div>
-                <img className="photo-user-detail" src={person} alt="" />
+                <img className="photo-user-detail" src={imageURI + photo} />
+                {/* src={imageURI + photo} */}
               </div>
-              <Button
+              {/* <Button
                 onClick={handleShow}
                 className="btn-edit-user"
                 variant="info"
               >
                 EDIT
-              </Button>
+              </Button> */}
             </div>
             &nbsp;
           </Col>
@@ -115,47 +104,46 @@ const Content = (props) => {
               &nbsp; &nbsp;
               <div className="total-user-detail-text">
                 <p>Nama</p>
-                <p>{dataProps.name}</p>
+                <p>{name}</p>
               </div>
               <div className="total-user-detail-text">
                 <p>Email</p>
-                <p>{dataProps.email}</p>
+                <p>{email}</p>
               </div>
               <div className="total-user-detail-text">
                 <p>Password</p>
-                <p className="detail-user-password">{dataProps.password}</p>
+                <p className="detail-user-password"></p>
               </div>
               <div className="total-user-detail-text">
                 <p>pin</p>
-                <p>{dataProps.pin}</p>
+                <p>{pin}</p>
               </div>
               <div className="total-user-detail-text">
                 <p>Phone</p>
-                <p>{dataProps.phone}</p>
+                <p>{phone}</p>
               </div>
               <div className="total-user-detail-text">
                 <p>Role</p>
-                <p>{dataProps.role}</p>
+                <p>{role}</p>
               </div>
               <div className="total-user-detail-text">
-                <p>Balance :{dataProps.balance}</p>
-                <p>Verified : {dataProps.verified}</p>
+                <p>Balance :{balance}</p>
+                <p>Verified : {verified}</p>
               </div>
               <div className="total-user-detail-text">
-                <p>Created At : {dataProps.createdAt}</p>
-                <p>Update At : {dataProps.updatedAt}</p>
+                <p>Created At : {createdAt}</p>
+                <p>Update At : {updatedAt}</p>
               </div>
               <div className="total-user-detail-text-btn">
                 <Button
                   onClick={() => setShowed(true)}
-                  //onClick={() => handleShowed(dataProps.id)}
                   className="btn-edit-user-bottom"
                   variant="info"
                 >
                   EDIT
                 </Button>
                 <Button
-                  onClick={() => onDelete(dataProps.id)}
+                  onClick={() => onDelete(stateId)}
                   className="btn-edit-user-bottom"
                   variant="info"
                 >
@@ -172,14 +160,21 @@ const Content = (props) => {
           <Modal.Title>Upload Photo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form enctype="multipart/form-data">
-            {/* <Form onSubmit={onSubmit} enctype="multipart/form-data"> */}
-            <Form.Group controlId="formBasicEmail">
-              <Form.Control type="file" />
+          <Form encType="multipart/form-data">
+            <Form.Group controlId="formBasicPhoto">
+              <Form.Control
+                // onChange={(e) => setPhoto(e.target.files)}
+                type="file"
+              />
             </Form.Group>
-            <Button type="submit" className="btn-edit-user" variant="info">
-              UPLOAD
-            </Button>
+            {/* <Button
+              onClick={clickPhoto}
+              type="submit"
+              className="btn-edit-user"
+              variant="info"
+            >
+              Update Photo
+            </Button> */}
           </Form>
         </Modal.Body>
       </Modal>
@@ -190,7 +185,6 @@ const Content = (props) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            {/* <Form onSubmit={onSubmit}> */}
             <Form.Group controlId="formBasicName">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -198,7 +192,6 @@ const Content = (props) => {
                 value={name}
                 type="text"
                 placeholder="Edit your name..."
-                autoComplete="current-username"
               />
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
@@ -208,7 +201,7 @@ const Content = (props) => {
                 value={email}
                 type="email"
                 placeholder="Edit your email..."
-                autoComplete="current-email"
+                autoComplete="username"
               />
             </Form.Group>
             <Form.Group controlId="formBasicPassword">
@@ -225,7 +218,7 @@ const Content = (props) => {
               <Form.Control
                 onChange={(e) => setPin(e.target.value)}
                 value={pin}
-                type="text"
+                type="number"
                 placeholder="Edit your pin..."
               />
             </Form.Group>
@@ -234,8 +227,7 @@ const Content = (props) => {
               <Form.Control
                 onChange={(e) => setRole(e.target.value)}
                 value={role}
-                type="text"
-                placeholder="Edit your role..."
+                disabled
               />
             </Form.Group>
             <Form.Group controlId="formBasicPhone">
@@ -243,7 +235,7 @@ const Content = (props) => {
               <Form.Control
                 onChange={(e) => setPhone(e.target.value)}
                 value={phone}
-                type="text"
+                type="number"
                 placeholder="Edit your phone..."
               />
             </Form.Group>
@@ -252,8 +244,6 @@ const Content = (props) => {
               <Form.Control
                 onChange={(e) => setBalance(e.target.value)}
                 value={balance}
-                type="text"
-                placeholder="Edit your balance..."
               />
             </Form.Group>
             <Form.Group controlId="formBasicVerified">
@@ -261,8 +251,6 @@ const Content = (props) => {
               <Form.Control
                 onChange={(e) => setVerified(e.target.value)}
                 value={verified}
-                type="text"
-                placeholder="Edit verified..."
               />
             </Form.Group>
             <Button
@@ -280,7 +268,7 @@ const Content = (props) => {
   );
 };
 
-const DetailUserAdm = (props) => {
+const DetailUserAdm = () => {
   return (
     <div>
       <NavbarAdm />

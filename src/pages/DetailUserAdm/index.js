@@ -5,10 +5,11 @@ import "./DetailUserAdm.css";
 import { imageURI } from "../../utils";
 
 import { useHistory } from "react-router-dom";
-import { getAdmin, deleteAdmin, editAdmin } from "../../redux/action/admin";
+import { getAdmin, deleteAdmin, editAdmin, editPhotoAdmin } from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 
 const Content = () => {
+  const [imageFile, setImageFile] = React.useState('')
   const [show, setShow] = React.useState(false);
   const [showed, setShowed] = React.useState(false);
   const handleClose = () => setShow(false);
@@ -55,29 +56,26 @@ const Content = () => {
     history.push("/admin/user");
   };
 
-  // const clickPhoto = (e) => {
-  //   e.preventDefault();
-  //   dispatch(
-  //     editAdmin({
-  //       id: stateId,
-  //       token: token,
-  //       photo: photo,
-  //     })
-  //   );
-  //   console.log(photo);
-  //   history.push("/admin/user");
-  // };
-
   const onDelete = (id) => {
     dispatch(
       deleteAdmin({
-        id: id,
-        token: token,
-      })
+        id: id
+      }, token)
     );
     dispatch(getAdmin(token));
     history.push("/admin/user");
   };
+
+  const editPhoto = (e) => {
+    e.preventDefault()
+    console.log(imageFile)
+    if(imageFile) {
+      const formData = new FormData()
+      formData.append('photo', imageFile)
+      console.log(formData)
+      dispatch(editPhotoAdmin(formData, stateId, token))
+    }
+  }
 
   return (
     <>
@@ -85,17 +83,11 @@ const Content = () => {
         <Row>
           <Col lg={3} md={3} sm={12} xs={12}>
             <div className="total-user-detail">
-              <div>
-                <img className="photo-user-detail" src={imageURI + photo} />
-                {/* src={imageURI + photo} */}
-              </div>
-              {/* <Button
-                onClick={handleShow}
-                className="btn-edit-user"
-                variant="info"
-              >
-                EDIT
-              </Button> */}
+              <form encType="multipart/form-data" onSubmit={editPhoto}>
+                <img className="photo-user-detail" src={imageURI + photo} alt="" />
+                <input name="photo" className="bg-transparent" type="file" onChange={(e) => setImageFile(e.target.files[0])}/>
+                <Button type="submit">Edit Photo</Button>
+              </form>
             </div>
             &nbsp;
           </Col>
@@ -154,30 +146,6 @@ const Content = () => {
           </Col>
         </Row>
       </Container>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Upload Photo</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form encType="multipart/form-data">
-            <Form.Group controlId="formBasicPhoto">
-              <Form.Control
-                // onChange={(e) => setPhoto(e.target.files)}
-                type="file"
-              />
-            </Form.Group>
-            {/* <Button
-              onClick={clickPhoto}
-              type="submit"
-              className="btn-edit-user"
-              variant="info"
-            >
-              Update Photo
-            </Button> */}
-          </Form>
-        </Modal.Body>
-      </Modal>
 
       <Modal show={showed} onHide={handleClosed}>
         <Modal.Header closeButton>

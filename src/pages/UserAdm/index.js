@@ -103,7 +103,7 @@ const Content = () => {
                             className="delete-href"
                             variant="info"
                             to={{
-                              pathname: "/admin/profile/info",
+                              pathname: "/admin/user/detail",
                               state: item,
                             }}
                           >

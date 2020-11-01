@@ -42,7 +42,6 @@
 }
 
 .table-head{
-    margin-top: 30px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
 }
 
@@ -89,15 +88,6 @@
     margin-top: 30px;		
     overflow-y: scroll; 
     max-height:400px;
-} */
-
-/* .modal-header{
-    border-bottom: none !important;
-}
-
-.modal-title {
-    font-weight: bolder !important;
-    font-size: 40px !important;
 } */
 
 @media screen and (min-width: 280px) and (max-width: 575px){

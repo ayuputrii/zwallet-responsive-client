@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Table, Container, Pagination } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./Homeadm.css";
@@ -65,7 +65,7 @@ const Content = () => {
             &nbsp;
           </Col>
           <Col lg={8} md={8} sm={12} xs={12}>
-          <div className="form-search">
+            <div className="form-search">
               <input
                 name="q"
                 type="search"
@@ -74,52 +74,51 @@ const Content = () => {
                 placeholder="Search receiver here"
               />
             </div>
-            <Table responsive className="table-head">
-              <thead className="table-check">
-                <tr>
-                  <th>No</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Balance</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody className="table-tb">
-                {loading ? (
+            &nbsp;
+            <div className="table-scroll">
+              <table responsive className="table-head">
+                <thead className="table-check">
                   <tr>
-                    <td>Loading ...</td>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Balance</th>
+                    <th>Action</th>
                   </tr>
-                ) : (
-                  typeof dataAdmin === "object" &&
-                  dataAdmin.map((item, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td>{item.name}</td>
-                        <td>{item.email}</td>
-                        <td>{item.balance}</td>
-                        <td className="td-btn">
-                          <Link
-                            className="delete-href"
-                            variant="info"
-                            to={{
-                              pathname: "/admin/profile/info",
-                              state: item,
-                            }}
-                          >
-                            DETAIL
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })
-                )}
-              </tbody>
-            </Table>
-            <Pagination className="pagination-individu">
-              <Pagination.Prev />
-              <Pagination.Next />
-            </Pagination>
+                </thead>
+                <tbody className="table-tb">
+                  {loading ? (
+                    <tr>
+                      <td>Loading ...</td>
+                    </tr>
+                  ) : (
+                    typeof dataAdmin === "object" &&
+                    dataAdmin.map((item, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{item.name}</td>
+                          <td>{item.email}</td>
+                          <td>{item.balance}</td>
+                          <td className="td-btn1">
+                            <Link
+                              className="delete-href"
+                              variant="info"
+                              to={{
+                                pathname: "/admin/user/detail",
+                                state: item,
+                              }}
+                            >
+                              DETAIL
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  )}
+                </tbody>
+              </table>
+            </div>
           </Col>
         </Row>
       </Container>

@@ -59,7 +59,7 @@ const App = (props) => {
           <PrivateRouteAdmin exact path="/admin/user" component={HomeAdm} />
           <PrivateRouteAdmin exact path="/admin/transfer" component={TransferAdm} />
           <PrivateRouteAdmin exact path="/admin/topup" component={TopupAdm} />
-          <PrivateRouteAdmin exact path="/admin/profile/info" component={DetailUserAdm} />
+          <PrivateRouteAdmin exact path="/admin/user/detail" component={DetailUserAdm} />
           <PrivateRouteAdmin exact path="/admin/user/:id" />
           <PublicRoute component={NotFound} />
         </Switch>

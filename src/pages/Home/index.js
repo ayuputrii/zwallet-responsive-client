@@ -14,6 +14,7 @@ import Income from '../../icons/arrow-down.svg'
 import Expense from '../../icons/arrow-up.svg'
 import bell from '../../icons/bell.svg'
 import Back from '../../icons/arrow-left.svg'
+import LogoTopup from '../../icons/logo.svg'
 import './Home.css'
 import { imageURI } from '../../utils'
 import MyChart from '../../components/Chart'
@@ -269,7 +270,7 @@ const Home = props => {
                                 </div>
                                 <div className="d-flex flex-column">
                                 {dataAll.map((item, index) => {
-                                    if(index <= 3) {
+                                    if(index <= 3 && !item.name) {
                                         return (
                                             <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
                                                 <div className="d-flex align-items-center">
@@ -286,8 +287,23 @@ const Home = props => {
                                                 </div>
                                             </div>
                                         )
-                                    } else {
-                                        return ''
+                                    } else if(index <= 3 && item.name) {
+                                        return (
+                                            <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
+                                                <div className="d-flex align-items-center">
+                                                <div className="avatar">
+                                                        <img src={LogoTopup} width="56px" height="56px" alt="" />
+                                                    </div>
+                                                    <div className="info">
+                                                        <p className="bold history-text">Charge</p>
+                                                        <p className="small">Top Up</p>
+                                                    </div>
+                                                </div>
+                                                <div className="money">
+                                                    <p className={`bold text-success`}>+{item.amount}</p>
+                                                </div>
+                                            </div>
+                                        )
                                     }
                                 })}
                                 </div>

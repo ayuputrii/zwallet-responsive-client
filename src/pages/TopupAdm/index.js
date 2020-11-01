@@ -3,13 +3,13 @@ import { Row, Col, Form, Button, Table, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import NavbarAdm from "../../components/NavbarAdm";
 import "./TopupAdmstyle.css";
-import { topupAdm, deleteTopup, editTopup } from "../../redux/action/topupAdm";
+import { topupAdm, deleteTopup, editTopup, addTopup } from "../../redux/action/topupAdm";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 const Content = (props) => {
   const { token } = useSelector((state) => state.auth);
-  const { data } = useSelector((state) => state.topup);
+  const { dataTopup, isAddSuccess } = useSelector((state) => state.topupAdmin);
   const history = useHistory();
   // const dataProps = history.location.state;
   const dispatch = useDispatch();
@@ -39,9 +39,18 @@ const Content = (props) => {
         token: token,
       })
     );
-    dispatch(topupAdm(token));
-    history.push("/admin/topup");
+    window.location.reload()
   };
+
+  const postTopup = () => {
+    if(title && sequence) {
+      dispatch(addTopup({title, sequence}, token))
+    }
+
+    if(isAddSuccess) {
+      window.location.reload()
+    }
+  }
 
   const [lgShow, setLgShow] = React.useState(false);
   const [smShow, setsmShow] = React.useState(false);
@@ -75,9 +84,9 @@ const Content = (props) => {
                 </tr>
               </thead>
               <tbody className="table-tb">
-                {!data
+                {!dataTopup
                   ? "...Loading"
-                  : data.map((item, index) => {
+                  : dataTopup.map((item, index) => {
                       // console.log(sequence)
                       return (
                         <tr key={index}>
@@ -86,7 +95,7 @@ const Content = (props) => {
                           {/* <td>{item.updatedAt}</td> */}
                           <td className="td-btn">
                             <Button
-                              onClick={() => setLgShow(true)}
+                              onClick={() => {setLgShow(true); setSequence(item.sequence)}}
                               className="btn-edit"
                               variant="info"
                             >
@@ -112,7 +121,7 @@ const Content = (props) => {
       <Modal
         size="lg"
         show={lgShow}
-        onHide={() => setLgShow(false)}
+        onHide={() => {setLgShow(false); setSequence('')}}
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Header closeButton>
@@ -121,7 +130,7 @@ const Content = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form action="#">
+          <Form>
             <Form.Group controlId="formBasicEmail">
               <Form.Label className="description-tittle">
                 DESCRIPTION TITTLE
@@ -131,15 +140,6 @@ const Content = (props) => {
                 value={title}
                 type="text"
                 placeholder="Enter tittle..."
-              />
-            </Form.Group>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label className="description-tittle">SQUENCE</Form.Label>
-              <Form.Control
-                onChange={(e) => setSequence(e.target.value)}
-                value={sequence}
-                type="number"
-                placeholder="Enter squence..."
               />
             </Form.Group>
             <Button
@@ -166,18 +166,18 @@ const Content = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form action="#">
+          <Form>
             <Form.Group controlId="formBasicEmail">
               <Form.Label className="description-tittle">
                 DESCRIPTION TITTLE
               </Form.Label>
-              <Form.Control type="text" placeholder="Enter tittle..." />
+              <Form.Control value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Enter tittle..." />
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
               <Form.Label className="description-tittle">SQUENCE</Form.Label>
-              <Form.Control type="number" placeholder="Enter squence..." />
+              <Form.Control value={sequence} onChange={(e) => setSequence(e.target.value)} type="number" placeholder="Enter squence..." />
             </Form.Group>
-            <Button className="button-add-topup" type="submit" variant="info">
+            <Button onClick={postTopup} className="button-add-topup" type="submit" variant="info">
               ADD TOPUP
             </Button>
           </Form>

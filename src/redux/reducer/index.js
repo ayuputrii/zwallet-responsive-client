@@ -9,6 +9,7 @@ import topupReducer from "./topup";
 import forgotReducer from "./forgot";
 import adminReducer from "./admin";
 import adminTransfer from "./adminTransfer";
+import adminTopup from './topupAdm'
 
 export default combineReducers({
   auth: loginReducer,
@@ -19,6 +20,7 @@ export default combineReducers({
   search: searchReducer,
   transfer: transferReducer,
   topup: topupReducer,
+  topupAdmin: adminTopup,
   admin: adminReducer,
   sender: adminTransfer,
 });

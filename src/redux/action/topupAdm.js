@@ -1,6 +1,9 @@
 import axios from "axios";
 import {
   TOPUPADM,
+  ADD_TOPUP_REQUEST,
+  ADD_TOPUP_SUCCESS,
+  ADD_TOPUP_FAILED,
   EDIT_TOPUP_REQUEST,
   EDIT_TOPUP_SUCCESS,
   EDIT_TOPUP_FAILED,
@@ -20,6 +23,42 @@ export const topupAdm = (token) => async (dispatch) => {
 
   dispatch({ type: TOPUPADM, payload: res.data });
 };
+
+//ADD
+export const addTopupRequest = () => {
+  return {
+    type: ADD_TOPUP_REQUEST
+  }
+}
+
+export const addTopupSuccess = (message) => {
+  return {
+    type: ADD_TOPUP_SUCCESS,
+    payload: message
+  }
+}
+
+export const addTopupFailed = message => {
+  return {
+    type: ADD_TOPUP_FAILED,
+    payload: message
+  }
+}
+
+export const addTopup = (fields, token) => async dispatch => {
+  dispatch(addTopupRequest())
+  try {
+    const res = await axios.post(`${URL_ADM}/topup`, fields, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    dispatch(addTopupSuccess(res.data.message))
+  } catch (error) {
+    dispatch(addTopupFailed(error.response))
+  }
+}
 
 //DELETE
 export const deleteTopupRequest = () => {
@@ -82,7 +121,6 @@ export const editTopup = (fields) => async (dispatch) => {
     const res = await axios.patch(
       `${URL_ADM}/topup/${fields.sequence}`,
       {
-        sequence: fields.sequence,
         title: fields.title
       },
       {

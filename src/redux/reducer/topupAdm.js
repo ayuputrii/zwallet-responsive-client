@@ -1,5 +1,8 @@
 import {
   TOPUPADM,
+  ADD_TOPUP_REQUEST,
+  ADD_TOPUP_SUCCESS,
+  ADD_TOPUP_FAILED,
   EDIT_TOPUP_REQUEST,
   EDIT_TOPUP_SUCCESS,
   EDIT_TOPUP_FAILED,
@@ -11,7 +14,10 @@ import {
 const initialState = {
   dataTopup: [],
   loading: false,
+  messageAdd: "",
   messageEdit: "",
+  isAddSuccess: false,
+  isAddFailed: false,
   isEditSuccess: false,
   isEditFailed: false,
 };
@@ -24,7 +30,28 @@ export default (state = initialState, action) => {
         ...state,
         dataTopup: action.payload.data,
       };
-
+    //ADD
+    case ADD_TOPUP_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+    case ADD_TOPUP_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        messageAdd: action.payload,
+        isAddSuccess: true,
+        isAddFailed: false
+      }
+    case ADD_TOPUP_FAILED:
+      return {
+        ...state,
+        loading: false,
+        messageAdd: action.payload,
+        isAddSuccess: false,
+        isAddFailed: true
+      }
     // EDIT
     case EDIT_TOPUP_REQUEST:
       return {
@@ -36,7 +63,6 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         messageEdit: action.payload.message,
-        data: action.payload.data,
         isEditSuccess: true,
         isEditFailed: false,
       };
@@ -58,14 +84,12 @@ export default (state = initialState, action) => {
     case DELETE_TOPUP_SUCCESS:
       return {
         ...state,
-        loading: false,
-        data: action.payload.message,
+        loading: false
       };
     case DELETE_TOPUP_FAILED:
       return {
         ...state,
-        loading: false,
-        data: action.payload,
+        loading: false
       };
     default:
       return state;

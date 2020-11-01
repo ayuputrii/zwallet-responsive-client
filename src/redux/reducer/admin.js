@@ -21,12 +21,14 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    // Get Admin
     case GET_ADMIN:
       return {
         ...state,
         dataAdmin: action.payload.data,
       };
 
+    // Search Admin
     case SEARCH_ADMIN:
       return {
         ...state,
@@ -57,7 +59,7 @@ export default (state = initialState, action) => {
         isEditFailed: true,
       };
 
-    // Delete
+    // Delete Admin
     case DELETE_USER_REQUEST:
       return {
         ...state,

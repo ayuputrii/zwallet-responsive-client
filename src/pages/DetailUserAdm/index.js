@@ -5,11 +5,16 @@ import "./DetailUserAdm.css";
 import { imageURI } from "../../utils";
 
 import { useHistory } from "react-router-dom";
-import { getAdmin, deleteAdmin, editAdmin, editPhotoAdmin } from "../../redux/action/admin";
+import {
+  getAdmin,
+  deleteAdmin,
+  editAdmin,
+  editPhotoAdmin,
+} from "../../redux/action/admin";
 import { useDispatch, useSelector } from "react-redux";
 
 const Content = () => {
-  const [imageFile, setImageFile] = React.useState('')
+  const [imageFile, setImageFile] = React.useState("");
   const [show, setShow] = React.useState(false);
   const [showed, setShowed] = React.useState(false);
   const handleClose = () => setShow(false);
@@ -42,40 +47,46 @@ const Content = () => {
 
   const clickSubmit = (e) => {
     dispatch(
-      editAdmin({
-        id: stateId,
-        name: name,
-        email: email,
-        password: password,
-        pin: pin,
-        phone: phone,
-        balance: balance,
-        verified: verified,
-      }, token)
+      editAdmin(
+        {
+          id: stateId,
+          name: name,
+          email: email,
+          password: password,
+          pin: pin,
+          phone: phone,
+          balance: balance,
+          verified: verified,
+        },
+        token
+      )
     );
     history.push("/admin/user");
   };
 
   const onDelete = (id) => {
     dispatch(
-      deleteAdmin({
-        id: id
-      }, token)
+      deleteAdmin(
+        {
+          id: id,
+        },
+        token
+      )
     );
     dispatch(getAdmin(token));
     history.push("/admin/user");
   };
 
   const editPhoto = (e) => {
-    e.preventDefault()
-    console.log(imageFile)
-    if(imageFile) {
-      const formData = new FormData()
-      formData.append('photo', imageFile)
-      console.log(formData)
-      dispatch(editPhotoAdmin(formData, stateId, token))
+    e.preventDefault();
+    console.log(imageFile);
+    if (imageFile) {
+      const formData = new FormData();
+      formData.append("photo", imageFile);
+      console.log(formData);
+      dispatch(editPhotoAdmin(formData, stateId, token));
     }
-  }
+  };
 
   return (
     <>
@@ -84,9 +95,24 @@ const Content = () => {
           <Col lg={3} md={3} sm={12} xs={12}>
             <div className="total-user-detail">
               <form encType="multipart/form-data" onSubmit={editPhoto}>
-                <img className="photo-user-detail" src={imageURI + photo} alt="" />
-                <input name="photo" className="bg-transparent input-photo" type="file" onChange={(e) => setImageFile(e.target.files[0])}/>
-                <Button type="submit" className="btn-edit-user-bottom-photo" variant="info">Edit Photo</Button>
+                <img
+                  className="photo-user-detail"
+                  src={imageURI + photo}
+                  alt=""
+                />
+                <input
+                  name="photo"
+                  className="bg-transparent input-photo"
+                  type="file"
+                  onChange={(e) => setImageFile(e.target.files[0])}
+                />
+                <Button
+                  type="submit"
+                  className="btn-edit-user-bottom-photo"
+                  variant="info"
+                >
+                  Edit Photo
+                </Button>
               </form>
             </div>
             &nbsp;

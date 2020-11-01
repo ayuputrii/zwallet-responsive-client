@@ -109,7 +109,7 @@ const History = props => {
                 <Navbar />
                 <Container className="d-flex px-0 px-md-5">
                     <Menu active={1} />
-                    <div className={`pt-5 content-main ${isFilter ? 'onfilter' : ''}`}>
+                    <div className={`pt-5 pt-sm-3 content-main ${isFilter ? 'onfilter' : ''}`}>
                         <div onClick={() => setFilter(false)} className="d-flex align-items-start d-sm-none mb-4 pl-2">
                             <Link to="/dashboard">
                                 <img className="mr-3" src={Back} alt="back" />
@@ -118,7 +118,7 @@ const History = props => {
                         </div>
                         <div onClick={() => setFilter(false)}>
                         <p style={{marginBottom: '30px'}} className="text bold d-none d-sm-inline">Transaction History</p>
-                        <p onClick={() => setFilter(false)} className="med ml-2 ml-sm-0 mb-sm-4 mb-3">This Week</p>
+                        <p onClick={() => setFilter(false)} className="med ml-2 ml-sm-0 mb-sm-4 mb-3"></p>
                         <div className="mb-sm-0 mb-3">
                         {!income && !expense ? dataAll.map((item, index) => {
                             if(index <= page && index > page - 4 && !item.name) {

@@ -56,7 +56,7 @@ const Home = props => {
         let income = 0;
         let expense = 0;
         dataAll.forEach(item => {
-            if(item.receiver === data.name) {
+            if(item.receiver === data.name || item.name) {
                 income += item.amount
             } else {
                 expense += item.amount
@@ -109,7 +109,7 @@ const Home = props => {
                                 </div>
                                 <div className="d-flex flex-column">
                                 {dataAll.map((item, index) => {
-                                    if(index <= 3) {
+                                    if(index <= 3 && !item.name) {
                                         return (
                                             <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
                                                 <div className="d-flex align-items-center">
@@ -126,8 +126,23 @@ const Home = props => {
                                                 </div>
                                             </div>
                                         )
-                                    } else {
-                                        return ''
+                                    } else if(index <= 3 && item.name) {
+                                        return (
+                                            <div key={index} className="d-flex justify-content-between history--item align-items-center mb-4">
+                                                <div className="d-flex align-items-center">
+                                                <div className="avatar">
+                                                        <img src={LogoTopup} width="56px" height="56px" alt="" />
+                                                    </div>
+                                                    <div className="info">
+                                                        <p className="bold history-text">Charge</p>
+                                                        <p className="small">Top Up</p>
+                                                    </div>
+                                                </div>
+                                                <div className="money">
+                                                    <p className={`bold text-success`}>+{item.amount}</p>
+                                                </div>
+                                            </div>
+                                        )
                                     }
                                 })}
                                 </div>

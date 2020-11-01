@@ -85,6 +85,7 @@ const Content = () => {
       formData.append("photo", imageFile);
       console.log(formData);
       dispatch(editPhotoAdmin(formData, stateId, token));
+      history.push('/admin/user')
     }
   };
 

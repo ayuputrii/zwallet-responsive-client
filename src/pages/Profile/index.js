@@ -6,7 +6,7 @@ import { Container, Modal, Button } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import Edit from '../../icons/edit-profile.svg'
 import ArrowRight from '../../icons/arrow-right.svg'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { logout } from '../../redux/action/login'
 import { userLogout, editUser } from '../../redux/action/user'
 import Back from '../../icons/arrow-left.svg'
@@ -14,11 +14,12 @@ import { imageURI } from '../../utils'
 import Notification from '../../components/Notification'
 
 const Profile = props => {
+    const history = useHistory()
     const [name, setName] = useState('')
     const [imageFile, setImageFile] = useState('')
     const [modalShow, setModalShow] = useState(false)
     const dispatch = useDispatch()
-    const { data } = useSelector(state => state.user)
+    const { data, isEditSuccess } = useSelector(state => state.user)
     const { token } = useSelector(state => state.auth)
 
     const style = {
@@ -61,7 +62,8 @@ const Profile = props => {
             formData.append('photo', imageFile)
             dispatch(editUser(formData, token))
         }
-        window.location.reload()
+        setModalShow(false)
+        history.push('/dashboard')
     }
 
     return (

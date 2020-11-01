@@ -28,7 +28,6 @@ export default (state = initialState, action) => {
                 ...state,
                 loading: false,
                 messageEdit: action.payload.message,
-                data: action.payload.data,
                 isEditSuccess: true,
                 isEditFailed: false
             }

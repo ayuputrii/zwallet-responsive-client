@@ -56,13 +56,11 @@ const ManagePhone = props => {
         if(phone.length === 11 || phone.length === 12) {
             dispatch(editUser({ phone }, token))
             history.push('/profile')
-            window.location.reload()
         }
     }
 
     const deletePhone = () => {
         dispatch(editUser({ phone: ''}, token))
-        window.location.reload()
     }
 
     if(data.phone) {

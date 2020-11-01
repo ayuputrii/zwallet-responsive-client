@@ -52,7 +52,7 @@ const Search = props => {
                     <div className="title text bold d-none d-sm-block">
                         Search Receiver
                     </div>
-                    <div className="input px-3">
+                    <div className="input px-3 px-sm-0">
                         <img className="search" src={SearchIcon} alt="" />
                         <input name="q" type="search" onChange={(e) => dispatch(searchByName(token, e.target.value))} autoComplete="off" placeholder="Search receiver here"/>
                     </div>

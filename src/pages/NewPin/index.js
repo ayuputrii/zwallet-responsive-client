@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { editUser } from '../../redux/action/user'
+import { editUser, getUser } from '../../redux/action/user'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import Footer from '../../components/Footer'
@@ -38,7 +38,7 @@ const NewPin = props => {
         const pin = Object.values(data).join('')
         dispatch(editUser({ pin }, token))
         history.push('/profile')
-        window.location.reload()
+        dispatch(getUser(token))
     }
 
     return (

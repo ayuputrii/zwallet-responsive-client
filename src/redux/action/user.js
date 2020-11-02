@@ -43,7 +43,7 @@ export const editUser = (data, token) => async dispatch => {
         })
         dispatch(editUserSuccess(res.data))
     } catch (error) {
-        dispatch(editUserFailed(error.message))
+        dispatch(editUserFailed(error.response))
     }
 }
 

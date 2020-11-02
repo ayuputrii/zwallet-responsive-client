@@ -8,7 +8,7 @@ import Edit from '../../icons/edit-profile.svg'
 import ArrowRight from '../../icons/arrow-right.svg'
 import { Link, useHistory } from 'react-router-dom'
 import { logout } from '../../redux/action/login'
-import { userLogout, editUser } from '../../redux/action/user'
+import { userLogout, editUser, getUser } from '../../redux/action/user'
 import Back from '../../icons/arrow-left.svg'
 import { imageURI } from '../../utils'
 import Notification from '../../components/Notification'
@@ -62,8 +62,8 @@ const Profile = props => {
             formData.append('photo', imageFile)
             dispatch(editUser(formData, token))
         }
-        setModalShow(false)
-        history.push('/dashboard')
+        dispatch(getUser(token))
+        window.location.reload()
     }
 
     return (

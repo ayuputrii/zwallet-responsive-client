@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                messageEdit: action.payload,
+                messageEdit: action.payload.message,
                 isEditSuccess: false,
                 isEditFailed: true
             }
@@ -63,7 +63,9 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 pinCheck: '',
-                checkedPin: false
+                checkedPin: false,
+                isEditSuccess: false,
+                isEditFailed: false
             }
     }
 }

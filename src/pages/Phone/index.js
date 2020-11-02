@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { editUser } from '../../redux/action/user'
+import { editUser, getUser } from '../../redux/action/user'
 import Footer from '../../components/Footer'
 import Menu from '../../components/Menu'
 import Navbar from '../../components/Navbar'
@@ -56,11 +56,13 @@ const ManagePhone = props => {
         if(phone.length === 11 || phone.length === 12) {
             dispatch(editUser({ phone }, token))
             history.push('/profile')
+            dispatch(getUser(token))
         }
     }
 
     const deletePhone = () => {
         dispatch(editUser({ phone: ''}, token))
+        dispatch(getUser(token))
     }
 
     if(data.phone) {

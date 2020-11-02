@@ -61,6 +61,7 @@ const Content = () => {
         token
       )
     );
+    dispatch(getAdmin(token))
     history.push("/admin/user");
   };
 

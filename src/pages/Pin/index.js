@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { checkPin } from '../../redux/action/user'
+import { checkPin, getUser } from '../../redux/action/user'
 import { useForm } from 'react-hook-form'
 import Footer from '../../components/Footer'
 import Menu from '../../components/Menu'
@@ -36,7 +36,7 @@ const Pin = props => {
     const onSubmit = data => {
         console.log(data)
         const pin = Object.values(data).join('')
-        dispatch(checkPin({ pin }, token))     
+        dispatch(checkPin({ pin }, token))  
     }
 
     if(!checkedPin) {

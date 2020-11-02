@@ -3,11 +3,13 @@ import AuthLogo from '../../components/AuthLogo'
 import { useForm } from 'react-hook-form'
 import { reset } from '../../redux/action/forgot'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import Lock from '../../icons/lock.svg'
 import LockActive from '../../icons/lock-active.svg'
 import Eye from '../../icons/eye-crossed.svg'
 
 const ResetPassword = props => {
+    const history = useHistory()
     const [passwordActive, setPasswordActive] = useState(false)
     const [repeatActive, setRepeatActive] = useState(false)
     const [eyeClick, setEyeClick] = useState(false)
@@ -31,6 +33,7 @@ const ResetPassword = props => {
             }
 
             dispatch(reset(data))
+            history.push('/login')
         }
     }
 

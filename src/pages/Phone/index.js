@@ -61,7 +61,7 @@ const ManagePhone = props => {
     }
 
     const deletePhone = () => {
-        dispatch(editUser({ phone: ''}, token))
+        dispatch(editUser({ phone: null}, token))
         dispatch(getUser(token))
     }
 

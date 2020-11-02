@@ -65,7 +65,8 @@ export default (state = initialState, action) => {
                 pinCheck: '',
                 checkedPin: false,
                 isEditSuccess: false,
-                isEditFailed: false
+                isEditFailed: false,
+                messageEdit: ''
             }
     }
 }

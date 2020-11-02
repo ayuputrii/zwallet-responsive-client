@@ -39,7 +39,8 @@ const Content = (props) => {
         token: token,
       })
     );
-    window.location.reload()
+    dispatch(topupAdm(token))
+    history.push('/admin/topup')
   };
 
   const postTopup = () => {
@@ -48,7 +49,8 @@ const Content = (props) => {
     }
 
     if(isAddSuccess) {
-      window.location.reload()
+      dispatch(topupAdm(token))
+      history.push('/admin/topup')
     }
   }
 

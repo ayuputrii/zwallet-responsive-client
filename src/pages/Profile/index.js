@@ -63,6 +63,8 @@ const Profile = props => {
             dispatch(editUser(formData, token))
         }
         dispatch(getUser(token))
+        setModalShow(false)
+        history.push('/profile')
         window.location.reload()
     }
 
